@@ -6,8 +6,10 @@
 - [ ] User story clearly states user type, want, and value
 - [ ] Acceptance criteria are specific, measurable, and testable
 - [ ] Performance requirements specified (startup time, FPS, memory)
-- [ ] iOS version compatibility defined
-- [ ] Device compatibility specified (iPhone sizes, iPad if applicable)
+- [ ] Target platforms specified (iOS, Android, or both)
+- [ ] iOS version compatibility defined (if targeting iOS)
+- [ ] Android version compatibility defined (if targeting Android)
+- [ ] Device compatibility specified (iPhone/iPad sizes, Android devices)
 - [ ] Offline behavior requirements documented
 - [ ] Accessibility requirements included
 
@@ -25,7 +27,7 @@
 - [ ] UI components and layouts specified
 - [ ] Interaction patterns documented
 - [ ] Animation requirements defined
-- [ ] iOS Human Interface Guidelines compliance noted
+- [ ] Platform design guidelines compliance noted (iOS HIG and/or Material Design)
 - [ ] Dark mode requirements specified
 - [ ] Accessibility annotations included
 
@@ -35,7 +37,7 @@
 - [ ] Suggested implementation approach provided
 - [ ] Key files to create/modify listed
 - [ ] Code patterns and examples included
-- [ ] Gotchas and iOS-specific considerations noted
+- [ ] Gotchas and platform-specific considerations noted
 - [ ] Performance optimization hints provided
 - [ ] Error handling approach specified
 

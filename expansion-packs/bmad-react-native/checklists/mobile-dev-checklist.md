@@ -5,8 +5,10 @@
 ### Environment Verification
 - [ ] Node.js 20+ installed and verified
 - [ ] React Native CLI or Expo CLI installed
-- [ ] Xcode latest version installed
-- [ ] iOS Simulator functional
+- [ ] Xcode latest version installed (if targeting iOS)
+- [ ] Android Studio installed (if targeting Android)
+- [ ] iOS Simulator functional (if targeting iOS)
+- [ ] Android Emulator functional (if targeting Android)
 - [ ] Flipper debugger installed and configured
 - [ ] VS Code/Cursor with React Native extensions
 - [ ] Git repository initialized with .gitignore
@@ -17,7 +19,8 @@
 - [ ] Metro bundler configuration reviewed
 - [ ] ESLint and Prettier configured
 - [ ] Pre-commit hooks setup (husky, lint-staged)
-- [ ] iOS project opening successfully in Xcode
+- [ ] iOS project opening successfully in Xcode (if targeting iOS)
+- [ ] Android project building successfully (if targeting Android)
 
 ### Story Context Review
 - [ ] User story requirements fully understood
@@ -39,8 +42,9 @@
 
 ### UI Implementation
 - [ ] Layout implemented with Flexbox
-- [ ] SafeAreaView properly utilized for iOS
-- [ ] Platform-specific styles applied (.ios.tsx if needed)
+- [ ] SafeAreaView properly utilized for iOS (if targeting iOS)
+- [ ] Status bar handling implemented for Android (if targeting Android)
+- [ ] Platform-specific styles applied (.ios.tsx/.android.tsx if needed)
 - [ ] Responsive design for different screen sizes
 - [ ] Dark mode support implemented (if required)
 - [ ] Accessibility props added (accessibilityLabel, accessibilityRole, etc.)
@@ -76,17 +80,19 @@
 - [ ] Memory leaks checked with profiler
 - [ ] Render cycles optimized (avoid inline functions/objects)
 
-## iOS-Specific Implementation
+## Platform-Specific Implementation
 
-### Platform Integration
+### iOS Implementation (if targeting iOS)
+
+#### iOS Platform Integration
 - [ ] iOS-specific components used where appropriate
 - [ ] Native module integration if required
 - [ ] iOS permissions requested properly
-- [ ] Push notifications setup if needed
+- [ ] Push notifications setup with APNs
 - [ ] Deep linking/universal links configured
 - [ ] iOS app lifecycle events handled
 
-### Visual Compliance
+#### iOS Visual Compliance
 - [ ] iOS Human Interface Guidelines followed
 - [ ] Status bar style configured appropriately
 - [ ] Navigation bar style matches iOS conventions
@@ -94,13 +100,40 @@
 - [ ] Haptic feedback implemented where appropriate
 - [ ] iOS-specific animations and transitions
 
-### Device Compatibility
+#### iOS Device Compatibility
 - [ ] iPhone compatibility verified (multiple sizes)
 - [ ] iPad compatibility if required
 - [ ] Notch/Dynamic Island handling verified
 - [ ] Safe area insets properly handled
 - [ ] Landscape orientation support if needed
 - [ ] iOS version compatibility tested
+
+### Android Implementation (if targeting Android)
+
+#### Android Platform Integration
+- [ ] Android-specific components used where appropriate
+- [ ] Native module integration if required (Kotlin/Java)
+- [ ] Android permissions requested properly (runtime permissions)
+- [ ] Push notifications setup with FCM
+- [ ] Deep linking/app links configured
+- [ ] Android app lifecycle events handled
+- [ ] Back button behavior implemented properly
+
+#### Android Visual Compliance
+- [ ] Material Design guidelines followed
+- [ ] Status bar and navigation bar handling (edge-to-edge)
+- [ ] Touch targets meet minimum size requirements (48x48dp)
+- [ ] Material Design animations and transitions
+- [ ] Proper elevation and shadows for depth
+- [ ] Android-specific UI patterns (FAB, Snackbar, etc.)
+
+#### Android Device Compatibility
+- [ ] Multiple Android device sizes tested
+- [ ] Different Android versions compatibility verified
+- [ ] Tablet layout considerations if applicable
+- [ ] Different screen densities handled properly
+- [ ] Landscape orientation support if needed
+- [ ] Hardware back button behavior verified
 
 ## Testing Implementation
 
@@ -120,10 +153,13 @@
 - [ ] User workflow testing completed
 
 ### Manual Testing
-- [ ] Feature tested on iOS simulator
-- [ ] Multiple device sizes tested
+- [ ] Feature tested on iOS Simulator (if targeting iOS)
+- [ ] Feature tested on Android Emulator (if targeting Android)
+- [ ] Multiple device sizes tested on target platforms
 - [ ] Both light and dark mode tested (if supported)
-- [ ] Accessibility testing with VoiceOver
+- [ ] Platform-specific features verified
+- [ ] Cross-platform consistency checked (if targeting both platforms)
+- [ ] Accessibility testing with VoiceOver (iOS) and TalkBack (Android)
 - [ ] Performance tested with slow animations
 - [ ] Edge cases and error scenarios verified
 

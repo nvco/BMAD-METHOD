@@ -1,8 +1,8 @@
-# React Native iOS Troubleshooting Guide
+# React Native Mobile Troubleshooting Guide
 
 ## Development Environment Issues
 
-### Metro Bundler Problems
+### Metro Bundler Problems (Both Platforms)
 
 **Issue: Metro won't start or keeps crashing**
 ```bash
@@ -48,6 +48,39 @@ npx react-native start --reset-cache
 - Hardware > Restart
 - Close and reopen Simulator app
 - Reduce motion in Accessibility settings
+
+### Android Emulator Issues
+
+**Issue: Emulator won't start or is slow**
+```bash
+# Clear emulator data
+emulator -avd <avd_name> -wipe-data
+
+# Increase emulator RAM in AVD Manager
+# Enable hardware acceleration (HAXM or Hyper-V)
+```
+
+**Issue: "Unable to load script from assets"**
+```bash
+# Create assets folder
+mkdir android/app/src/main/assets
+
+# Bundle JavaScript for Android
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+```
+
+**Issue: ADB connection issues**
+```bash
+# Kill and restart ADB
+adb kill-server
+adb start-server
+
+# List connected devices
+adb devices
+
+# Reconnect device
+adb reconnect
+```
 
 **Issue: App won't install on simulator**
 ```bash
@@ -294,6 +327,83 @@ import { StatusBar } from 'react-native';
 <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 ```
 
+## Android-Specific Issues
+
+### Gradle Build Problems
+
+**Issue: "Task :app:installDebug FAILED"**
+```bash
+# Clean and rebuild
+cd android
+./gradlew clean
+cd ..
+npx react-native run-android
+```
+
+**Issue: "Could not resolve all dependencies"**
+```bash
+# Clear Gradle cache
+cd android
+./gradlew cleanBuildCache
+./gradlew --stop
+cd ..
+rm -rf ~/.gradle/caches/
+```
+
+**Issue: "SDK location not found"**
+```bash
+# Create local.properties file
+echo "sdk.dir=/Users/$USER/Library/Android/sdk" > android/local.properties
+```
+
+### APK/Bundle Issues
+
+**Issue: "Failed to install APK"**
+```bash
+# Clear app data on device
+adb shell pm clear com.yourapp.packagename
+
+# Uninstall previous version
+adb uninstall com.yourapp.packagename
+
+# Install fresh
+npx react-native run-android
+```
+
+**Issue: ProGuard/R8 issues in release builds**
+```bash
+# Add ProGuard rules in android/app/proguard-rules.pro
+-keep class com.facebook.react.** { *; }
+-keep class com.facebook.soloader.** { *; }
+-keep class com.facebook.jni.** { *; }
+```
+
+### Android Device Issues
+
+**Issue: App crashes on specific Android versions**
+- Check minimum SDK version in build.gradle
+- Test on devices with target Android version
+- Use Android Studio logcat for crash logs
+- Check for API usage compatibility
+
+**Issue: Back button not working properly**
+```javascript
+import { BackHandler } from 'react-native';
+
+useEffect(() => {
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    () => {
+      // Handle back button press
+      navigation.goBack();
+      return true; // Prevent default behavior
+    }
+  );
+
+  return () => backHandler.remove();
+}, []);
+```
+
 ## Debugging Techniques
 
 ### Using Flipper
@@ -438,4 +548,4 @@ npm install --save-dev jest @testing-library/react-native @testing-library/jest-
 npm test
 ```
 
-Remember: Most React Native iOS issues can be resolved by clearing caches, restarting services, and following error messages carefully. When in doubt, start with the basics: clean, rebuild, and restart.
+Remember: Most React Native issues can be resolved by clearing caches, restarting services, and following error messages carefully. When in doubt, start with the basics: clean, rebuild, and restart. For platform-specific issues, consult the iOS or Android sections above.

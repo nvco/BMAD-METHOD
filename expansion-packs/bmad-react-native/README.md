@@ -1,47 +1,48 @@
-# BMad React Native iOS Expansion Pack
+# BMad React Native Cross-Platform Expansion Pack
 
-Transform your BMad-Method installation into a powerful React Native iOS development team with specialized mobile agents.
+Transform your BMad-Method installation into a powerful React Native development team with specialized mobile agents for iOS and Android.
 
 ## Overview
 
-This expansion pack extends BMad-Method with React Native and iOS development expertise, providing specialized agents that understand mobile development patterns, iOS Human Interface Guidelines, and React Native best practices.
+This expansion pack extends BMad-Method with React Native cross-platform development expertise, providing specialized agents that understand mobile development patterns, iOS Human Interface Guidelines, Material Design, and React Native best practices.
 
 ## Features
 
-- 🏗️ **Mobile Architecture** - React Native system design with iOS optimization
+- 🏗️ **Cross-Platform Architecture** - React Native system design optimized for iOS and Android
 - ⚛️ **React Native Development** - Component implementation with TypeScript and performance focus
-- 🎨 **iOS UX Design** - Human Interface Guidelines compliance and mobile-first design
-- 📋 **Mobile Sprint Management** - Story creation with complete mobile context
+- 🎨 **Platform-Native UX Design** - iOS HIG and Material Design compliance with mobile-first approach
+- 📋 **Mobile Sprint Management** - Story creation with complete cross-platform context
+- 🗺️ **Platform Awareness** - Intelligent handling of iOS and Android differences
 
 ## Included Agents
 
 ### 1. Mobile Architect (Maxwell)
-- React Native architecture patterns
+- React Native architecture patterns for cross-platform development
 - State management selection (Redux, Zustand, Context)
-- Performance optimization strategies
-- Native module integration planning
-- iOS-specific architectural considerations
+- Performance optimization strategies for both platforms
+- Native module integration planning (iOS and Android)
+- Platform-specific architectural considerations
 
 ### 2. Mobile Developer (Morgan)
 - React Native component implementation
-- iOS feature development
-- Debugging with Flipper and React DevTools
+- Cross-platform feature development (iOS and Android)
+- Debugging with Flipper, React DevTools, Xcode, and Android Studio
 - Performance profiling and optimization
 - Testing with Jest and React Native Testing Library
 
 ### 3. Mobile UX Designer (Riley)
-- iOS Human Interface Guidelines expertise
-- Mobile-first responsive design
-- Touch interactions and gestures
-- Accessibility implementation
-- Design to code specifications
+- iOS Human Interface Guidelines and Material Design expertise
+- Mobile-first responsive design for both platforms
+- Touch interactions and platform-specific gestures
+- Cross-platform accessibility implementation
+- Design to code specifications with platform awareness
 
 ### 4. Mobile Scrum Master (Casey)
-- React Native story creation
-- Mobile sprint planning
-- iOS release cycle management
-- App Store submission coordination
-- Complete context in every story
+- React Native story creation with platform considerations
+- Mobile sprint planning for cross-platform development
+- iOS and Android release cycle management
+- App Store and Google Play submission coordination
+- Complete cross-platform context in every story
 
 ## Installation
 
@@ -52,7 +53,7 @@ Add to your project's `package.json`:
 ```json
 {
   "bmadExpansionPacks": [
-    "bmad-react-native-ios"
+    "bmad-react-native"
   ]
 }
 ```
@@ -66,7 +67,7 @@ npx bmad-method install
 
 Copy the expansion pack to your project:
 ```bash
-cp -r expansion-packs/bmad-react-native-ios /path/to/your/project/bmad-react-native-ios
+cp -r expansion-packs/bmad-react-native /path/to/your/project/bmad-react-native
 ```
 
 ## Recommended Setup: MCP Documentation Server
@@ -133,8 +134,8 @@ Once configured, the mobile agents will automatically use the MCP server to:
    ```
    *analyst → Create project brief
    *pm → Create PRD with mobile requirements
-   *mobile-ux → Design iOS interfaces
-   *mobile-architect → Design React Native architecture
+   *mobile-ux → Design platform-appropriate interfaces
+   *mobile-architect → Design cross-platform React Native architecture
    ```
 
 2. **Development Phase (IDE)**
@@ -158,9 +159,14 @@ The mobile-ux agent can work with:
 - TypeScript
 - React Navigation
 
+**Platform Support:**
+- iOS (iPhone and iPad)
+- Android (phones and tablets)
+- Cross-platform code sharing with platform-specific optimizations
+
 **Flexible (agents will ask):**
 - State Management: Context API, Redux, Zustand, or MobX
-- UI Libraries: React Native Paper, Elements, or custom
+- UI Libraries: React Native Paper (Material), Elements, or custom
 - Testing: Jest, React Native Testing Library, Detox
 
 ## Project Structure
@@ -178,6 +184,7 @@ your-app/
 │   ├── utils/          # Utility functions
 │   └── types/          # TypeScript definitions
 ├── ios/                # iOS-specific code
+├── android/            # Android-specific code
 ├── __tests__/          # Test files
 └── docs/
     ├── prd.md          # Product requirements
@@ -199,7 +206,7 @@ your-app/
 *mobile-architect review performance
 ```
 
-### Preparing for App Store
+### Preparing for Store Release
 ```
 *mobile-sm release-plan
 *mobile-dev prepare-release
@@ -208,16 +215,27 @@ your-app/
 ## Best Practices
 
 1. **Always start with planning** - Create PRD and Architecture first
-2. **Test on real devices** - Simulator is good, device is better
+2. **Test on real devices** - Simulators/emulators are good, real devices are better
 3. **Profile performance early** - Don't wait until the end
-4. **Follow iOS guidelines** - Respect platform conventions
+4. **Follow platform guidelines** - Respect iOS HIG and Material Design conventions
 5. **Design for offline** - Apps should work without connectivity
+6. **Consider both platforms early** - Design for shared components with platform-specific touches
 
 ## Requirements
 
+**For iOS Development:**
 - Node.js 20+
-- Xcode 15+ (for iOS development)
-- macOS (for iOS builds)
+- Xcode 15+
+- macOS
+- iOS Simulator
+
+**For Android Development:**
+- Node.js 20+
+- Android Studio
+- Android SDK
+- Android Emulator or device
+
+**For Both:**
 - React Native development environment setup
 
 ## Support
@@ -230,9 +248,9 @@ This expansion pack is part of BMad-Method. For issues or questions:
 
 Planned additions:
 - Mobile deployment agent for automated releases
-- Android-specific agents
 - React Native Web support
 - Expo integration options
+- Enhanced CI/CD pipeline templates
 
 ---
 

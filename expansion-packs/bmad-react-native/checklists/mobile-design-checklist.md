@@ -1,6 +1,15 @@
-# iOS Design Compliance Checklist
+# Mobile Design Compliance Checklist
+
+## Cross-Platform Design Guidelines Compliance
+
+### Platform Selection
+- [ ] Target platforms defined (iOS, Android, or both)
+- [ ] Platform-specific design requirements understood
+- [ ] Shared vs platform-specific components identified
 
 ## iOS Human Interface Guidelines Compliance
+
+*(Complete this section if targeting iOS)*
 
 ### Visual Design Fundamentals
 - [ ] Clarity: Interface elements are clear and easy to understand
@@ -13,7 +22,7 @@
 ### Layout and Spacing
 - [ ] Safe area respected on all screens (especially iPhone X+ devices)
 - [ ] Consistent margins and padding following iOS spacing guidelines
-- [ ] 44x44 point minimum touch target size for all interactive elements
+- [ ] 44x44 point minimum touch target size for iOS (48x48dp for Android)
 - [ ] Proper spacing between interactive elements to prevent accidental taps
 - [ ] Layout adapts gracefully to different screen sizes (iPhone, iPhone Plus, iPhone Pro Max)
 - [ ] Dynamic Type support for text scaling accessibility
@@ -27,7 +36,7 @@
 - [ ] Search interface follows iOS search patterns
 
 ### Typography
-- [ ] SF Pro Display/Text used appropriately for text hierarchy
+- [ ] Platform-appropriate fonts used (SF Pro for iOS, Roboto for Android)
 - [ ] Text styles follow iOS size and weight guidelines
 - [ ] Line height and character spacing optimized for readability
 - [ ] Dynamic Type supported for accessibility
@@ -35,7 +44,7 @@
 - [ ] Proper text color for light/dark modes
 
 ### Color and Visual Style
-- [ ] iOS system colors used where appropriate
+- [ ] Platform system colors used where appropriate (iOS system colors, Material Design colors)
 - [ ] Custom colors work well in both light and dark modes
 - [ ] Color semantics follow iOS conventions (red for destructive, blue for primary actions)
 - [ ] Sufficient contrast for text readability
@@ -127,6 +136,42 @@
 - [ ] Minimum touch target sizes maintained
 - [ ] Timeout considerations for users with disabilities
 
+## Material Design Guidelines Compliance
+
+*(Complete this section if targeting Android)*
+
+### Material Design Fundamentals
+- [ ] Material metaphor: surfaces, edges, and shadows provide visual cues
+- [ ] Bold, graphic, intentional design with typography, grids, space, scale, color
+- [ ] Motion provides meaning: animations are purposeful and focused
+- [ ] Consistent use of Roboto font family
+- [ ] Proper color contrast ratios for accessibility
+- [ ] Support for both light and dark themes
+
+### Android Layout and Spacing
+- [ ] Edge-to-edge design with proper system bar handling
+- [ ] Consistent margins and padding following Material Design guidelines
+- [ ] 48x48dp minimum touch target size for all interactive elements
+- [ ] Proper spacing between elements (8dp grid system)
+- [ ] Layout adapts to different Android screen sizes and densities
+- [ ] Font scaling accessibility support
+
+### Material Navigation Patterns
+- [ ] Navigation follows Material Design patterns (drawer, bottom nav, tabs)
+- [ ] Back button behavior follows Android conventions
+- [ ] App bar (toolbar) styling matches Material guidelines
+- [ ] Bottom navigation bar follows Material guidelines (3-5 destinations)
+- [ ] Navigation drawer used appropriately for 5+ destinations
+- [ ] Floating Action Button (FAB) placement and usage
+
+### Material Components
+- [ ] Cards used appropriately for grouped content
+- [ ] Chips for compact representations of input, attribute, or action
+- [ ] Snackbars for brief messages about app processes
+- [ ] Bottom sheets for additional options
+- [ ] Material buttons with appropriate elevation and ripple effects
+- [ ] Text fields follow Material Design patterns
+
 ## Platform Integration
 
 ### iOS-Specific Features
@@ -137,23 +182,31 @@
 - [ ] Widget design follows WidgetKit guidelines (if applicable)
 - [ ] App Clips considerations (if applicable)
 
+### Android-Specific Features
+- [ ] App shortcuts for launcher integration
+- [ ] Android widgets considered (if applicable)
+- [ ] Share sheet implementation follows Android patterns
+- [ ] Context menus use Android patterns
+- [ ] Notification channels properly configured
+- [ ] Android Auto or Android TV support (if applicable)
+
 ### System Integration
-- [ ] Status bar style appropriate for content
-- [ ] Control Center integration if relevant
-- [ ] Notification design follows iOS patterns
-- [ ] Background app refresh behavior appropriate
-- [ ] Handoff and Continuity support considered
+- [ ] Status bar style appropriate for content (both platforms)
+- [ ] Notification design follows platform patterns
+- [ ] Background behavior appropriate for each platform
+- [ ] Platform-specific integrations considered
 - [ ] Keyboard shortcuts for external keyboards
 
-## App Store and Marketing
+## App Store and Google Play Marketing
 
 ### App Icon Design
-- [ ] App icon follows iOS design guidelines
-- [ ] Icon works at all required sizes
-- [ ] No iOS interface elements in icon
+- [ ] App icon follows platform design guidelines (iOS and/or Android)
+- [ ] Icon works at all required sizes for target platforms
+- [ ] No platform-specific interface elements in icon
 - [ ] Icon distinctive and memorable
 - [ ] Icon appropriate for target audience
-- [ ] Alternative app icons considered (if feature is used)
+- [ ] Alternative app icons considered (iOS feature)
+- [ ] Adaptive icon support for Android (if targeting Android)
 
 ### Launch and Onboarding
 - [ ] Launch screen follows iOS guidelines
@@ -164,11 +217,12 @@
 - [ ] Onboarding can be revisited if needed
 
 ### Screenshots and Preview
-- [ ] App Store screenshots show actual app content
+- [ ] Store screenshots show actual app content (App Store and/or Google Play)
 - [ ] Screenshots highlight key features effectively
-- [ ] Preview video follows App Store guidelines
+- [ ] Preview video follows store guidelines
 - [ ] Localized screenshots for international markets
 - [ ] Screenshots updated with app changes
+- [ ] Feature graphic created for Google Play (if targeting Android)
 
 ## Technical Design Considerations
 
@@ -198,4 +252,4 @@
 
 ---
 
-**Completion Criteria**: All applicable checklist items must be verified before design handoff to development. Items marked as not applicable should be documented with reasoning.
+**Completion Criteria**: All applicable checklist items must be verified before design handoff to development. Items marked as not applicable should be documented with reasoning. For cross-platform apps, ensure both iOS and Android (Material Design) sections are completed as appropriate.
