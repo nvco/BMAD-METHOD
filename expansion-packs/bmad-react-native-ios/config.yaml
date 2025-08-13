@@ -1,0 +1,31 @@
+name: bmad-react-native-ios
+version: "1.0.0"
+description: "React Native iOS Development Expansion Pack"
+author: "BMad-Method Community"
+category: "mobile-development"
+
+agents:
+  - mobile-architect
+  - mobile-dev
+  - mobile-ux
+  - mobile-sm
+
+dependencies:
+  react-native: ">=0.70.0"
+  node: ">=20.0.0"
+  ios: ">=13.0"
+
+features:
+  - react-native-development
+  - ios-app-development
+  - mobile-architecture
+  - mobile-ux-design
+  - mobile-sprint-management
+
+installation:
+  type: "copy"
+  source: "."
+  destination: "bmad-core/expansion-packs/bmad-react-native-ios"
+
+compatibility:
+  bmad-method: ">=4.0.0"
