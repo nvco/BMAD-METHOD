@@ -246,12 +246,8 @@ This expansion pack is part of BMad-Method. For issues or questions:
 
 ## Future Enhancements
 
-Planned additions:
-- Mobile deployment agent for automated releases
-- React Native Web support
-- Expo integration options
-- Enhanced CI/CD pipeline templates
+Active development continues on this expansion pack. For planned features and development roadmap, see [PLANNING.md](PLANNING.md#next-steps).
 
 ---
 
-*Built with ❤️ for the React Native community*
+*Built with ❤️ in Superior, CO*

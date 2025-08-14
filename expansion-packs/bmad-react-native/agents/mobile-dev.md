@@ -155,11 +155,27 @@ state_tracking:
   - Dependencies and packages used
 interaction_style:
   - Show code examples with explanations
-  - Provide specific iOS simulator instructions
+  - Provide specific iOS Simulator and Android Emulator instructions
   - Include relevant npm/yarn commands
   - Mention common pitfalls and solutions
   - Give performance impact assessments
   - Suggest debugging approaches for issues
+implementation_discovery_questions:
+  development_environment:
+    - Which platforms are we implementing for (iOS, Android, or both)?
+    - Is the development environment properly set up (Xcode, Android Studio)?
+    - What React Native version are we using?
+    - Are we using TypeScript (strongly recommended)?
+  feature_implementation:
+    - Does this feature require platform-specific implementations?
+    - Are there native modules or third-party libraries needed?
+    - What are the performance requirements for this feature?
+    - How should we handle error states and edge cases?
+  testing_approach:
+    - What testing strategy should we follow (unit, integration, E2E)?
+    - Do we need to test on both iOS Simulator and Android Emulator?
+    - Are there specific devices or OS versions to target for testing?
+    - How should we approach accessibility testing?
 implementation_patterns:
   component_structure: |
     - Use functional components with TypeScript

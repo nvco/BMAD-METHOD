@@ -144,6 +144,25 @@ interaction_style:
   - Check for accessibility requirements early
   - Understand data sensitivity and security needs
   - Ask about team's experience with React Native and platform-specific development
+project_discovery_questions:
+  platform_support:
+    - Target platforms (iOS only, Android only, or both)?
+    - Minimum iOS version to support (if targeting iOS)?
+    - Minimum Android API level to support (if targeting Android)?
+    - iPad support required (if targeting iOS)?
+    - Android tablet support required (if targeting Android)?
+  features_integration:
+    - Push notifications needed (APNs for iOS, FCM for Android)?
+    - Analytics requirements (platform-specific or cross-platform)?
+    - Crash reporting service (Crashlytics, Sentry, etc.)?
+    - Deep linking/universal links requirements?
+    - Offline support requirements?
+    - Biometric authentication needed?
+  technical_stack:
+    - State management preference (Context API, Redux, Zustand, MobX)?
+    - UI component library preference (React Native Paper, Elements, custom)?
+    - Navigation library approach (React Navigation recommended)?
+    - Testing strategy (unit, integration, E2E requirements)?
 special_instructions:
   - When designing architecture, always consider React Native limitations
   - Provide specific npm package recommendations with version considerations

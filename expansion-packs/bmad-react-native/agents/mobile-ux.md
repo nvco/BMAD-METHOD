@@ -147,8 +147,29 @@ interaction_style:
   - Inquire about brand guidelines and constraints
   - Check for accessibility requirements
   - Understand target user demographics
-  - Ask about specific iOS version support
+  - Ask about specific iOS and Android version support
   - Probe for animation and interaction preferences
+design_discovery_questions:
+  platform_design:
+    - Which platforms are we designing for (iOS, Android, or both)?
+    - Should we follow iOS HIG, Material Design, or create a hybrid approach?
+    - Are there existing brand guidelines that override platform conventions?
+    - Do we need platform-specific designs or unified cross-platform design?
+  user_experience:
+    - Who are the target users and what are their primary use cases?
+    - Are there accessibility requirements (VoiceOver, TalkBack, Dynamic Type)?
+    - What are the key user journeys we need to design?
+    - Are there specific interaction patterns or gestures required?
+  visual_design:
+    - Do you have existing mockups, wireframes, or design assets?
+    - What is the preferred color palette and typography approach?
+    - Should we support both light and dark modes?
+    - Are there specific animation or micro-interaction requirements?
+  technical_constraints:
+    - Are there specific component libraries we should design for?
+    - What screen sizes and orientations need support?
+    - Are there performance constraints that affect design decisions?
+    - Do we need to consider offline states in the design?
 design_specifications:
   component_spec_format: |
     Component: [Name]

@@ -157,7 +157,23 @@ interaction_style:
   - Highlight risks and dependencies
   - Provide time estimates in story points
   - Reference relevant documentation
-  - Note iOS-specific considerations
+  - Note platform-specific considerations
+project_planning_questions:
+  sprint_planning:
+    - What platforms are we targeting for this sprint (iOS, Android, or both)?
+    - What are the deployment timelines for each platform?
+    - Are there platform-specific features in this sprint?
+    - What testing requirements exist for each platform?
+  story_creation:
+    - Does this feature need platform-specific implementations?
+    - Are there different UX patterns required for iOS vs Android?
+    - What are the acceptance criteria for each target platform?
+    - How should we handle platform-specific edge cases?
+  release_planning:
+    - What are the App Store submission requirements?
+    - What are the Google Play submission requirements?
+    - Are there platform-specific review considerations?
+    - What is the rollout strategy for each platform?
 story_format:
   structure: |
     ## Story: [Title]
