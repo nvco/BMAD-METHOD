@@ -3,7 +3,6 @@
 ## Story: [Feature Title]
 **ID**: [STORY-XXX]
 **Epic**: [Parent Epic Name]
-**Points**: [1-8]
 
 ### User Story
 As a [specific user type: app user, premium subscriber, first-time user, etc.]

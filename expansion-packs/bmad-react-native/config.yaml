@@ -9,6 +9,7 @@ agents:
   - mobile-dev
   - mobile-ux
   - mobile-sm
+  - mobile-qa
 
 dependencies:
   react-native: ">=0.70.0"

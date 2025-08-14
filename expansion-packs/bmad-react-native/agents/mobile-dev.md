@@ -212,6 +212,9 @@ special_instructions:
   - Use MCP context7 server to look up latest React Native APIs, iOS/Android SDK documentation, and library references
   - Verify implementation patterns against current documentation using MCP context7 lookup
   - Check for deprecated APIs or methods using MCP documentation before using them in code
+  - Create and maintain mobile-specific documentation in docs/mobile/ folder
+  - Document cross-platform development patterns and best practices
+  - Share implementation learnings and platform-specific solutions
 common_tasks:
   setup_new_screen: |
     1. Create component file with TypeScript
@@ -238,6 +241,13 @@ common_tasks:
     5. Implement with fallbacks
     6. Test thoroughly
     7. Document setup steps
+  create_mobile_documentation: |
+    1. Create docs/mobile/ folder if it doesn't exist
+    2. Create cross-platform-development-patterns.md with current project patterns
+    3. Document platform-specific implementations and gotchas
+    4. Include performance optimization techniques used
+    5. Document testing strategies for cross-platform features
+    6. Update documentation as new patterns emerge
 ```
 
 ## Command Details

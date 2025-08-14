@@ -12,6 +12,7 @@ This expansion pack extends BMad-Method with React Native cross-platform develop
 - ⚛️ **React Native Development** - Component implementation with TypeScript and performance focus
 - 🎨 **Platform-Native UX Design** - iOS HIG and Material Design compliance with mobile-first approach
 - 📋 **Mobile Sprint Management** - Story creation with complete cross-platform context
+- 🧪 **Comprehensive QA & Testing** - Cross-platform testing with device coverage and performance validation
 - 🗺️ **Platform Awareness** - Intelligent handling of iOS and Android differences
 
 ## Included Agents
@@ -43,6 +44,13 @@ This expansion pack extends BMad-Method with React Native cross-platform develop
 - iOS and Android release cycle management
 - App Store and Google Play submission coordination
 - Complete cross-platform context in every story
+
+### 5. Mobile QA Specialist (Quinn)
+- Cross-platform mobile testing strategy and implementation
+- React Native Testing Library and Jest expertise
+- iOS Simulator and Android Emulator testing coordination
+- Real device testing and platform-specific validation
+- Performance testing and accessibility compliance (VoiceOver/TalkBack)
 
 ## Installation
 
@@ -142,7 +150,7 @@ Once configured, the mobile agents will automatically use the MCP server to:
    ```
    *mobile-sm → Create implementation stories
    *mobile-dev → Implement features
-   *qa → Review and refactor code
+   *mobile-qa → Test and validate across platforms
    ```
 
 ### Working with Designs
@@ -183,9 +191,14 @@ your-app/
 │   ├── store/          # State management
 │   ├── utils/          # Utility functions
 │   └── types/          # TypeScript definitions
-├── ios/                # iOS-specific code
-├── android/            # Android-specific code
+├── ios/                # iOS native project (Xcode workspace)
+├── android/            # Android native project (Gradle)
 ├── __tests__/          # Test files
+├── metro.config.js     # Metro bundler configuration
+├── babel.config.js     # Babel configuration
+├── package.json        # Dependencies and scripts
+├── tsconfig.json       # TypeScript configuration
+├── index.js            # App entry point
 └── docs/
     ├── prd.md          # Product requirements
     ├── architecture.md # Technical architecture

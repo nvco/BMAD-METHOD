@@ -5,7 +5,7 @@ This expansion pack extends BMad-Method for React Native cross-platform mobile a
 
 ## Agent Architecture
 
-### Core Specialized Agents
+### Core Specialized Agents (5 Total)
 
 #### 1. `mobile-architect`
 **Purpose**: Extends base architect with cross-platform mobile architecture patterns
@@ -51,9 +51,20 @@ This expansion pack extends BMad-Method for React Native cross-platform mobile a
 - App Store and Google Play submission requirements
 - Breaking down mobile features into implementable tasks with platform awareness
 
-### Future Agents (Not in Initial Release)
+#### 5. `mobile-qa`
+**Purpose**: Ensures comprehensive cross-platform mobile testing and quality assurance
+**Key Responsibilities**:
+- Cross-platform mobile testing strategy design
+- React Native Testing Library and Jest implementation
+- iOS Simulator and Android Emulator testing coordination
+- Real device testing and platform-specific validation
+- Performance testing and accessibility compliance (VoiceOver/TalkBack)
+- App Store and Google Play testing requirements
+- Cross-platform testing pitfalls documentation and solutions
 
-#### 5. `mobile-deployment` (Future Addition)
+### Future Agents (Not in Current Release)
+
+#### 6. `mobile-deployment` (Future Addition)
 **Purpose**: Handles iOS deployment and release automation
 **Key Responsibilities**:
 - TestFlight setup and management
@@ -110,7 +121,7 @@ This expansion pack extends BMad-Method for React Native cross-platform mobile a
 ### Development Phase
 1. Mobile-SM creates React Native cross-platform stories with platform considerations
 2. Mobile-Dev implements with iOS and Android considerations
-3. QA reviews mobile-specific concerns for both platforms
+3. Mobile-QA tests and validates mobile-specific functionality for both platforms
 4. Mobile-Deployment handles release (when needed for both App Store and Google Play)
 
 ## Key Considerations
@@ -146,35 +157,28 @@ Each agent includes comprehensive discovery questions to ensure all project requ
 - **Mobile UX Designer**: Design approach, user experience, and accessibility needs  
 - **Mobile Scrum Master**: Sprint planning, release strategy, and story requirements
 - **Mobile Developer**: Implementation approach, testing strategy, and environment setup
+- **Mobile QA Specialist**: Testing strategy, device coverage, platform-specific testing, and quality assurance requirements
 
 *See individual agent files for complete discovery question sets.*
 
 ## Next Steps
 
 ### Completed ✅
-1. Finalize agent roster (4 core agents: architect, dev, ux, sm)
+1. Finalize agent roster (5 core agents: architect, dev, ux, sm, qa)
 2. Create agent markdown files with prompts (cross-platform aware)
 3. Develop mobile-specific checklists (iOS and Android support)
 4. Create story templates for common mobile features
 5. Add React Native knowledge base (including Android guidelines)
 6. Add MCP context7 integration for real-time documentation
 7. Add structured discovery questions to all agents for comprehensive project planning
+8. Add Mobile QA/Testing Agent with cross-platform testing expertise
+9. Remove Story Points to match core BMad-Method approach
+10. Implement docs/mobile/ documentation strategy for mobile-specific knowledge
 
 ### Planned Development 🚧
-8. **Add Mobile QA/Testing Agent** - Critical missing piece for comprehensive mobile development
-   - Create `mobile-qa.md` agent file with cross-platform testing expertise
-   - Include discovery questions for testing strategy, device coverage, platform-specific testing
-   - Add to `config.yaml` agent roster
-   - Create corresponding checklist in `checklists/mobile-qa-checklist.md`
 
-9. **Implement docs/mobile/ Documentation Strategy**
-   - Update `mobile-dev` agent to create `cross-platform-development-patterns.md` in user's `docs/mobile/` folder
-   - Update `mobile-qa` agent to create `cross-platform-testing-pitfalls.md` in user's `docs/mobile/` folder
-   - Configure both agents to use this folder for mobile-specific documentation
-   - Document the pattern: standard BMad categories use existing docs folders, mobile-specific knowledge uses docs/mobile/
-
-10. Test with sample project (create a simple cross-platform app)
-11. Create CI/CD pipeline templates for both App Store and Google Play
+11. Test with sample project (create a simple cross-platform app)
+12. Create CI/CD pipeline templates for both App Store and Google Play
 
 ### Future Enhancements 🔮
 - Mobile deployment agent for automated releases
