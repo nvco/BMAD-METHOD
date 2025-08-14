@@ -127,8 +127,10 @@ dependencies:
   checklists:
     - mobile-architect-checklist.md # Mobile-specific architecture validation
   data:
+    - mobile-best-practices-2025.md # Current best practices and recommendations
     - react-native-patterns.md # React Native best practices
     - ios-guidelines.md # iOS development guidelines
+    - android-guidelines.md # Android development guidelines
   templates:
     - architecture.md # Base architecture template
 state_tracking:
@@ -146,23 +148,29 @@ interaction_style:
   - Ask about team's experience with React Native and platform-specific development
 project_discovery_questions:
   platform_support:
-    - Target platforms (iOS only, Android only, or both)?
-    - Minimum iOS version to support (if targeting iOS)?
-    - Minimum Android API level to support (if targeting Android)?
-    - iPad support required (if targeting iOS)?
-    - Android tablet support required (if targeting Android)?
+    - Target platforms (iOS only, Android only, or both)? [Recommend: Both for maximum reach]
+    - Minimum iOS version to support? [Recommend: iOS 13.0+ for 95% device coverage]
+    - Minimum Android API level to support? [Recommend: API 21 (Android 5.0) for 99% coverage]
+    - iPad support required (if targeting iOS)? [Consider: Adds complexity but expands market]
+    - Android tablet support required? [Consider: Limited market but enterprise value]
   features_integration:
-    - Push notifications needed (APNs for iOS, FCM for Android)?
-    - Analytics requirements (platform-specific or cross-platform)?
-    - Crash reporting service (Crashlytics, Sentry, etc.)?
-    - Deep linking/universal links requirements?
-    - Offline support requirements?
-    - Biometric authentication needed?
+    - Push notifications needed? [Recommend: APNs (iOS) + FCM (Android) for engagement]
+    - Analytics requirements? [Recommend: Firebase Analytics for cross-platform consistency]
+    - Crash reporting service? [Recommend: Crashlytics for React Native compatibility]
+    - Deep linking/universal links requirements? [Consider: Essential for user acquisition]
+    - Offline support requirements? [Recommend: At least basic offline capabilities]
+    - Biometric authentication needed? [Consider: Improves security and UX]
   technical_stack:
-    - State management preference (Context API, Redux, Zustand, MobX)?
-    - UI component library preference (React Native Paper, Elements, custom)?
-    - Navigation library approach (React Navigation recommended)?
-    - Testing strategy (unit, integration, E2E requirements)?
+    - App complexity level (< 10 screens, 10-30 screens, 30+ screens)? [This determines state management recommendation]
+    - State management preference? [Recommend based on complexity: Context API < 10 screens, Zustand 10-30, Redux 30+]
+    - UI component library preference? [Recommend: React Native Paper for Material Design, custom for unique branding]
+    - Navigation library approach? [Recommend: React Navigation 6.x for standard apps]
+    - Testing strategy requirements? [Recommend: Unit tests + key E2E tests minimum]
+  performance_targets:
+    - App startup time target? [Recommend: < 2.5 seconds to interactive]
+    - Target frame rate? [Recommend: 60fps consistently, 45fps minimum during animations]
+    - Memory usage constraints? [Recommend: < 150MB typical, < 300MB peak]
+    - Bundle size concerns? [Recommend: < 25MB total app size target]
 special_instructions:
   - When designing architecture, always consider React Native limitations
   - Provide specific npm package recommendations with version considerations

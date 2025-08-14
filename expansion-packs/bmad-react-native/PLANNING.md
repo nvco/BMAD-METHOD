@@ -174,18 +174,23 @@ Each agent includes comprehensive discovery questions to ensure all project requ
 8. Add Mobile QA/Testing Agent with cross-platform testing expertise
 9. Remove Story Points to match core BMad-Method approach
 10. Implement docs/mobile/ documentation strategy for mobile-specific knowledge
+11. Add comprehensive 2025 best practices guide with smart defaults and recommendations
+12. Create React Native CLI vs Expo decision framework for early architectural decisions
+13. Build performance monitoring setup guide for development and production
+14. Create comprehensive App Store submission readiness checklist
+15. Develop complete test file templates (unit, integration, E2E)
 
 ### Planned Development 🚧
 
-11. Test with sample project (create a simple cross-platform app)
-12. Create CI/CD pipeline templates for both App Store and Google Play
+16. Test with sample project (create a simple cross-platform app)
+17. Create CI/CD pipeline templates for both App Store and Google Play
 
 ### Future Enhancements 🔮
 - Mobile deployment agent for automated releases
 - React Native Web support
 - Advanced native module development guidance
 - Enhanced testing frameworks integration
-- Performance monitoring and optimization tools
+- Complete example apps (todo app, e-commerce app)
 
 ---
 

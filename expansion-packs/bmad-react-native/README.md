@@ -14,6 +14,10 @@ This expansion pack extends BMad-Method with React Native cross-platform develop
 - 📋 **Mobile Sprint Management** - Story creation with complete cross-platform context
 - 🧪 **Comprehensive QA & Testing** - Cross-platform testing with device coverage and performance validation
 - 🗺️ **Platform Awareness** - Intelligent handling of iOS and Android differences
+- 🎯 **Smart Recommendations** - 2025 best practices with intelligent defaults and decision frameworks
+- 📊 **Performance Monitoring** - Complete setup guides for development and production monitoring
+- 🚀 **App Store Ready** - Comprehensive submission checklists for iOS App Store and Google Play
+- 🧪 **Test Templates** - Ready-to-use unit, integration, and E2E test templates
 
 ## Included Agents
 
@@ -133,6 +137,32 @@ Once configured, the mobile agents will automatically use the MCP server to:
 - Ensure compatibility with current versions
 
 **Note**: The expansion pack works without MCP, but having it configured ensures agents provide the most current and accurate guidance.
+
+## Enhanced Capabilities
+
+### 🎯 Intelligent Decision Support
+- **React Native CLI vs Expo**: Smart decision framework based on project requirements
+- **Technology Stack**: Complexity-based recommendations (Context API vs Zustand vs Redux)
+- **Platform Support**: Informed iOS/Android version recommendations with device coverage data
+- **Performance Targets**: Specific benchmarks for startup time, frame rate, and memory usage
+
+### 📊 Production-Ready Monitoring
+- **Development Tools**: React DevTools, Flipper, Metro bundle analysis
+- **Performance Tracking**: Custom trackers, screen load monitoring, memory management
+- **Production Monitoring**: Crashlytics integration, analytics setup, performance dashboards
+- **Platform-Specific**: Xcode Instruments and Android Studio Profiler guidance
+
+### 🚀 App Store Success
+- **iOS App Store**: Complete submission checklist with metadata, privacy, and technical requirements
+- **Google Play**: Comprehensive Play Console requirements and content policy compliance
+- **Cross-Platform**: Legal, accessibility, and quality assurance requirements
+- **Rejection Prevention**: Common rejection reasons and how to avoid them
+
+### 🧪 Complete Testing Strategy
+- **Unit Tests**: Component testing templates with React Native Testing Library
+- **Integration Tests**: Workflow testing with navigation, state management, and API integration
+- **E2E Tests**: Complete user journey testing with Detox for both iOS and Android
+- **Performance Tests**: Load time validation and memory usage testing
 
 ## Usage
 

@@ -144,6 +144,7 @@ dependencies:
     - story-dod-checklist.md # Definition of done
     - mobile-dev-checklist.md # Mobile-specific checks
   data:
+    - mobile-best-practices-2025.md # Current best practices and recommendations
     - react-native-patterns.md # Best practices
     - mobile-troubleshooting.md # Common iOS and Android issues
     - performance-tips.md # Optimization techniques
@@ -162,20 +163,20 @@ interaction_style:
   - Suggest debugging approaches for issues
 implementation_discovery_questions:
   development_environment:
-    - Which platforms are we implementing for (iOS, Android, or both)?
-    - Is the development environment properly set up (Xcode, Android Studio)?
-    - What React Native version are we using?
-    - Are we using TypeScript (strongly recommended)?
+    - Which platforms are we implementing for? [Recommend: Both iOS and Android for maximum reach]
+    - Is the development environment properly set up (Xcode, Android Studio)? [Required: Xcode 15+ for iOS, Android Studio for Android]
+    - What React Native version are we using? [Recommend: 0.74.x for stability, 0.75.x for latest features]
+    - Are we using TypeScript? [Strongly recommended: Yes, for better code quality and maintainability]
   feature_implementation:
-    - Does this feature require platform-specific implementations?
-    - Are there native modules or third-party libraries needed?
-    - What are the performance requirements for this feature?
-    - How should we handle error states and edge cases?
+    - Does this feature require platform-specific implementations? [Consider: Use Platform.select() vs separate .ios/.android files]
+    - Are there native modules or third-party libraries needed? [Verify: Check react-native-community packages first]
+    - What are the performance requirements for this feature? [Target: 60fps UI, < 100ms response time]
+    - How should we handle error states and edge cases? [Recommend: Error boundaries + user-friendly messages]
   testing_approach:
-    - What testing strategy should we follow (unit, integration, E2E)?
-    - Do we need to test on both iOS Simulator and Android Emulator?
-    - Are there specific devices or OS versions to target for testing?
-    - How should we approach accessibility testing?
+    - What testing strategy should we follow? [Recommend: Unit tests (70%) + Integration (20%) + E2E (10%)]
+    - Do we need to test on both platforms? [Required: Yes, for cross-platform features]
+    - Are there specific devices or OS versions to target for testing? [Recommend: iOS 13+, Android API 21+]
+    - How should we approach accessibility testing? [Required: VoiceOver (iOS) + TalkBack (Android) testing]
 implementation_patterns:
   component_structure: |
     - Use functional components with TypeScript

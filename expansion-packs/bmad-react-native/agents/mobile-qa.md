@@ -150,6 +150,7 @@ dependencies:
     - cross-platform-testing-checklist.md # Platform testing verification
     - release-testing-checklist.md # Pre-release quality gates
   data:
+    - mobile-best-practices-2025.md # Current best practices and recommendations
     - testing-patterns.md # Mobile testing best practices
     - device-matrix.md # Device compatibility guidelines
     - cross-platform-testing-pitfalls.md # Common testing pitfalls and solutions
