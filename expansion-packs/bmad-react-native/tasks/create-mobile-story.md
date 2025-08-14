@@ -43,7 +43,7 @@ This task creates comprehensive user stories for React Native iOS development wi
    - Note any shared components required
 
 3. **Assess Complexity**
-   - Evaluate React Native complexity (1-8 story points)
+   - Evaluate React Native complexity and implementation approach
    - Consider iOS-specific requirements
    - Factor in testing requirements
    - Account for performance optimization needs
@@ -55,7 +55,6 @@ Create story following this structure:
 ## Story: [Descriptive Title]
 **ID**: [STORY-XXX]
 **Epic**: [Parent Epic Name]
-**Points**: [1-8]
 
 ### User Story
 As a [specific user type]
@@ -148,7 +147,7 @@ Use the mobile story checklist to ensure:
 
 ### Step 6: Story Estimation
 
-Consider these factors for story point estimation:
+Consider these factors for complexity assessment:
 
 **1 Point (Simple)**:
 - Basic UI component creation
@@ -156,19 +155,19 @@ Consider these factors for story point estimation:
 - No native modules
 - Minimal testing required
 
-**2-3 Points (Moderate)**:
+**Moderate Complexity**:
 - Screen with multiple components
 - API integration
 - Navigation updates
 - Standard testing requirements
 
-**5 Points (Complex)**:
+**Complex Implementation**:
 - Multiple screens with navigation
 - Complex state management
 - Third-party integrations
 - Performance optimization required
 
-**8 Points (Very Complex)**:
+**Very Complex Implementation**:
 - Native module integration
 - Complex animations
 - Extensive testing requirements
@@ -200,7 +199,7 @@ Before marking story as ready:
    - Technical context comprehensive
 
 2. **Estimation and Priority**
-   - Story points assigned
+   - Complexity assessment completed
    - Sprint priority noted
    - Dependencies mapped
 
