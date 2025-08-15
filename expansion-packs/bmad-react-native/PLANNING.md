@@ -173,7 +173,7 @@ Each agent includes comprehensive discovery questions to ensure all project requ
 7. Add structured discovery questions to all agents for comprehensive project planning
 8. Add Mobile QA/Testing Agent with cross-platform testing expertise
 9. Remove Story Points to match core BMad-Method approach
-10. Implement docs/mobile/ documentation strategy for mobile-specific knowledge
+10. Implement docs/mobile/ documentation strategy for mobile-specific knowledge (with sharding-friendly Level 2 sections)
 11. Add comprehensive 2025 best practices guide with smart defaults and recommendations
 12. Create React Native CLI vs Expo decision framework for early architectural decisions
 13. Build performance monitoring setup guide for development and production
@@ -184,6 +184,9 @@ Each agent includes comprehensive discovery questions to ensure all project requ
 
 16. Test with sample project (create a simple cross-platform app)
 17. Create CI/CD pipeline templates for both App Store and Google Play
+
+### Recently Completed ✅
+18. Update mobile agents to create sharding-friendly documentation in docs/mobile/ with Level 2 sections (##) for BMad-Method compatibility
 
 ### Future Enhancements 🔮
 - Mobile deployment agent for automated releases

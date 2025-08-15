@@ -245,10 +245,13 @@ common_tasks:
   create_mobile_documentation: |
     1. Create docs/mobile/ folder if it doesn't exist
     2. Create cross-platform-development-patterns.md with current project patterns
+       - Structure with Level 2 sections (##) for shardability if document grows large
+       - Example sections: ## Component Patterns, ## Navigation Patterns, ## State Management, ## Platform-Specific Code
     3. Document platform-specific implementations and gotchas
     4. Include performance optimization techniques used
     5. Document testing strategies for cross-platform features
     6. Update documentation as new patterns emerge
+    7. Ensure all documentation files use Level 2 sections (##) as main organizational structure for future sharding capability
 ```
 
 ## Command Details

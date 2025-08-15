@@ -248,10 +248,13 @@ common_test_scenarios:
   create_mobile_testing_documentation: |
     1. Create docs/mobile/ folder if it doesn't exist
     2. Create cross-platform-testing-pitfalls.md with current project findings
+       - Structure with Level 2 sections (##) for shardability if document grows large
+       - Example sections: ## Unit Testing Pitfalls, ## Integration Testing Issues, ## Device Testing Challenges, ## Platform-Specific Testing
     3. Document platform-specific testing strategies and tools
     4. Include device testing matrix and requirements
     5. Document performance testing approaches for each platform
     6. Update documentation with lessons learned from testing
+    7. Ensure all documentation files use Level 2 sections (##) as main organizational structure for future sharding capability
 ```
 
 ## Command Details
