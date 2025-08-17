@@ -1,0 +1,275 @@
+workflow:
+  id: mobile-testing-automation
+  name: Mobile Testing Automation - React Native Quality Assurance
+  description: Specialized workflow for implementing comprehensive testing automation for React Native applications. Guides teams through test strategy design, framework setup, test implementation, and CI/CD integration for reliable mobile app quality assurance.
+  type: testing
+  project_types:
+    - testing-framework-setup
+    - test-automation-implementation
+    - ci-cd-testing-integration
+    - cross-platform-testing
+    - regression-testing-automation
+    - performance-testing-automation
+    - accessibility-testing-setup
+    - device-testing-coordination
+  
+  comprehensive_testing_setup:
+    - agent: mobile-qa
+      creates: mobile-testing-strategy.md
+      optional_steps:
+        - testing_requirements_analysis
+        - cross_platform_testing_planning
+        - device_coverage_strategy
+        - accessibility_testing_requirements
+      notes: 'Design comprehensive mobile testing strategy including unit, integration, end-to-end, and device testing approaches for React Native cross-platform development. SAVE OUTPUT: Copy final mobile-testing-strategy.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-architect
+      creates: testing-framework-architecture.md
+      requires: mobile-testing-strategy.md
+      optional_steps:
+        - testing_tool_selection
+        - ci_cd_integration_planning
+        - test_environment_setup
+        - parallel_testing_strategy
+      notes: 'Design testing framework architecture including Jest, React Native Testing Library, Detox, and device testing setup for iOS and Android. SAVE OUTPUT: Copy final testing-framework-architecture.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-dev
+      creates: unit-testing-implementation.md
+      requires: testing-framework-architecture.md
+      optional_steps:
+        - component_testing_patterns
+        - mock_strategy_implementation
+        - test_utilities_development
+      notes: 'Implement comprehensive unit testing setup with Jest and React Native Testing Library including component testing, utility functions, and mocking strategies. SAVE OUTPUT: Copy final unit-testing-implementation.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-qa
+      creates: integration-testing-setup.md
+      requires: unit-testing-implementation.md
+      optional_steps:
+        - api_testing_integration
+        - navigation_testing_setup
+        - state_management_testing
+      notes: 'Implement integration testing including API integration, navigation flows, and state management testing with appropriate mocking and test data setup. SAVE OUTPUT: Copy final integration-testing-setup.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-qa
+      creates: e2e-testing-framework.md
+      requires: integration-testing-setup.md
+      optional_steps:
+        - detox_setup_and_configuration
+        - device_testing_automation
+        - cross_platform_e2e_testing
+      notes: 'Implement end-to-end testing framework using Detox for iOS and Android including device automation, cross-platform test scenarios, and CI/CD integration. SAVE OUTPUT: Copy final e2e-testing-framework.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-architect
+      creates: ci-cd-testing-integration.md
+      requires: e2e-testing-framework.md
+      optional_steps:
+        - automated_testing_pipeline
+        - parallel_test_execution
+        - test_reporting_and_analytics
+      notes: 'Integrate all testing frameworks into CI/CD pipeline with automated test execution, parallel testing, and comprehensive reporting for continuous quality assurance. SAVE OUTPUT: Copy final ci-cd-testing-integration.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-po
+      validates: testing_framework_completeness
+      requires: all_testing_documents
+      uses: mobile-testing-completeness-checklist
+      notes: Validate testing framework setup for comprehensive coverage, maintainability, and team adoption readiness. May require updates to any testing component.
+    
+    - agent: various
+      updates: flagged_testing_components
+      condition: testing_validation_issues
+      notes: If testing validation finds issues, return to relevant mobile agent to refine testing approach and re-export updated documents.
+  
+  testing_implementation_guidance:
+    action: execute_testing_framework_setup
+    notes: Implement testing frameworks incrementally starting with unit tests, then integration tests, and finally end-to-end tests with CI/CD integration.
+  
+  workflow_end:
+    action: testing_automation_operational
+    notes: Mobile testing automation framework fully operational with CI/CD integration. Team equipped for ongoing test development and maintenance.
+  
+  essential_testing_setup:
+    - step: testing_scope_assessment
+      action: assess_testing_requirements_complexity
+      notes: First, assess if this needs comprehensive testing framework (use comprehensive_testing_setup) or essential testing setup for basic quality assurance.
+    
+    - agent: mobile-qa
+      creates: essential-testing-plan.md
+      optional_steps:
+        - critical_test_scenario_identification
+        - basic_testing_tool_setup
+      notes: 'Create focused testing plan covering essential test scenarios for mobile app quality assurance. Emphasize critical user flows and cross-platform compatibility. SAVE OUTPUT: Copy final essential-testing-plan.md to your project''s docs/testing/ folder.'
+    
+    - agent: mobile-dev
+      creates: basic-testing-implementation.md
+      uses: create-doc testing-implementation-template OR mobile-testing-setup
+      requires: essential-testing-plan.md
+      notes: Implement essential testing setup with basic unit and integration tests or jump directly to critical test implementation. Choose based on team capacity and project timeline.
+  
+  essential_workflow_end:
+    action: essential_testing_operational
+    notes: Essential mobile testing setup operational with critical test coverage. Plan future expansion to comprehensive testing framework as project grows.
+  
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: Mobile Testing Automation] --> B{Testing Setup Scope?}
+        B -->|Comprehensive/Enterprise| C[mobile-qa: mobile-testing-strategy.md]
+        B -->|Essential/Basic Coverage| D[mobile-qa: essential-testing-plan.md]
+
+        C --> E[mobile-architect: testing-framework-architecture.md]
+        E --> F[mobile-dev: unit-testing-implementation.md]
+        F --> G[mobile-qa: integration-testing-setup.md]
+        G --> H[mobile-qa: e2e-testing-framework.md]
+        H --> I[mobile-architect: ci-cd-testing-integration.md]
+        I --> J[mobile-po: validate testing framework]
+        J --> K{Testing validation issues?}
+        K -->|Yes| L[Return to relevant mobile agent for refinement]
+        K -->|No| M[Execute Testing Framework Setup]
+        L --> J
+        M --> N[Testing Automation Operational]
+
+        D --> O[mobile-dev: basic-testing-implementation.md]
+        O --> P[Essential Testing Operational]
+
+        C -.-> C1[Optional: testing requirements analysis]
+        C -.-> C2[Optional: device coverage strategy]
+        E -.-> E1[Optional: CI/CD integration planning]
+        F -.-> F1[Optional: component testing patterns]
+        G -.-> G1[Optional: API testing integration]
+        H -.-> H1[Optional: cross-platform E2E testing]
+        I -.-> I1[Optional: parallel test execution]
+        D -.-> D1[Optional: critical test scenario identification]
+
+        style N fill:#90EE90
+        style P fill:#90EE90
+        style C fill:#FFE4B5
+        style E fill:#FFE4B5
+        style F fill:#FFE4B5
+        style G fill:#FFE4B5
+        style H fill:#FFE4B5
+        style I fill:#FFE4B5
+        style M fill:#FF6B6B
+        style D fill:#FFB6C1
+        style O fill:#FFB6C1
+    ```
+  
+  testing_framework_architecture:
+    unit_testing:
+      tools:
+        - Jest for JavaScript testing framework
+        - React Native Testing Library for component testing
+        - Mock frameworks for external dependencies
+        - Custom test utilities for mobile-specific testing
+      coverage_targets:
+        - Component rendering and interaction testing
+        - Utility function and hook testing
+        - Business logic and state management testing
+        - Platform-specific code testing
+    
+    integration_testing:
+      tools:
+        - Jest with React Native Testing Library
+        - Mock native modules and APIs
+        - Test data factories and fixtures
+        - Navigation testing utilities
+      coverage_targets:
+        - API integration and data flow testing
+        - Navigation and routing testing
+        - State management integration testing
+        - Cross-component interaction testing
+    
+    end_to_end_testing:
+      tools:
+        - Detox for iOS and Android automation
+        - Device emulators and simulators
+        - Real device testing coordination
+        - Cross-platform test scenarios
+      coverage_targets:
+        - Complete user journey testing
+        - Cross-platform compatibility validation
+        - Performance and stability testing
+        - App store submission readiness testing
+  
+  decision_guidance:
+    use_comprehensive_setup_when:
+      - Large-scale applications with complex functionality
+      - Multiple team members contributing to testing
+      - Long-term maintenance and scalability requirements
+      - Regulatory or compliance testing requirements
+      - Cross-platform compatibility critical to success
+      - Continuous deployment and quality assurance needs
+      - Performance and accessibility testing requirements
+    use_essential_setup_when:
+      - Small to medium applications with basic functionality
+      - Solo developer or very small team
+      - Limited time and resources for testing setup
+      - Proof of concept or MVP development
+      - Learning and educational projects
+      - Quick validation of core functionality needed
+  
+  handoff_prompts:
+    qa_to_architect: Mobile testing strategy complete. Save it as docs/testing/mobile-testing-strategy.md in your project, then design testing framework architecture.
+    architect_to_dev: Testing framework architecture ready. Save it as docs/testing/testing-framework-architecture.md, then implement unit testing setup.
+    dev_to_qa_integration: Unit testing implementation complete. Save it as docs/testing/unit-testing-implementation.md, then set up integration testing.
+    integration_to_e2e: Integration testing setup ready. Save it as docs/testing/integration-testing-setup.md, then implement E2E testing framework.
+    e2e_to_ci_cd: E2E testing framework complete. Save it as docs/testing/e2e-testing-framework.md, then integrate with CI/CD pipeline.
+    ci_cd_to_po: CI/CD integration ready. Save it as docs/testing/ci-cd-testing-integration.md. Please validate testing framework completeness.
+    validation_issues: Testing validation found issues with [component]. Please return to [mobile-agent] to refine and re-export updated testing approach.
+    ready_to_implement: All testing components validated and ready. Execute testing framework setup incrementally with team training.
+    essential_qa_to_dev: Essential testing plan complete. Save it as docs/testing/essential-testing-plan.md, then implement basic testing setup.
+    essential_ready: Essential testing setup ready with critical coverage. Begin implementation focusing on core functionality and user flows.
+  
+  mobile_testing_best_practices:
+    test_organization:
+      - Organize tests by feature and functionality
+      - Use consistent naming conventions across test files
+      - Implement shared test utilities and helpers
+      - Maintain test data factories and fixtures
+      - Document testing patterns and standards for team
+    cross_platform_testing:
+      - Test platform-specific features separately
+      - Use shared test scenarios for common functionality
+      - Validate UI differences between iOS and Android
+      - Test device-specific behaviors and constraints
+      - Ensure accessibility compliance on both platforms
+    test_maintenance:
+      - Keep tests simple, focused, and maintainable
+      - Update tests alongside feature development
+      - Monitor test execution time and optimize slow tests
+      - Regularly review and refactor test code
+      - Train team on testing best practices and tools
+  
+  testing_implementation_guidance:
+    setup_progression:
+      - Start with unit testing framework and basic coverage
+      - Add integration testing for API and navigation flows
+      - Implement E2E testing for critical user journeys
+      - Integrate automated testing into CI/CD pipeline
+      - Add performance and accessibility testing as needed
+    team_adoption:
+      - Provide testing framework training for development team
+      - Establish testing standards and code review practices
+      - Create testing documentation and examples
+      - Monitor test coverage and quality metrics
+      - Encourage test-driven development practices
+    continuous_improvement:
+      - Regularly assess testing effectiveness and coverage
+      - Update testing strategies based on project evolution
+      - Add new testing tools and techniques as needed
+      - Share testing learnings and best practices with team
+      - Plan testing framework evolution and maintenance
+  
+  success_criteria:
+    testing_framework_setup_complete:
+      - Comprehensive testing strategy defined and documented
+      - Testing framework architecture implemented and operational
+      - Unit, integration, and E2E testing frameworks configured
+      - CI/CD integration providing automated testing feedback
+      - Team trained and equipped for ongoing test development
+    testing_automation_operational_success:
+      - Automated tests providing reliable quality feedback
+      - Test coverage meeting project quality requirements
+      - Testing framework maintainable and scalable for team
+      - Cross-platform testing validating iOS and Android compatibility
+      - Testing process integrated into development workflow and reducing manual testing effort

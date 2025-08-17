@@ -1,0 +1,679 @@
+template:
+  id: app-store-listing-template-v1
+  name: App Store Listing Package
+  version: 1.0
+  output:
+    format: markdown
+    filename: "docs/{{app_name}}-app-store-listing.md"
+    title: "{{app_title}} App Store Listing Package"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: initial-setup
+    instruction: |
+      This template creates a comprehensive App Store Listing Package for React Native applications targeting both iOS App Store and Google Play Store. The package includes all metadata, descriptions, keywords, screenshots, and compliance information needed for successful app store submissions.
+      
+      This document serves as the complete submission guide and ensures consistent branding and messaging across both platforms.
+
+  - id: listing-overview
+    title: App Store Listing Overview
+    instruction: Provide a high-level overview of the app store listing strategy. Present each subsection and gather user feedback before proceeding.
+    sections:
+      - id: app-identity
+        title: App Identity
+        instruction: Define the core identity and positioning for app store listings
+        template: |
+          **App Name:** {{primary_app_name}}
+          **App Subtitle/Tagline:** {{app_subtitle_or_tagline}}
+          **Bundle ID/Package Name:** {{bundle_identifier}}
+          
+          **App Category:**
+          - Primary Category: {{primary_app_category}}
+          - Secondary Category: {{secondary_app_category_if_applicable}}
+          
+          **Target Audience:**
+          - Age Rating: {{age_rating_target}}
+          - Primary Demographics: {{primary_user_demographics}}
+          - Geographic Markets: {{target_geographic_markets}}
+          
+          **App Positioning:**
+          - Value Proposition: {{core_value_proposition}}
+          - Competitive Differentiation: {{competitive_differentiation}}
+          - Unique Selling Points: {{unique_selling_points}}
+      - id: branding-strategy
+        title: Branding Strategy
+        template: |
+          **Visual Identity:**
+          - Brand Colors: {{primary_brand_colors}}
+          - Brand Fonts: {{brand_typography}}
+          - Visual Style: {{visual_style_description}}
+          
+          **Brand Voice:**
+          - Tone of Voice: {{brand_tone_professional_friendly_etc}}
+          - Communication Style: {{communication_style}}
+          - Brand Personality: {{brand_personality_traits}}
+          
+          **Brand Messaging:**
+          - Core Message: {{core_brand_message}}
+          - Key Benefits: {{key_benefit_messaging}}
+          - Emotional Appeal: {{emotional_brand_appeal}}
+      - id: market-strategy
+        title: Market Strategy
+        template: |
+          **Launch Strategy:**
+          - Soft Launch Markets: {{soft_launch_markets}}
+          - Global Launch Timeline: {{global_launch_timeline}}
+          - Marketing Campaign Coordination: {{marketing_campaign_alignment}}
+          
+          **ASO Strategy:**
+          - Keyword Optimization: {{aso_keyword_strategy}}
+          - Conversion Optimization: {{conversion_optimization_strategy}}
+          - Rating and Review Strategy: {{rating_review_strategy}}
+          
+          **Platform Priority:**
+          - Primary Platform: {{ios_or_android_priority}}
+          - Launch Sequence: {{platform_launch_sequence}}
+          - Platform-Specific Strategies: {{platform_specific_marketing}}
+
+  - id: ios-app-store-listing
+    title: iOS App Store Listing
+    instruction: Define all content and metadata for iOS App Store submission
+    sections:
+      - id: ios-app-information
+        title: iOS App Information
+        template: |
+          **App Name:** {{ios_app_name}} (max 30 characters)
+          **Subtitle:** {{ios_app_subtitle}} (max 30 characters)
+          **Bundle ID:** {{ios_bundle_identifier}}
+          
+          **App Category:**
+          - Primary: {{ios_primary_category}}
+          - Secondary: {{ios_secondary_category}}
+          
+          **Content Rating:**
+          - Age Rating: {{ios_age_rating}}
+          - Content Descriptors: {{ios_content_descriptors}}
+          
+          **Pricing and Availability:**
+          - Price Tier: {{ios_price_tier}}
+          - Availability: {{ios_availability_countries}}
+          - Release Date: {{ios_release_date}}
+      - id: ios-app-description
+        title: iOS App Description
+        template: |
+          **App Description (max 4000 characters):**
+          
+          {{ios_app_description_opening_hook}}
+          
+          **Key Features:**
+          • {{ios_feature_1}}
+          • {{ios_feature_2}}
+          • {{ios_feature_3}}
+          • {{ios_feature_4}}
+          • {{ios_feature_5}}
+          
+          **Benefits:**
+          {{ios_app_benefits_description}}
+          
+          **Why Choose {{app_name}}:**
+          {{ios_competitive_advantages}}
+          
+          **User Testimonials:**
+          "{{ios_user_testimonial_1}}"
+          "{{ios_user_testimonial_2}}"
+          
+          **Download now and {{ios_call_to_action}}**
+          
+          **Support & Privacy:**
+          {{ios_support_and_privacy_info}}
+          
+          **Character Count:** {{ios_description_character_count}}/4000
+      - id: ios-keywords
+        title: iOS Keywords and ASO
+        template: |
+          **Keywords (max 100 characters):**
+          {{ios_keywords_comma_separated}}
+          
+          **Keyword Strategy:**
+          - High Volume Keywords: {{ios_high_volume_keywords}}
+          - Long Tail Keywords: {{ios_long_tail_keywords}}
+          - Branded Keywords: {{ios_branded_keywords}}
+          - Competitor Keywords: {{ios_competitor_keywords}}
+          
+          **ASO Optimization:**
+          - Keyword Density: {{ios_keyword_density_strategy}}
+          - Localization Keywords: {{ios_localization_keywords}}
+          - Seasonal Keywords: {{ios_seasonal_keywords}}
+          
+          **Character Count:** {{ios_keywords_character_count}}/100
+      - id: ios-promotional-text
+        title: iOS Promotional Text
+        template: |
+          **Promotional Text (max 170 characters):**
+          {{ios_promotional_text}}
+          
+          **Promotional Strategy:**
+          - Launch Promotion: {{ios_launch_promotional_text}}
+          - Feature Updates: {{ios_update_promotional_strategy}}
+          - Seasonal Promotions: {{ios_seasonal_promotional_strategy}}
+          
+          **Character Count:** {{ios_promotional_character_count}}/170
+      - id: ios-screenshots
+        title: iOS Screenshots and App Preview
+        template: |
+          **iPhone Screenshots (6.7", 6.5", 5.5" required):**
+          
+          **Screenshot 1 (Hero Shot):**
+          - Image: {{ios_screenshot_1_filename}}
+          - Caption: {{ios_screenshot_1_caption}}
+          - Focus: {{ios_screenshot_1_focus_area}}
+          
+          **Screenshot 2 (Core Feature):**
+          - Image: {{ios_screenshot_2_filename}}
+          - Caption: {{ios_screenshot_2_caption}}
+          - Focus: {{ios_screenshot_2_focus_area}}
+          
+          **Screenshot 3 (User Benefit):**
+          - Image: {{ios_screenshot_3_filename}}
+          - Caption: {{ios_screenshot_3_caption}}
+          - Focus: {{ios_screenshot_3_focus_area}}
+          
+          **Screenshot 4 (Social Proof):**
+          - Image: {{ios_screenshot_4_filename}}
+          - Caption: {{ios_screenshot_4_caption}}
+          - Focus: {{ios_screenshot_4_focus_area}}
+          
+          **Screenshot 5 (Call to Action):**
+          - Image: {{ios_screenshot_5_filename}}
+          - Caption: {{ios_screenshot_5_caption}}
+          - Focus: {{ios_screenshot_5_focus_area}}
+          
+          **iPad Screenshots (if applicable):**
+          {{ios_ipad_screenshots_if_applicable}}
+          
+          **App Preview Video:**
+          - Video File: {{ios_app_preview_video_filename}}
+          - Duration: {{ios_app_preview_duration}} seconds (max 30s)
+          - Focus: {{ios_app_preview_focus}}
+          - Soundtrack: {{ios_app_preview_audio}}
+      - id: ios-app-icon
+        title: iOS App Icon
+        template: |
+          **App Icon Specifications:**
+          - 1024x1024px (App Store)
+          - File Format: PNG or JPEG
+          - Color Space: sRGB or P3
+          - No Alpha Channel
+          
+          **App Icon Design:**
+          - Icon File: {{ios_app_icon_filename}}
+          - Design Concept: {{ios_app_icon_design_concept}}
+          - Brand Alignment: {{ios_app_icon_brand_alignment}}
+          - Platform Guidelines: {{ios_app_icon_hig_compliance}}
+          
+          **Icon Variations:**
+          - Standard Icon: {{ios_standard_icon}}
+          - Dark Mode Icon: {{ios_dark_mode_icon_if_different}}
+          - Alternative Icons: {{ios_alternative_icons_if_applicable}}
+
+  - id: google-play-listing
+    title: Google Play Store Listing
+    instruction: Define all content and metadata for Google Play Store submission
+    sections:
+      - id: android-app-information
+        title: Android App Information
+        template: |
+          **App Name:** {{android_app_name}} (max 50 characters)
+          **Short Description:** {{android_short_description}} (max 80 characters)
+          **Package Name:** {{android_package_name}}
+          
+          **App Category:**
+          - Category: {{android_app_category}}
+          - Tags: {{android_app_tags}}
+          
+          **Content Rating:**
+          - Target Age Group: {{android_target_age_group}}
+          - Content Rating: {{android_content_rating}}
+          
+          **Pricing and Distribution:**
+          - Price: {{android_app_price}}
+          - Countries: {{android_distribution_countries}}
+          - Device Support: {{android_device_support}}
+      - id: android-app-description
+        title: Android App Description
+        template: |
+          **Full Description (max 4000 characters):**
+          
+          {{android_app_description_opening}}
+          
+          **🌟 Key Features:**
+          ✓ {{android_feature_1}}
+          ✓ {{android_feature_2}}
+          ✓ {{android_feature_3}}
+          ✓ {{android_feature_4}}
+          ✓ {{android_feature_5}}
+          
+          **💡 Why Users Love {{app_name}}:**
+          {{android_user_benefits}}
+          
+          **🚀 What Makes Us Different:**
+          {{android_competitive_advantages}}
+          
+          **👥 Join Thousands of Happy Users:**
+          "{{android_user_review_1}}"
+          "{{android_user_review_2}}"
+          
+          **📱 Perfect for:**
+          {{android_perfect_for_description}}
+          
+          **🔒 Privacy & Security:**
+          {{android_privacy_security_info}}
+          
+          **📞 Support:**
+          {{android_support_contact_info}}
+          
+          **Character Count:** {{android_description_character_count}}/4000
+      - id: android-short-description
+        title: Android Short Description
+        template: |
+          **Short Description (max 80 characters):**
+          {{android_short_description}}
+          
+          **Short Description Strategy:**
+          - Hook: {{android_short_desc_hook}}
+          - Value Prop: {{android_short_desc_value}}
+          - Keywords: {{android_short_desc_keywords}}
+          
+          **Character Count:** {{android_short_description_character_count}}/80
+      - id: android-screenshots
+        title: Android Screenshots and Graphics
+        template: |
+          **Phone Screenshots (minimum 2, maximum 8):**
+          
+          **Screenshot 1 (Feature Highlight):**
+          - Image: {{android_screenshot_1_filename}}
+          - Size: {{android_screenshot_1_dimensions}}
+          - Focus: {{android_screenshot_1_focus}}
+          
+          **Screenshot 2 (User Interface):**
+          - Image: {{android_screenshot_2_filename}}
+          - Size: {{android_screenshot_2_dimensions}}
+          - Focus: {{android_screenshot_2_focus}}
+          
+          **Screenshot 3 (Core Functionality):**
+          - Image: {{android_screenshot_3_filename}}
+          - Size: {{android_screenshot_3_dimensions}}
+          - Focus: {{android_screenshot_3_focus}}
+          
+          **Screenshot 4 (User Benefits):**
+          - Image: {{android_screenshot_4_filename}}
+          - Size: {{android_screenshot_4_dimensions}}
+          - Focus: {{android_screenshot_4_focus}}
+          
+          **Tablet Screenshots (if applicable):**
+          {{android_tablet_screenshots_if_applicable}}
+          
+          **Feature Graphic:**
+          - Image: {{android_feature_graphic_filename}}
+          - Size: 1024x500px
+          - Design: {{android_feature_graphic_design}}
+          
+          **Promo Video (optional):**
+          - YouTube URL: {{android_promo_video_url}}
+          - Duration: {{android_promo_video_duration}}
+          - Content: {{android_promo_video_description}}
+      - id: android-app-icon
+        title: Android App Icon
+        template: |
+          **App Icon Specifications:**
+          - 512x512px (Google Play)
+          - File Format: PNG
+          - 32-bit with alpha
+          
+          **App Icon Design:**
+          - Icon File: {{android_app_icon_filename}}
+          - Design Concept: {{android_app_icon_design_concept}}
+          - Material Design Compliance: {{android_material_design_compliance}}
+          - Adaptive Icon: {{android_adaptive_icon_design}}
+          
+          **Icon Assets:**
+          - Standard Icon: {{android_standard_icon}}
+          - Adaptive Icon Foreground: {{android_adaptive_foreground}}
+          - Adaptive Icon Background: {{android_adaptive_background}}
+
+  - id: localization-content
+    title: Localization Content
+    instruction: Define localized content for international markets
+    sections:
+      - id: primary-languages
+        title: Primary Languages
+        repeatable: true
+        template: |
+          **Language: {{language_name}} ({{language_code}})**
+          
+          **Market Priority:** {{high|medium|low}}
+          **Market Size:** {{market_size_estimate}}
+          
+          **iOS Localized Content:**
+          - App Name: {{ios_localized_app_name}}
+          - Subtitle: {{ios_localized_subtitle}}
+          - Description: {{ios_localized_description}}
+          - Keywords: {{ios_localized_keywords}}
+          - Screenshots: {{ios_localized_screenshots_needed}}
+          
+          **Android Localized Content:**
+          - App Name: {{android_localized_app_name}}
+          - Short Description: {{android_localized_short_description}}
+          - Full Description: {{android_localized_full_description}}
+          - Screenshots: {{android_localized_screenshots_needed}}
+          
+          **Cultural Considerations:**
+          - Local Preferences: {{local_cultural_preferences}}
+          - Compliance Requirements: {{local_compliance_requirements}}
+          - Marketing Adaptations: {{local_marketing_adaptations}}
+      - id: localization-strategy
+        title: Localization Strategy
+        template: |
+          **Localization Priorities:**
+          - Tier 1 Markets: {{tier_1_localization_markets}}
+          - Tier 2 Markets: {{tier_2_localization_markets}}
+          - Future Markets: {{future_localization_markets}}
+          
+          **Content Localization:**
+          - Translation Quality: {{translation_quality_standards}}
+          - Cultural Adaptation: {{cultural_adaptation_approach}}
+          - Local Testing: {{local_market_testing_strategy}}
+          
+          **Visual Localization:**
+          - Screenshot Localization: {{screenshot_localization_strategy}}
+          - Icon Adaptation: {{icon_localization_needs}}
+          - Color Considerations: {{color_cultural_considerations}}
+
+  - id: compliance-requirements
+    title: Compliance and Legal Requirements
+    instruction: Define compliance requirements for app store submissions
+    sections:
+      - id: ios-compliance
+        title: iOS App Store Compliance
+        template: |
+          **App Review Guidelines Compliance:**
+          - Safety Guidelines: {{ios_safety_compliance}}
+          - Performance Guidelines: {{ios_performance_compliance}}
+          - Business Guidelines: {{ios_business_compliance}}
+          - Design Guidelines: {{ios_design_compliance}}
+          - Legal Guidelines: {{ios_legal_compliance}}
+          
+          **Privacy Requirements:**
+          - Privacy Policy URL: {{ios_privacy_policy_url}}
+          - Data Collection Disclosure: {{ios_data_collection_disclosure}}
+          - Privacy Nutrition Labels: {{ios_privacy_nutrition_labels}}
+          - App Tracking Transparency: {{ios_att_compliance}}
+          
+          **Content Requirements:**
+          - Age-Appropriate Content: {{ios_age_appropriate_content}}
+          - Intellectual Property: {{ios_ip_compliance}}
+          - User-Generated Content: {{ios_ugc_moderation}}
+          
+          **Technical Requirements:**
+          - iOS Version Support: {{ios_version_requirements}}
+          - Device Compatibility: {{ios_device_compatibility}}
+          - Accessibility: {{ios_accessibility_compliance}}
+      - id: android-compliance
+        title: Google Play Store Compliance
+        template: |
+          **Google Play Policies Compliance:**
+          - Content Policy: {{android_content_policy_compliance}}
+          - Developer Policy: {{android_developer_policy_compliance}}
+          - Families Policy: {{android_families_policy_compliance}}
+          - Monetization Policy: {{android_monetization_policy_compliance}}
+          
+          **Privacy and Security:**
+          - Privacy Policy URL: {{android_privacy_policy_url}}
+          - Data Safety Form: {{android_data_safety_form}}
+          - Permissions Declaration: {{android_permissions_declaration}}
+          - Security Requirements: {{android_security_compliance}}
+          
+          **Technical Requirements:**
+          - Target API Level: {{android_target_api_level}}
+          - App Bundle Format: {{android_app_bundle_compliance}}
+          - 64-bit Support: {{android_64bit_compliance}}
+          - Performance Requirements: {{android_performance_requirements}}
+          
+          **Content Rating:**
+          - IARC Rating: {{android_iarc_rating}}
+          - Regional Ratings: {{android_regional_ratings}}
+          - Content Descriptors: {{android_content_descriptors}}
+      - id: legal-documentation
+        title: Legal Documentation
+        template: |
+          **Required Legal Documents:**
+          - Privacy Policy: {{privacy_policy_status_and_url}}
+          - Terms of Service: {{terms_of_service_status_and_url}}
+          - End User License Agreement: {{eula_status_and_requirements}}
+          
+          **Intellectual Property:**
+          - Trademark Clearance: {{trademark_clearance_status}}
+          - Copyright Compliance: {{copyright_compliance_verification}}
+          - Third-Party Licenses: {{third_party_license_compliance}}
+          
+          **Regional Compliance:**
+          - GDPR Compliance: {{gdpr_compliance_status}}
+          - CCPA Compliance: {{ccpa_compliance_status}}
+          - Other Regional Requirements: {{other_regional_compliance}}
+
+  - id: submission-checklist
+    title: Submission Checklist
+    instruction: Provide comprehensive checklists for app store submissions
+    sections:
+      - id: ios-submission-checklist
+        title: iOS Submission Checklist
+        template: |
+          **Pre-Submission Requirements:**
+          - [ ] App Store Connect account set up
+          - [ ] Apple Developer Program membership active
+          - [ ] Bundle ID registered
+          - [ ] Certificates and provisioning profiles created
+          - [ ] App built and uploaded to App Store Connect
+          
+          **App Information:**
+          - [ ] App name entered (max 30 characters)
+          - [ ] Subtitle entered (max 30 characters)
+          - [ ] Bundle ID configured
+          - [ ] Primary and secondary categories selected
+          - [ ] Age rating completed
+          
+          **App Description:**
+          - [ ] App description written (max 4000 characters)
+          - [ ] Keywords optimized (max 100 characters)
+          - [ ] Promotional text added (max 170 characters)
+          - [ ] Description reviewed for compliance
+          
+          **Visual Assets:**
+          - [ ] App icon uploaded (1024x1024px)
+          - [ ] iPhone screenshots uploaded (all required sizes)
+          - [ ] iPad screenshots uploaded (if applicable)
+          - [ ] App preview video uploaded (if applicable)
+          - [ ] All assets reviewed for quality and compliance
+          
+          **App Review Information:**
+          - [ ] Contact information provided
+          - [ ] Demo account created (if required)
+          - [ ] Review notes written
+          - [ ] Age rating questionnaire completed
+          
+          **Legal and Compliance:**
+          - [ ] Privacy policy URL provided
+          - [ ] App privacy details completed
+          - [ ] Export compliance information provided
+          - [ ] Content rights verified
+          
+          **Final Review:**
+          - [ ] All information double-checked
+          - [ ] Test build verified
+          - [ ] Submission submitted for review
+      - id: android-submission-checklist
+        title: Android Submission Checklist
+        template: |
+          **Pre-Submission Requirements:**
+          - [ ] Google Play Console account set up
+          - [ ] Google Play Developer registration completed
+          - [ ] App signing key created
+          - [ ] APK or App Bundle uploaded
+          
+          **Store Listing:**
+          - [ ] App name entered (max 50 characters)
+          - [ ] Short description written (max 80 characters)
+          - [ ] Full description written (max 4000 characters)
+          - [ ] App category selected
+          - [ ] Tags added
+          
+          **Visual Assets:**
+          - [ ] App icon uploaded (512x512px)
+          - [ ] Feature graphic uploaded (1024x500px)
+          - [ ] Phone screenshots uploaded (minimum 2)
+          - [ ] Tablet screenshots uploaded (if applicable)
+          - [ ] Promo video added (if applicable)
+          
+          **Content Rating:**
+          - [ ] Content rating questionnaire completed
+          - [ ] IARC certificate obtained
+          - [ ] Age group selection made
+          
+          **App Content:**
+          - [ ] Data safety form completed
+          - [ ] Privacy policy URL provided
+          - [ ] Permissions justified
+          - [ ] Target audience selected
+          
+          **Pricing and Distribution:**
+          - [ ] Pricing set
+          - [ ] Countries selected for distribution
+          - [ ] Device compatibility configured
+          
+          **App Releases:**
+          - [ ] Production track configured
+          - [ ] Release notes written
+          - [ ] Rollout percentage set
+          
+          **Final Review:**
+          - [ ] All policy requirements met
+          - [ ] Content reviewed for compliance
+          - [ ] Release submitted for review
+      - id: post-submission-checklist
+        title: Post-Submission Checklist
+        template: |
+          **Immediate Post-Submission:**
+          - [ ] Submission confirmation received
+          - [ ] Review status monitoring set up
+          - [ ] Team notified of submission
+          - [ ] Marketing materials prepared
+          
+          **Review Period Monitoring:**
+          - [ ] Daily status checks scheduled
+          - [ ] Review feedback monitoring active
+          - [ ] Response plan for rejections prepared
+          - [ ] Escalation contacts identified
+          
+          **Launch Preparation:**
+          - [ ] Marketing campaign ready
+          - [ ] Press release prepared
+          - [ ] Social media content created
+          - [ ] Customer support prepared
+          - [ ] Analytics tracking configured
+          
+          **Post-Launch Activities:**
+          - [ ] App performance monitoring active
+          - [ ] User feedback monitoring set up
+          - [ ] Review and rating encouragement implemented
+          - [ ] Update roadmap planned
+
+  - id: optimization-strategy
+    title: App Store Optimization Strategy
+    instruction: Define ongoing ASO strategy and optimization plans
+    sections:
+      - id: aso-monitoring
+        title: ASO Monitoring and Analytics
+        template: |
+          **Key Metrics to Track:**
+          - App Store Impressions: {{aso_impressions_tracking}}
+          - Conversion Rate: {{aso_conversion_rate_tracking}}
+          - Keyword Rankings: {{aso_keyword_ranking_monitoring}}
+          - Competitor Analysis: {{aso_competitor_monitoring}}
+          
+          **ASO Tools:**
+          - Primary ASO Tool: {{primary_aso_tool}}
+          - Keyword Research Tools: {{keyword_research_tools}}
+          - Competitor Analysis Tools: {{competitor_analysis_tools}}
+          - Performance Analytics: {{aso_analytics_tools}}
+          
+          **Reporting Schedule:**
+          - Daily Monitoring: {{daily_aso_monitoring}}
+          - Weekly Reports: {{weekly_aso_reporting}}
+          - Monthly Analysis: {{monthly_aso_analysis}}
+          - Quarterly Strategy Review: {{quarterly_aso_review}}
+      - id: optimization-roadmap
+        title: Optimization Roadmap
+        template: |
+          **Phase 1: Launch Optimization ({{phase_1_timeline}})**
+          - Launch keyword optimization
+          - Initial conversion rate optimization
+          - User feedback integration
+          
+          **Phase 2: Growth Optimization ({{phase_2_timeline}})**
+          - Expanded keyword targeting
+          - A/B testing of visual assets
+          - Localization optimization
+          
+          **Phase 3: Mature Optimization ({{phase_3_timeline}})**
+          - Advanced ASO strategies
+          - Seasonal optimization campaigns
+          - Cross-promotion optimization
+          
+          **Continuous Optimization:**
+          - Regular keyword research and updates
+          - Competitive analysis and adaptation
+          - User feedback-driven improvements
+          - Performance data-driven decisions
+      - id: ab-testing-strategy
+        title: A/B Testing Strategy
+        template: |
+          **iOS A/B Testing (via App Store Connect):**
+          - Test Elements: {{ios_ab_test_elements}}
+          - Test Duration: {{ios_ab_test_duration}}
+          - Success Metrics: {{ios_ab_test_metrics}}
+          
+          **Android A/B Testing (via Google Play Console):**
+          - Store Listing Experiments: {{android_store_listing_experiments}}
+          - Test Variables: {{android_ab_test_variables}}
+          - Statistical Significance: {{android_ab_test_significance}}
+          
+          **Testing Roadmap:**
+          - Icon Testing: {{icon_ab_testing_plan}}
+          - Screenshot Testing: {{screenshot_ab_testing_plan}}
+          - Description Testing: {{description_ab_testing_plan}}
+          - Feature Graphic Testing: {{feature_graphic_ab_testing_plan}}
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: asset-specifications
+        title: Asset Specifications and Guidelines
+        instruction: Detailed specifications for all visual assets required for app store submissions
+      - id: content-guidelines
+        title: Content Writing Guidelines
+        instruction: Style guide and best practices for writing app store content
+      - id: competitor-analysis
+        title: Competitor Analysis
+        instruction: Analysis of competitor app store listings and strategies
+      - id: keyword-research
+        title: Keyword Research Data
+        instruction: Detailed keyword research findings and strategy
+      - id: change-log
+        title: Change Log
+        instruction: Track document versions and listing changes
+        type: table
+        template: |
+          | Date | Version | Changes | Platform | Author |
+          | :--- | :------ | :------ | :------- | :----- |

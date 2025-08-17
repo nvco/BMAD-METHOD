@@ -1,0 +1,272 @@
+template:
+  id: mobile-brief-template-v1
+  name: Mobile App Brief
+  version: 1.0
+  output:
+    format: markdown
+    filename: "docs/{{app_name}}-mobile-brief.md"
+    title: "{{app_title}} Mobile App Brief"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: initial-setup
+    instruction: |
+      This template creates a comprehensive mobile app brief that serves as the foundation for all subsequent React Native development work. The brief should capture the essential vision, scope, and requirements needed for cross-platform iOS and Android development.
+      
+      This brief is typically created early in the ideation process, often after brainstorming sessions, to crystallize the mobile app concept before moving into detailed design and architecture.
+
+  - id: app-vision
+    title: App Vision
+    instruction: Establish the core vision and identity of the mobile app. Present each subsection and gather user feedback before proceeding.
+    sections:
+      - id: core-concept
+        title: Core Concept
+        instruction: 2-3 sentences that clearly capture what the mobile app is and why it will be valuable to users
+      - id: elevator-pitch
+        title: Elevator Pitch
+        instruction: Single sentence that captures the essence of the app in a memorable way
+        template: |
+          **"{{app_description_in_one_sentence}}"**
+      - id: value-proposition
+        title: Value Proposition
+        instruction: Clear statement about what unique value the app provides to mobile users
+
+  - id: target-users
+    title: Target Users
+    instruction: Define the mobile user audience and market context. Apply `tasks#mobile-user-research` after presenting this section.
+    sections:
+      - id: primary-users
+        title: Primary Users
+        template: |
+          **Demographics:** {{age_range}}, {{income_level}}, {{tech_comfort_level}}
+          **Mobile Behavior:** {{device_preference}}, {{app_usage_patterns}}, {{screen_time}}
+          **Pain Points:** {{current_problems_they_face}}
+          **Motivations:** {{what_drives_them_to_use_mobile_apps}}
+      - id: secondary-users
+        title: Secondary Users
+        template: |
+          **User Group 2:** {{description}}
+          **User Group 3:** {{description}}
+      - id: market-context
+        title: Market Context
+        template: |
+          **Market Size:** {{target_market_size}}
+          **Platform Distribution:** iOS {{ios_percentage}}% / Android {{android_percentage}}%
+          **Competitive Landscape:** {{key_competitors_and_positioning}}
+
+  - id: platform-strategy
+    title: Platform Strategy
+    instruction: Define the cross-platform approach and platform-specific considerations
+    sections:
+      - id: platform-approach
+        title: Platform Approach
+        template: |
+          **Development Framework:** React Native
+          **Platform Priority:** {{ios_first_android_first_or_simultaneous}}
+          **Code Sharing Strategy:** {{percentage_shared_code}}% shared, {{percentage_platform_specific}}% platform-specific
+      - id: ios-considerations
+        title: iOS Considerations
+        template: |
+          **iOS Version Support:** {{min_ios_version}}+
+          **Device Support:** {{iphone_ipad_support}}
+          **iOS-Specific Features:** {{ios_unique_features}}
+          **App Store Strategy:** {{ios_app_store_approach}}
+      - id: android-considerations
+        title: Android Considerations
+        template: |
+          **Android API Level:** {{min_api_level}}+
+          **Device Support:** {{android_device_strategy}}
+          **Android-Specific Features:** {{android_unique_features}}
+          **Play Store Strategy:** {{android_play_store_approach}}
+
+  - id: app-fundamentals
+    title: App Fundamentals
+    instruction: Define the core mobile app elements and user experience
+    sections:
+      - id: core-features
+        title: Core Features (MVP)
+        instruction: 3-5 essential features that define the app's value
+        repeatable: true
+        template: |
+          **Feature: {{feature_name}}**
+          - **Description:** {{what_it_does}}
+          - **User Value:** {{why_users_need_it}}
+          - **Platform Notes:** {{ios_android_implementation_notes}}
+      - id: user-experience-goals
+        title: User Experience Goals
+        template: |
+          **Primary Experience:** {{main_emotional_goal}}
+          **Mobile UX Principles:** {{mobile_specific_ux_goals}}
+          **Platform Compliance:** iOS HIG and Material Design adherence
+      - id: technical-approach
+        title: Technical Approach
+        template: |
+          **Architecture:** {{react_native_architecture_approach}}
+          **State Management:** {{redux_context_zustand_etc}}
+          **Navigation:** {{navigation_strategy}}
+          **Performance Targets:** {{performance_goals}}
+
+  - id: scope-constraints
+    title: Scope and Constraints
+    instruction: Define the boundaries and limitations for mobile development
+    sections:
+      - id: project-scope
+        title: Project Scope
+        template: |
+          **MVP Timeline:** {{mvp_development_duration}}
+          **Feature Complexity:** {{simple_moderate_complex}}
+          **Content Volume:** {{estimated_screens_and_features}}
+          **Scope Comparison:** "Similar to {{reference_app}} but with {{key_differences}}"
+      - id: technical-constraints
+        title: Technical Constraints
+        template: |
+          **Platform Requirements:**
+          - iOS: {{ios_technical_requirements}}
+          - Android: {{android_technical_requirements}}
+          
+          **Performance Requirements:**
+          - Launch Time: <{{launch_time_target}}s
+          - Memory Usage: <{{memory_target}}MB
+          - Offline Capability: {{offline_requirements}}
+      - id: business-constraints
+        title: Business Constraints
+        template: |
+          **Timeline:** {{project_timeline}}
+          **Team Size:** {{development_team_size}}
+          **Budget Considerations:** {{budget_constraints}}
+          **Monetization:** {{free_premium_freemium_ads}}
+
+  - id: competitive-analysis
+    title: Competitive Analysis
+    instruction: Analyze the mobile app competitive landscape. Apply `tasks#mobile-competitive-analysis` for detailed analysis.
+    sections:
+      - id: direct-competitors
+        title: Direct Competitors
+        repeatable: true
+        template: |
+          **{{competitor_app_name}}**
+          - **Strengths:** {{competitor_strengths}}
+          - **Weaknesses:** {{competitor_weaknesses}}
+          - **Platform Performance:** {{ios_android_performance}}
+          - **App Store Ranking:** {{app_store_ranking_info}}
+      - id: differentiation
+        title: Competitive Differentiation
+        template: |
+          **Our Unique Advantage:** {{unique_value_proposition}}
+          **Feature Differentiation:** {{unique_features}}
+          **User Experience Differentiation:** {{ux_advantages}}
+          **Technical Differentiation:** {{technical_advantages}}
+
+  - id: success-metrics
+    title: Success Metrics
+    instruction: Define measurable goals for the mobile app
+    sections:
+      - id: user-acquisition
+        title: User Acquisition Metrics
+        template: |
+          **Download Targets:**
+          - Month 1: {{month_1_downloads}}
+          - Month 3: {{month_3_downloads}}
+          - Month 6: {{month_6_downloads}}
+      - id: engagement-metrics
+        title: Engagement Metrics
+        template: |
+          **Key Metrics:**
+          - Daily Active Users: {{dau_target}}
+          - Session Length: {{session_length_target}}
+          - Retention: D1 {{d1_retention}}%, D7 {{d7_retention}}%, D30 {{d30_retention}}%
+      - id: business-metrics
+        title: Business Metrics
+        condition: has_business_goals
+        template: |
+          **Revenue Goals:** {{revenue_targets_if_applicable}}
+          **Conversion Goals:** {{conversion_targets_if_applicable}}
+          **User Lifetime Value:** {{ltv_targets_if_applicable}}
+
+  - id: risk-assessment
+    title: Risk Assessment
+    instruction: Identify potential mobile development challenges
+    sections:
+      - id: technical-risks
+        title: Technical Risks
+        type: table
+        template: |
+          | Risk | Probability | Impact | Mitigation |
+          | ---- | ----------- | ------ | ---------- |
+          | {{technical_risk}} | {{high|med|low}} | {{high|med|low}} | {{mitigation_strategy}} |
+      - id: market-risks
+        title: Market Risks
+        type: table
+        template: |
+          | Risk | Probability | Impact | Mitigation |
+          | ---- | ----------- | ------ | ---------- |
+          | {{market_risk}} | {{high|med|low}} | {{high|med|low}} | {{mitigation_strategy}} |
+      - id: platform-risks
+        title: Platform Risks
+        type: table
+        template: |
+          | Risk | Probability | Impact | Mitigation |
+          | ---- | ----------- | ------ | ---------- |
+          | {{platform_risk}} | {{high|med|low}} | {{high|med|low}} | {{mitigation_strategy}} |
+
+  - id: next-steps
+    title: Next Steps
+    instruction: Define the immediate path forward after brief completion
+    sections:
+      - id: immediate-actions
+        title: Immediate Actions
+        type: numbered-list
+        template: |
+          **{{action_item}}** - {{details_and_timeline}}
+      - id: development-phases
+        title: Development Phases
+        sections:
+          - id: phase-1-architecture
+            title: "Phase 1: Architecture & Setup ({{phase_1_duration}})"
+            type: bullet-list
+            template: |
+              - Mobile architecture design
+              - React Native project setup
+              - Development environment configuration
+          - id: phase-2-mvp
+            title: "Phase 2: MVP Development ({{phase_2_duration}})"
+            type: bullet-list
+            template: |
+              - Core feature implementation
+              - Cross-platform testing
+              - Initial performance optimization
+          - id: phase-3-launch
+            title: "Phase 3: App Store Launch ({{phase_3_duration}})"
+            type: bullet-list
+            template: |
+              - App store preparation
+              - Marketing material creation
+              - Launch and post-launch monitoring
+      - id: required-documents
+        title: Required Documents
+        type: numbered-list
+        template: |
+          Mobile Architecture Document - {{target_completion}}
+          App Store Listing Package - {{target_completion}}
+          Mobile Testing Strategy - {{target_completion}}
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: research-materials
+        title: Research Materials
+        instruction: Include market research, user research, and competitive analysis data
+      - id: technical-references
+        title: Technical References
+        instruction: React Native documentation, platform guidelines, and technical resources
+      - id: design-inspiration
+        title: Design Inspiration
+        instruction: UI/UX references, platform design examples, and style inspirations
+      - id: change-log
+        title: Change Log
+        type: table
+        template: |
+          | Date | Version | Description | Author |
+          | :--- | :------ | :---------- | :----- |

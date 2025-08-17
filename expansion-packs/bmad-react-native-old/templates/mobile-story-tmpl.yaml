@@ -1,0 +1,253 @@
+template:
+  id: mobile-story-template-v1
+  name: Mobile Development Story
+  version: 1.0
+  output:
+    format: markdown
+    filename: "stories/{{epic_name}}/{{story_id}}-{{story_name}}.md"
+    title: "Mobile Story: {{story_title}}"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: initial-setup
+    instruction: |
+      This template creates detailed mobile development stories specifically for React Native cross-platform applications. Each story should focus on a single, implementable feature that works across iOS and Android platforms.
+      
+      Before starting, ensure you have access to:
+      
+      - Mobile App Brief
+      - Mobile Architecture Document
+      - Any existing stories in this epic
+      
+      The story should be specific enough that a mobile developer can implement it while considering platform-specific requirements and cross-platform compatibility.
+
+  - id: story-header
+    content: |
+      **Epic:** {{epic_name}}  
+      **Story ID:** {{story_id}}  
+      **Priority:** {{High|Medium|Low}}  
+      **Platform:** {{iOS|Android|Cross-Platform}}  
+      **Complexity:** {{Simple|Medium|Complex}}  
+      **Sprint:** {{sprint_number}}
+
+  - id: story-overview
+    title: Story Overview
+    sections:
+      - id: user-story
+        title: User Story
+        template: |
+          **As a** {{user_type}}  
+          **I want** {{capability}}  
+          **So that** {{benefit}}
+      - id: story-description
+        title: Story Description
+        instruction: Provide a detailed description of what needs to be implemented, including mobile-specific considerations
+      - id: business-value
+        title: Business Value
+        instruction: Explain why this story is important and its impact on the mobile app's success
+
+  - id: platform-requirements
+    title: Platform Requirements
+    instruction: Define requirements and considerations for each platform
+    sections:
+      - id: cross-platform-requirements
+        title: Cross-Platform Requirements
+        instruction: Requirements that apply to both iOS and Android
+        repeatable: true
+        template: |
+          - {{cross_platform_requirement}}
+      - id: ios-specific-requirements
+        title: iOS-Specific Requirements
+        instruction: Requirements specific to iOS implementation
+        repeatable: true
+        template: |
+          - {{ios_requirement}} (iOS HIG consideration: {{hig_note}})
+      - id: android-specific-requirements
+        title: Android-Specific Requirements
+        instruction: Requirements specific to Android implementation
+        repeatable: true
+        template: |
+          - {{android_requirement}} (Material Design consideration: {{material_design_note}})
+
+  - id: acceptance-criteria
+    title: Acceptance Criteria
+    instruction: Define specific, testable criteria for story completion
+    sections:
+      - id: functional-criteria
+        title: Functional Criteria
+        repeatable: true
+        template: |
+          **Given** {{precondition}}  
+          **When** {{action}}  
+          **Then** {{expected_result}}
+      - id: platform-criteria
+        title: Platform-Specific Criteria
+        repeatable: true
+        template: |
+          **Platform:** {{iOS|Android}}  
+          **Criteria:** {{platform_specific_acceptance_criteria}}
+      - id: performance-criteria
+        title: Performance Criteria
+        template: |
+          - Load time: {{load_time_requirement}}
+          - Memory usage: {{memory_requirement}}
+          - Battery impact: {{battery_requirement}}
+          - Network efficiency: {{network_requirement}}
+
+  - id: technical-implementation
+    title: Technical Implementation
+    instruction: Provide technical guidance for implementation
+    sections:
+      - id: react-native-components
+        title: React Native Components
+        instruction: Specify which React Native components and libraries to use
+        template: |
+          **Core Components:** {{react_native_components}}
+          **Third-Party Libraries:** {{third_party_libraries}}
+          **Custom Components:** {{custom_components_needed}}
+      - id: state-management
+        title: State Management
+        instruction: Define how state should be managed for this feature
+        template: |
+          **Global State:** {{global_state_requirements}}
+          **Local State:** {{local_state_requirements}}
+          **State Flow:** {{state_management_flow}}
+      - id: navigation-integration
+        title: Navigation Integration
+        instruction: Specify how this feature integrates with app navigation
+        template: |
+          **Screen Type:** {{screen|modal|overlay}}
+          **Navigation Method:** {{navigation_approach}}
+          **Deep Linking:** {{deep_link_requirements}}
+
+  - id: design-specifications
+    title: Design Specifications
+    instruction: Define UI/UX requirements and design considerations
+    sections:
+      - id: ui-requirements
+        title: UI Requirements
+        template: |
+          **Screen Layout:** {{layout_description}}
+          **Key UI Elements:** {{ui_elements_list}}
+          **Responsive Design:** {{responsive_requirements}}
+      - id: platform-design-adaptations
+        title: Platform Design Adaptations
+        template: |
+          **iOS Design Notes:** {{ios_design_considerations}}
+          **Android Design Notes:** {{android_design_considerations}}
+          **Shared Design Elements:** {{shared_design_elements}}
+      - id: accessibility-requirements
+        title: Accessibility Requirements
+        template: |
+          **Screen Reader Support:** {{screen_reader_requirements}}
+          **Touch Target Size:** {{touch_target_specifications}}
+          **Color Contrast:** {{color_contrast_requirements}}
+          **Voice Control:** {{voice_control_requirements}}
+
+  - id: testing-requirements
+    title: Testing Requirements
+    instruction: Define testing approach for this mobile feature
+    sections:
+      - id: unit-testing
+        title: Unit Testing
+        template: |
+          **Components to Test:** {{components_to_unit_test}}
+          **Business Logic Tests:** {{business_logic_test_requirements}}
+          **Mock Requirements:** {{mocking_strategy}}
+      - id: integration-testing
+        title: Integration Testing
+        template: |
+          **API Integration:** {{api_integration_testing}}
+          **Navigation Testing:** {{navigation_integration_testing}}
+          **State Integration:** {{state_integration_testing}}
+      - id: platform-testing
+        title: Platform Testing
+        template: |
+          **iOS Testing:** {{ios_testing_requirements}}
+          **Android Testing:** {{android_testing_requirements}}
+          **Cross-Platform Testing:** {{cross_platform_testing_approach}}
+      - id: manual-testing
+        title: Manual Testing Scenarios
+        repeatable: true
+        template: |
+          **Scenario:** {{test_scenario}}
+          **Steps:** {{test_steps}}
+          **Expected Result:** {{expected_outcome}}
+
+  - id: implementation-tasks
+    title: Implementation Tasks
+    instruction: Break down the story into specific development tasks
+    sections:
+      - id: development-tasks
+        title: Development Tasks
+        repeatable: true
+        template: |
+          - [ ] {{development_task}} ({{estimated_hours}}h)
+      - id: testing-tasks
+        title: Testing Tasks
+        repeatable: true
+        template: |
+          - [ ] {{testing_task}} ({{estimated_hours}}h)
+      - id: documentation-tasks
+        title: Documentation Tasks
+        repeatable: true
+        template: |
+          - [ ] {{documentation_task}} ({{estimated_hours}}h)
+
+  - id: dependencies
+    title: Dependencies and Blockers
+    sections:
+      - id: story-dependencies
+        title: Story Dependencies
+        repeatable: true
+        template: |
+          **Depends on:** {{dependency_story_id}} - {{dependency_description}}
+      - id: technical-dependencies
+        title: Technical Dependencies
+        repeatable: true
+        template: |
+          **Dependency:** {{technical_dependency}}
+          **Impact:** {{dependency_impact}}
+      - id: external-dependencies
+        title: External Dependencies
+        repeatable: true
+        template: |
+          **External Dependency:** {{external_dependency}}
+          **Contact:** {{dependency_contact}}
+          **Timeline:** {{dependency_timeline}}
+
+  - id: definition-of-done
+    title: Definition of Done
+    instruction: Checklist that must be completed before story is considered done
+    template: |
+      - [ ] Feature implemented and working on both iOS and Android
+      - [ ] Unit tests written and passing
+      - [ ] Integration tests passing
+      - [ ] Manual testing completed on real devices
+      - [ ] Code reviewed and approved
+      - [ ] Performance requirements met
+      - [ ] Accessibility requirements met
+      - [ ] Documentation updated
+      - [ ] Ready for app store submission (if applicable)
+
+  - id: notes-and-comments
+    title: Notes and Comments
+    sections:
+      - id: development-notes
+        title: Development Notes
+        instruction: Technical notes, implementation decisions, and lessons learned
+      - id: design-decisions
+        title: Design Decisions
+        instruction: Record key design decisions and their rationale
+      - id: platform-considerations
+        title: Platform Considerations
+        instruction: Notes about platform-specific implementation challenges or solutions
+
+  - id: change-log
+    title: Change Log
+    type: table
+    template: |
+      | Date | Change | Author | Reason |
+      | :--- | :----- | :----- | :----- |

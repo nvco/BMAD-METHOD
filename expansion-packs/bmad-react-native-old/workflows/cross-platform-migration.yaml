@@ -1,0 +1,262 @@
+workflow:
+  id: cross-platform-migration
+  name: Cross-Platform Migration - React Native Adoption
+  description: Specialized workflow for migrating existing native iOS/Android apps to React Native or migrating between React Native configurations (Expo to bare, bare to Expo, or platform-specific optimizations). Guides teams through migration planning, architecture design, and safe deployment strategies.
+  type: migration
+  project_types:
+    - native-to-react-native
+    - expo-to-bare-migration
+    - bare-to-expo-migration
+    - ios-only-to-cross-platform
+    - android-only-to-cross-platform
+    - legacy-mobile-modernization
+    - platform-consolidation
+  
+  full_migration_sequence:
+    - agent: mobile-analyst
+      creates: migration-assessment.md
+      optional_steps:
+        - existing_app_audit
+        - platform_feature_analysis
+        - user_impact_assessment
+        - migration_cost_benefit_analysis
+      notes: 'Comprehensively analyze existing mobile app(s) including native features, user base, performance requirements, and migration complexity. SAVE OUTPUT: Copy final migration-assessment.md to your project''s docs/migration/ folder.'
+    
+    - agent: mobile-architect
+      creates: migration-strategy.md
+      requires: migration-assessment.md
+      optional_steps:
+        - technical_feasibility_analysis
+        - native_module_planning
+        - performance_impact_assessment
+        - migration_timeline_planning
+      notes: 'Design comprehensive migration strategy including phased approach, native module requirements, and risk mitigation. Define React Native architecture for migrated app. SAVE OUTPUT: Copy final migration-strategy.md to your project''s docs/migration/ folder.'
+    
+    - agent: mobile-pm
+      creates: migration-roadmap.md
+      requires: migration-strategy.md
+      optional_steps:
+        - stakeholder_impact_analysis
+        - migration_milestone_planning
+        - resource_requirement_planning
+      notes: 'Create detailed migration roadmap with milestones, resource requirements, and stakeholder communication plan. Include app store transition strategy. SAVE OUTPUT: Copy final migration-roadmap.md to your project''s docs/migration/ folder.'
+    
+    - agent: mobile-ux
+      creates: migration-ux-strategy.md
+      requires:
+        - migration-assessment.md
+        - migration-roadmap.md
+      optional_steps:
+        - user_experience_continuity_planning
+        - platform_design_harmonization
+        - accessibility_improvement_planning
+      notes: 'Design UX strategy for migration ensuring user experience continuity while leveraging cross-platform design opportunities. SAVE OUTPUT: Copy final migration-ux-strategy.md to your project''s docs/migration/ folder.'
+    
+    - agent: mobile-qa
+      creates: migration-testing-strategy.md
+      requires: all_migration_documents
+      optional_steps:
+        - migration_test_planning
+        - parallel_testing_strategy
+        - rollback_testing_procedures
+      notes: 'Create comprehensive testing strategy for migration including parallel testing, data migration validation, and rollback procedures. SAVE OUTPUT: Copy final migration-testing-strategy.md to your project''s docs/migration/ folder.'
+    
+    - agent: mobile-po
+      validates: migration_plan_consistency
+      requires: all_migration_documents
+      uses: migration-validation-checklist
+      notes: Validate all migration documents for feasibility, risk assessment, and safe execution strategy. May require updates to any document.
+    
+    - agent: various
+      updates: flagged_migration_documents
+      condition: migration_validation_issues
+      notes: If migration validation finds issues, return to relevant mobile agent to fix and re-export updated documents to docs/migration/ folder.
+  
+  migration_implementation_guidance:
+    action: guide_migration_execution
+    notes: Set up migration development environment with both existing and new React Native projects. Implement parallel development and testing infrastructure for safe migration.
+  
+  workflow_end:
+    action: move_to_migration_story_development
+    notes: All migration planning artifacts complete. Begin story-driven migration implementation. Use Mobile Scrum Master to create migration stories prioritized for safe, incremental execution.
+  
+  rapid_migration_sequence:
+    - step: migration_complexity_assessment
+      action: assess_migration_scope
+      notes: First, assess if this needs full migration planning (use full_migration_sequence) or can be rapid migration with minimal complexity (simple apps, similar platforms).
+    
+    - agent: mobile-architect
+      creates: rapid-migration-plan.md
+      optional_steps:
+        - quick_feasibility_check
+        - essential_feature_mapping
+      notes: 'Create focused migration plan for straightforward migrations. Emphasize feature parity and technical feasibility. SAVE OUTPUT: Copy final rapid-migration-plan.md to your project''s docs/migration/ folder.'
+    
+    - agent: mobile-qa
+      creates: essential-migration-testing.md
+      uses: create-doc migration-testing-template OR migration-test-planning
+      requires: rapid-migration-plan.md
+      notes: Create essential testing plan for rapid migration or jump directly to implementation with basic testing coverage. Choose based on risk tolerance and migration complexity.
+  
+  rapid_workflow_end:
+    action: move_to_immediate_migration_implementation
+    notes: Rapid migration plan defined with essential safety measures. Begin immediate implementation with Mobile Developer. Focus on feature parity and basic testing coverage.
+  
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: Cross-Platform Migration] --> B{Migration Complexity?}
+        B -->|Complex/Multi-Platform/Enterprise| C[mobile-analyst: migration-assessment.md]
+        B -->|Simple/Single Platform/Basic App| D[mobile-architect: rapid-migration-plan.md]
+
+        C --> E[mobile-architect: migration-strategy.md]
+        E --> F[mobile-pm: migration-roadmap.md]
+        F --> G[mobile-ux: migration-ux-strategy.md]
+        G --> H[mobile-qa: migration-testing-strategy.md]
+        H --> I[mobile-po: validate migration plan]
+        I --> J{Migration validation issues?}
+        J -->|Yes| K[Return to relevant mobile agent for fixes]
+        J -->|No| L[Set up migration development environment]
+        K --> I
+        L --> M[Move to Migration Story Development]
+
+        D --> N[mobile-qa: essential-migration-testing.md]
+        N --> O[Move to Immediate Migration Implementation]
+
+        C -.-> C1[Optional: existing app audit]
+        C -.-> C2[Optional: platform feature analysis]
+        E -.-> E1[Optional: technical feasibility analysis]
+        F -.-> F1[Optional: stakeholder impact analysis]
+        G -.-> G1[Optional: UX continuity planning]
+        H -.-> H1[Optional: parallel testing strategy]
+        D -.-> D1[Optional: quick feasibility check]
+
+        style M fill:#90EE90
+        style O fill:#90EE90
+        style C fill:#FFE4B5
+        style E fill:#FFE4B5
+        style F fill:#FFE4B5
+        style G fill:#FFE4B5
+        style H fill:#FFE4B5
+        style D fill:#FFB6C1
+        style N fill:#FFB6C1
+    ```
+  
+  migration_types_guidance:
+    native_to_react_native:
+      considerations:
+        - Analyze existing native code for reusability
+        - Plan custom native module development
+        - Assess third-party library equivalents
+        - Consider gradual migration vs complete rewrite
+        - Plan for platform-specific performance differences
+      success_criteria:
+        - Feature parity with existing native apps
+        - Performance meets or exceeds native benchmarks
+        - User experience remains consistent or improves
+        - App store transition executed smoothly
+    
+    expo_to_bare_migration:
+      considerations:
+        - Evaluate need for custom native modules
+        - Plan build pipeline and development workflow changes
+        - Assess Expo services replacement strategies
+        - Consider team capability for native development
+        - Plan for increased maintenance complexity
+      success_criteria:
+        - Required native functionality successfully implemented
+        - Build and deployment pipelines operational
+        - Team equipped for bare React Native development
+        - Performance and bundle size optimized
+    
+    bare_to_expo_migration:
+      considerations:
+        - Audit existing native modules for Expo compatibility
+        - Plan replacement strategies for unsupported features
+        - Evaluate Expo services integration opportunities
+        - Consider simplified development and deployment benefits
+        - Assess long-term Expo roadmap alignment
+      success_criteria:
+        - All required functionality maintained or improved
+        - Development workflow simplified and accelerated
+        - Expo services successfully integrated
+        - Team productivity increased
+  
+  decision_guidance:
+    use_full_sequence_when:
+      - Migrating complex apps with significant native functionality
+      - Multiple platforms involved (iOS and Android)
+      - Large user base requiring careful transition planning
+      - Enterprise apps with compliance and security requirements
+      - Multiple team members and stakeholders involved
+      - Significant business impact and risk considerations
+      - Custom native modules or complex integrations required
+    use_rapid_sequence_when:
+      - Simple apps with basic functionality
+      - Single platform migration or proof of concept
+      - Small user base or internal apps
+      - Solo developer or very small team
+      - Low business risk and impact
+      - Standard React Native features sufficient
+  
+  handoff_prompts:
+    analyst_to_architect: Migration assessment complete. Save it as docs/migration/migration-assessment.md in your project, then create the migration strategy.
+    architect_to_pm: Migration strategy ready. Save it as docs/migration/migration-strategy.md, then create the migration roadmap.
+    pm_to_ux: Migration roadmap complete. Save it as docs/migration/migration-roadmap.md, then create the UX migration strategy.
+    ux_to_qa: Migration UX strategy complete. Save it as docs/migration/migration-ux-strategy.md, then create the testing strategy.
+    qa_to_po: Migration testing strategy ready. Save it as docs/migration/migration-testing-strategy.md. Please validate all migration documents for consistency.
+    validation_issues: Migration validation found issues with [document]. Please return to [mobile-agent] to fix and re-save the updated document.
+    full_complete: All migration artifacts validated and saved. Set up migration development environment and move to story development phase.
+    rapid_architect_to_qa: Rapid migration plan complete. Save it as docs/migration/rapid-migration-plan.md, then create essential testing plan.
+    rapid_complete: Rapid migration plan defined with safety measures. Begin immediate implementation with feature parity focus.
+  
+  migration_best_practices:
+    risk_mitigation:
+      - Implement comprehensive backup and rollback procedures
+      - Use feature flags for gradual migration rollout
+      - Maintain parallel development environments during transition
+      - Create detailed rollback plans for each migration phase
+      - Monitor user feedback and app store metrics closely
+    data_and_state_migration:
+      - Plan for user data migration between platforms
+      - Ensure state management compatibility
+      - Test data migration with production-like datasets
+      - Implement data validation and integrity checks
+      - Plan for graceful handling of migration failures
+    user_experience_continuity:
+      - Maintain familiar user workflows and navigation
+      - Preserve user preferences and customizations
+      - Provide clear communication about changes and benefits
+      - Plan user education and support during transition
+      - Monitor user adoption and satisfaction metrics
+  
+  migration_story_development_guidance:
+    epic_breakdown:
+      - Migration Foundation - Project setup and environment configuration
+      - Core Feature Migration - Essential app functionality transfer
+      - Data Migration - User data and state transfer
+      - Platform Integration - Native modules and platform-specific features
+      - User Experience Migration - UI/UX implementation and testing
+      - Testing & Validation - Comprehensive migration testing
+      - Deployment & Transition - Safe rollout and app store transition
+    story_creation_process:
+      - Use Mobile Scrum Master to create migration-aware implementation stories
+      - Each story should include rollback procedures and validation criteria
+      - Prioritize stories by risk level and user impact
+      - Include comprehensive testing requirements for each migration component
+      - Apply migration-story-checklist for safety and completeness validation
+      - Ensure stories include user communication and education elements
+  
+  success_criteria:
+    migration_planning_complete:
+      - All migration documents created and validated for safety and feasibility
+      - Migration strategy addresses all technical and business requirements
+      - Risk mitigation and rollback procedures clearly defined
+      - User impact thoroughly analyzed and communication plan established
+      - Comprehensive testing strategy covers all migration scenarios
+    migration_implementation_readiness:
+      - Migration development environment configured with parallel systems
+      - Data migration procedures tested and validated
+      - Team equipped with necessary skills and tools for migration
+      - Monitoring and alerting systems ready for migration tracking
+      - Stakeholder alignment on migration goals and success criteria

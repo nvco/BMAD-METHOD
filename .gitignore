@@ -46,6 +46,3 @@ test-project-install/*
 sample-project/*
 flattened-codebase.xml
 
-# Development artifacts - old/backup expansion packs
-expansion-packs/bmad-react-native-old/
-

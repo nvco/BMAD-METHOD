@@ -1,0 +1,232 @@
+workflow:
+  id: mobile-greenfield-app
+  name: Mobile App Development - React Native Greenfield Project
+  description: Specialized workflow for creating cross-platform mobile applications from concept to App Store submission using React Native. Guides teams through mobile market research, product strategy, cross-platform architecture, and story-driven development for professional mobile app development.
+  type: greenfield
+  project_types:
+    - mobile-app
+    - react-native-app
+    - cross-platform-app
+    - ios-app
+    - android-app
+    - mvp-mobile
+    - startup-mobile
+    - enterprise-mobile
+  
+  full_mobile_sequence:
+    - agent: mobile-analyst
+      creates: mobile-market-research.md
+      optional_steps:
+        - mobile_brainstorming_session
+        - competitor_app_analysis
+        - mobile_user_research
+      notes: 'Start with mobile market analysis and competitor research. Create comprehensive mobile market intelligence. SAVE OUTPUT: Copy final mobile-market-research.md to your project''s docs/mobile/ folder.'
+    
+    - agent: mobile-analyst
+      creates: mobile-project-brief.md
+      requires: mobile-market-research.md
+      optional_steps:
+        - app_store_research
+        - platform_analysis
+      notes: 'Create mobile-focused project brief with iOS and Android considerations. Include app store strategy and platform priorities. SAVE OUTPUT: Copy final mobile-project-brief.md to your project''s docs/mobile/ folder.'
+    
+    - agent: mobile-pm
+      creates: mobile-prd.md
+      requires: mobile-project-brief.md
+      optional_steps:
+        - mobile_feature_prioritization
+        - mobile_user_acquisition_strategy
+      notes: 'Create comprehensive mobile PRD with platform-specific considerations, app store requirements, and mobile analytics strategy. SAVE OUTPUT: Copy final mobile-prd.md to your project''s docs/mobile/ folder.'
+    
+    - agent: mobile-ux
+      creates: mobile-design-spec.md
+      requires: mobile-prd.md
+      optional_steps:
+        - mobile_user_research
+        - platform_design_guidelines
+      notes: 'Create mobile UI/UX specification following iOS HIG and Material Design guidelines. Include touch interactions and mobile accessibility. SAVE OUTPUT: Copy final mobile-design-spec.md to your project''s docs/mobile/ folder.'
+    
+    - agent: mobile-architect
+      creates: mobile-architecture.md
+      requires:
+        - mobile-prd.md
+        - mobile-design-spec.md
+      optional_steps:
+        - technical_research_prompt
+        - performance_analysis
+        - native_module_assessment
+      notes: 'Create comprehensive React Native architecture with iOS and Android considerations. Define state management, navigation, and native integrations. SAVE OUTPUT: Copy final mobile-architecture.md to your project''s docs/mobile/ folder.'
+    
+    - agent: mobile-po
+      validates: mobile_artifacts_consistency
+      requires: all_mobile_documents
+      uses: mobile-po-checklist
+      notes: Validate all mobile documents for cross-platform consistency, app store compliance, and mobile development readiness. May require updates to any document.
+    
+    - agent: various
+      updates: flagged_mobile_documents
+      condition: mobile_validation_issues
+      notes: If mobile validation finds issues, return to relevant mobile agent to fix and re-export updated documents to docs/mobile/ folder.
+  
+  mobile_project_setup_guidance:
+    action: guide_react_native_project_structure
+    notes: Set up React Native project structure following mobile architecture document. Initialize React Native CLI or Expo, configure iOS and Android builds, set up testing framework.
+  
+  workflow_end:
+    action: move_to_mobile_story_development
+    notes: All mobile design artifacts complete. Begin story-driven development phase. Use Mobile Scrum Master to create implementation stories from mobile design documents.
+  
+  mvp_sequence:
+    - step: mvp_scope_assessment
+      action: assess_mobile_mvp_complexity
+      notes: First, assess if this needs full mobile planning (use full_mobile_sequence) or can be rapid MVP development with core features only.
+    
+    - agent: mobile-analyst
+      creates: mobile-project-brief.md
+      optional_steps:
+        - quick_market_validation
+        - essential_feature_analysis
+      notes: 'Create focused mobile brief for MVP. Emphasize core mobile user value and platform priorities. SAVE OUTPUT: Copy final mobile-project-brief.md to your project''s docs/mobile/ folder.'
+    
+    - agent: mobile-pm
+      creates: mvp-mobile-prd.md
+      uses: create-doc mobile-mvp-prd-template OR mobile-feature-prioritization
+      requires: mobile-project-brief.md
+      notes: Create minimal viable mobile product definition or jump directly to priority features for rapid development. Choose based on MVP complexity.
+    
+    - agent: mobile-architect
+      creates: mvp-mobile-architecture.md
+      requires: mvp-mobile-prd.md
+      notes: Create minimal React Native architecture focused on core features and fastest time-to-market. Include basic app store submission strategy.
+  
+  mvp_workflow_end:
+    action: move_to_rapid_mobile_implementation
+    notes: MVP defined with mobile-first approach. Begin immediate implementation with Mobile Developer. Focus on core mobile user experience first, then iterate based on user feedback and app store metrics.
+  
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: Mobile App Development Project] --> B{Project Scope?}
+        B -->|Full Mobile App/Production| C[mobile-analyst: mobile-market-research.md]
+        B -->|MVP/Rapid Development| D[mobile-analyst: focused mobile-project-brief.md]
+
+        C --> E[mobile-analyst: mobile-project-brief.md]
+        E --> F[mobile-pm: mobile-prd.md]
+        F --> G[mobile-ux: mobile-design-spec.md]
+        G --> H[mobile-architect: mobile-architecture.md]
+        H --> I[mobile-po: validate mobile artifacts]
+        I --> J{Mobile validation issues?}
+        J -->|Yes| K[Return to relevant mobile agent for fixes]
+        J -->|No| L[Set up React Native project structure]
+        K --> I
+        L --> M[Move to Mobile Story Development Phase]
+
+        D --> N[mobile-pm: mvp-mobile-prd.md]
+        N --> O[mobile-architect: mvp-mobile-architecture.md]
+        O --> P[Move to Rapid Mobile Implementation]
+
+        C -.-> C1[Optional: mobile brainstorming]
+        C -.-> C2[Optional: competitor app analysis]
+        E -.-> E1[Optional: app store research]
+        F -.-> F1[Optional: mobile feature prioritization]
+        G -.-> G1[Optional: mobile user research]
+        H -.-> H1[Optional: native module assessment]
+        D -.-> D1[Optional: quick market validation]
+
+        style M fill:#90EE90
+        style P fill:#90EE90
+        style C fill:#FFE4B5
+        style E fill:#FFE4B5
+        style F fill:#FFE4B5
+        style G fill:#FFE4B5
+        style H fill:#FFE4B5
+        style D fill:#FFB6C1
+        style N fill:#FFB6C1
+        style O fill:#FFB6C1
+    ```
+  
+  decision_guidance:
+    use_full_sequence_when:
+      - Building commercial or production mobile apps
+      - Multiple team members involved
+      - Complex mobile features (push notifications, native modules, background processing)
+      - Long-term development timeline (3+ months)
+      - Need comprehensive documentation for mobile team coordination
+      - Targeting both iOS and Android platforms
+      - Enterprise or customer-facing mobile applications
+      - App store optimization and marketing strategy required
+    use_mvp_sequence_when:
+      - Rapid mobile prototyping or validation
+      - Solo developer or very small mobile team
+      - Simple mobile apps (1-2 core features)
+      - Quick mobile market validation
+      - Learning React Native or mobile development
+      - Technical proof-of-concept mobile apps
+      - Time-constrained mobile development
+  
+  handoff_prompts:
+    analyst_to_brief: Mobile market research complete. Save it as docs/mobile/mobile-market-research.md in your project, then create the comprehensive mobile project brief.
+    brief_to_pm: Mobile project brief ready. Save it as docs/mobile/mobile-project-brief.md, then create the mobile PRD with platform considerations.
+    pm_to_ux: Mobile PRD complete. Save it as docs/mobile/mobile-prd.md, then create the mobile design specification.
+    ux_to_architect: Mobile design spec complete. Save it as docs/mobile/mobile-design-spec.md, then create the React Native architecture.
+    architect_review: Mobile architecture complete. Save it as docs/mobile/mobile-architecture.md. Please validate all mobile documents for consistency and app store readiness.
+    validation_issues: Mobile validation found issues with [document]. Please return to [mobile-agent] to fix and re-save the updated document.
+    full_complete: All mobile design artifacts validated and saved. Set up React Native project structure and move to mobile story development phase.
+    mvp_brief_to_pm: MVP mobile brief complete. Save it as docs/mobile/mobile-project-brief.md, then create minimal mobile PRD or jump directly to priority features.
+    mvp_complete: Mobile MVP defined with platform considerations. Begin rapid implementation focusing on core mobile user experience and app store readiness.
+  
+  mobile_story_development_guidance:
+    epic_breakdown:
+      - Mobile Core Features - Essential app functionality and user flows
+      - Cross-Platform Navigation - React Navigation setup and platform-specific patterns
+      - Mobile User Interface - iOS and Android UI implementation
+      - Mobile Data & State - State management, data persistence, and offline support
+      - Native Integrations - Platform-specific features and native modules
+      - Mobile Performance - Optimization, memory management, and loading states
+      - App Store Preparation - Metadata, assets, and submission requirements
+      - Mobile Analytics & Monitoring - Crash reporting, user analytics, and performance tracking
+    story_creation_process:
+      - Use Mobile Scrum Master to create detailed mobile implementation stories
+      - Each story should reference specific mobile design sections
+      - Include platform-specific requirements (iOS and Android)
+      - Specify React Native implementation details and native dependencies
+      - Apply mobile-story-checklist for mobile quality validation
+      - Ensure stories include mobile testing requirements
+      - Consider app store submission requirements in relevant stories
+  
+  mobile_development_best_practices:
+    performance_targets:
+      - Maintain 60 FPS on both iOS and Android throughout development
+      - Memory usage under platform-specific limits
+      - App startup time under 3 seconds on target devices
+      - Smooth animations and responsive touch interactions
+      - Efficient bundle size for app store distribution
+    technical_standards:
+      - TypeScript strict mode compliance for type safety
+      - Cross-platform component architecture
+      - Platform-specific code separation when necessary
+      - Comprehensive error handling and offline support
+      - Accessibility compliance for both VoiceOver and TalkBack
+      - Proper state management with chosen architecture (Redux/Zustand/Context)
+    app_store_integration:
+      - Test app store submission process early
+      - Validate app metadata and asset requirements
+      - Implement proper app store optimization (ASO) elements
+      - Include crash reporting and analytics from development start
+      - Plan for platform-specific review requirements
+  
+  success_criteria:
+    mobile_design_phase_complete:
+      - All mobile design documents created and validated
+      - React Native architecture aligns with mobile design requirements
+      - Platform-specific performance targets defined and achievable
+      - Mobile story breakdown ready for implementation
+      - React Native project structure established
+      - App store submission strategy defined
+    mobile_implementation_readiness:
+      - React Native development environment configured for iOS and Android
+      - Mobile testing framework in place (Jest, React Native Testing Library, Detox)
+      - App store developer accounts and certificates ready
+      - Mobile team roles and responsibilities defined
+      - First mobile implementation stories created and ready
+      - Mobile analytics and crash reporting setup planned

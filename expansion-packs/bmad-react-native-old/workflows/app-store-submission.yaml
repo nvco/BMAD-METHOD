@@ -1,0 +1,250 @@
+workflow:
+  id: app-store-submission
+  name: App Store Submission - iOS and Android Deployment
+  description: Specialized workflow for submitting React Native applications to iOS App Store and Google Play Store. Guides teams through submission preparation, review processes, and post-launch monitoring for successful app store deployment.
+  type: deployment
+  project_types:
+    - ios-app-store-submission
+    - google-play-submission
+    - cross-platform-app-launch
+    - app-store-update
+    - beta-testing-deployment
+    - enterprise-app-distribution
+    - app-store-optimization
+  
+  full_submission_sequence:
+    - agent: mobile-qa
+      creates: pre-submission-testing.md
+      optional_steps:
+        - device_compatibility_testing
+        - performance_benchmarking
+        - accessibility_compliance_testing
+        - security_vulnerability_scanning
+      notes: 'Execute comprehensive pre-submission testing including device compatibility, performance, accessibility, and security validation. SAVE OUTPUT: Copy final pre-submission-testing.md to your project''s docs/deployment/ folder.'
+    
+    - agent: mobile-pm
+      creates: app-store-metadata.md
+      requires: pre-submission-testing.md
+      optional_steps:
+        - app_store_optimization_research
+        - competitor_listing_analysis
+        - keyword_research_and_optimization
+      notes: 'Create comprehensive app store metadata including descriptions, keywords, screenshots, and promotional materials for both iOS and Android. SAVE OUTPUT: Copy final app-store-metadata.md to your project''s docs/deployment/ folder.'
+    
+    - agent: mobile-architect
+      creates: build-and-deployment-config.md
+      requires: app-store-metadata.md
+      optional_steps:
+        - production_build_optimization
+        - code_signing_setup
+        - automated_deployment_pipeline
+      notes: 'Configure production builds, code signing, and deployment pipelines for both iOS App Store and Google Play Store. SAVE OUTPUT: Copy final build-and-deployment-config.md to your project''s docs/deployment/ folder.'
+    
+    - agent: mobile-pm
+      creates: submission-strategy.md
+      requires: build-and-deployment-config.md
+      optional_steps:
+        - launch_timing_strategy
+        - beta_testing_coordination
+        - post_launch_monitoring_setup
+      notes: 'Define submission strategy including timing, beta testing, phased rollout, and post-launch monitoring plans. SAVE OUTPUT: Copy final submission-strategy.md to your project''s docs/deployment/ folder.'
+    
+    - agent: mobile-po
+      validates: submission_readiness
+      requires: all_submission_documents
+      uses: app-store-readiness-checklist
+      notes: Validate all submission documents and app build for app store compliance, quality standards, and launch readiness. May require updates to any component.
+    
+    - agent: various
+      updates: flagged_submission_components
+      condition: submission_validation_issues
+      notes: If submission validation finds issues, return to relevant mobile agent to fix and re-export updated documents or rebuild app components.
+    
+    - agent: mobile-pm
+      executes: app_store_submission
+      requires: validated_submission_package
+      creates: submission-tracking.md
+      notes: 'Execute actual submission to iOS App Store and Google Play Store. Monitor review process and track submission status. SAVE OUTPUT: Copy submission-tracking.md to your project''s docs/deployment/ folder.'
+  
+  post_submission_monitoring:
+    action: monitor_review_and_launch
+    notes: Monitor app store review processes, respond to reviewer feedback, and track post-launch metrics including downloads, ratings, and crash reports.
+  
+  workflow_end:
+    action: submission_complete_and_monitoring
+    notes: App store submissions complete and under review. Monitor review processes, prepare for launch day activities, and track post-launch performance metrics.
+  
+  beta_testing_sequence:
+    - step: beta_scope_assessment
+      action: assess_beta_testing_needs
+      notes: First, assess if this needs full submission workflow (use full_submission_sequence) or focused beta testing deployment for validation before public launch.
+    
+    - agent: mobile-qa
+      creates: beta-testing-plan.md
+      optional_steps:
+        - beta_user_recruitment
+        - testing_scenario_definition
+      notes: 'Create focused beta testing plan for TestFlight (iOS) and Play Console Internal Testing (Android). Define testing scenarios and user recruitment strategy. SAVE OUTPUT: Copy final beta-testing-plan.md to your project''s docs/deployment/ folder.'
+    
+    - agent: mobile-architect
+      creates: beta-build-config.md
+      uses: create-doc beta-deployment-template OR build-deployment-config
+      requires: beta-testing-plan.md
+      notes: Configure beta builds and distribution setup for TestFlight and Play Console. Choose based on beta complexity and automation requirements.
+    
+    - agent: mobile-pm
+      executes: beta_deployment
+      requires: beta-build-config.md
+      creates: beta-monitoring.md
+      notes: 'Deploy beta builds and coordinate beta user testing. Monitor feedback collection and testing progress. SAVE OUTPUT: Copy beta-monitoring.md to your project''s docs/deployment/ folder.'
+  
+  beta_workflow_end:
+    action: beta_complete_move_to_production
+    notes: Beta testing complete with valuable feedback collected. Address critical issues and proceed to production app store submission using full submission sequence.
+  
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: App Store Submission] --> B{Submission Type?}
+        B -->|Production Launch| C[mobile-qa: pre-submission-testing.md]
+        B -->|Beta Testing Only| D[mobile-qa: beta-testing-plan.md]
+
+        C --> E[mobile-pm: app-store-metadata.md]
+        E --> F[mobile-architect: build-and-deployment-config.md]
+        F --> G[mobile-pm: submission-strategy.md]
+        G --> H[mobile-po: validate submission readiness]
+        H --> I{Submission validation issues?}
+        I -->|Yes| J[Return to relevant mobile agent for fixes]
+        I -->|No| K[mobile-pm: execute app store submission]
+        J --> H
+        K --> L[Monitor Review and Launch]
+
+        D --> M[mobile-architect: beta-build-config.md]
+        M --> N[mobile-pm: execute beta deployment]
+        N --> O{Beta Issues Found?}
+        O -->|Yes| P[Address Issues and Iterate]
+        O -->|No| Q[Move to Production Submission]
+        P --> N
+        Q --> C
+
+        C -.-> C1[Optional: device compatibility testing]
+        C -.-> C2[Optional: security vulnerability scanning]
+        E -.-> E1[Optional: ASO research]
+        F -.-> F1[Optional: automated deployment pipeline]
+        G -.-> G1[Optional: beta testing coordination]
+        D -.-> D1[Optional: beta user recruitment]
+
+        style L fill:#90EE90
+        style Q fill:#90EE90
+        style C fill:#FFE4B5
+        style E fill:#FFE4B5
+        style F fill:#FFE4B5
+        style G fill:#FFE4B5
+        style K fill:#FF6B6B
+        style D fill:#FFB6C1
+        style M fill:#FFB6C1
+        style N fill:#FFB6C1
+    ```
+  
+  platform_specific_guidance:
+    ios_app_store:
+      requirements:
+        - Valid Apple Developer Program membership
+        - App Store Connect account setup
+        - iOS distribution certificate and provisioning profiles
+        - App Store Review Guidelines compliance
+        - Human Interface Guidelines adherence
+      submission_process:
+        - Archive build in Xcode or using CLI tools
+        - Upload to App Store Connect via Xcode or Transporter
+        - Complete app metadata and store listing
+        - Submit for review and respond to reviewer feedback
+        - Release manually or automatically upon approval
+    
+    google_play_store:
+      requirements:
+        - Google Play Console developer account
+        - App signing key and upload certificate
+        - Google Play Developer Policy compliance
+        - Material Design Guidelines adherence
+        - Target API level requirements
+      submission_process:
+        - Generate signed AAB (Android App Bundle)
+        - Upload to Play Console and complete store listing
+        - Set up release tracks (internal, alpha, beta, production)
+        - Submit for review and address policy violations
+        - Roll out to specified percentage of users
+  
+  decision_guidance:
+    use_full_sequence_when:
+      - First-time app store submission
+      - Production app launch or major version updates
+      - Complex apps requiring thorough validation
+      - Multiple platforms (iOS and Android) simultaneously
+      - Enterprise or consumer-facing applications
+      - Apps with significant business or regulatory impact
+      - Apps requiring comprehensive app store optimization
+    use_beta_sequence_when:
+      - Pre-launch validation and user feedback collection
+      - Testing new features with limited user base
+      - Validating app store submission process
+      - Gathering performance data before wide release
+      - Educational or learning projects
+      - Apps with experimental features requiring validation
+  
+  handoff_prompts:
+    qa_to_pm: Pre-submission testing complete. Save it as docs/deployment/pre-submission-testing.md in your project, then create app store metadata.
+    pm_to_architect: App store metadata ready. Save it as docs/deployment/app-store-metadata.md, then configure build and deployment.
+    architect_to_pm_strategy: Build configuration complete. Save it as docs/deployment/build-and-deployment-config.md, then create submission strategy.
+    strategy_to_po: Submission strategy ready. Save it as docs/deployment/submission-strategy.md. Please validate submission readiness.
+    validation_issues: Submission validation found issues with [component]. Please return to [mobile-agent] to fix and re-prepare the submission package.
+    ready_to_submit: All submission components validated and ready. Execute app store submission and begin monitoring review process.
+    beta_qa_to_architect: Beta testing plan complete. Save it as docs/deployment/beta-testing-plan.md, then configure beta build setup.
+    beta_architect_to_pm: Beta build configuration ready. Save it as docs/deployment/beta-build-config.md, then execute beta deployment.
+    beta_complete: Beta testing complete with feedback collected. Address critical issues and proceed to production submission.
+  
+  app_store_optimization_best_practices:
+    metadata_optimization:
+      - Research and optimize app title and subtitle/short description
+      - Conduct keyword research for app store search optimization
+      - Create compelling app descriptions highlighting key benefits
+      - Design eye-catching app icons following platform guidelines
+      - Produce high-quality screenshots and preview videos
+    review_process_preparation:
+      - Ensure app functionality works without external dependencies
+      - Provide test account credentials if app requires login
+      - Include clear app functionality descriptions for reviewers
+      - Prepare responses to common reviewer questions
+      - Test app thoroughly on minimum supported device configurations
+    post_launch_optimization:
+      - Monitor app store search rankings and visibility
+      - Track user reviews and ratings trends
+      - Analyze download and conversion metrics
+      - Iterate on app store listing based on performance data
+      - Plan regular updates to maintain search relevance
+  
+  submission_monitoring_guidance:
+    review_process_tracking:
+      - Monitor App Store Connect and Play Console for review updates
+      - Respond promptly to reviewer questions or rejection reasons
+      - Track review timeline and escalate if needed
+      - Prepare quick fixes for common rejection issues
+    launch_day_monitoring:
+      - Monitor crash reports and error rates immediately after launch
+      - Track download numbers and user acquisition metrics
+      - Monitor user reviews and ratings for immediate feedback
+      - Be prepared for hotfix deployment if critical issues arise
+      - Communicate launch status to stakeholders and team
+  
+  success_criteria:
+    submission_preparation_complete:
+      - All app store requirements and guidelines compliance verified
+      - Comprehensive testing completed across target devices and platforms
+      - App store metadata optimized for discoverability and conversion
+      - Build and deployment processes validated and automated
+      - Review response and post-launch monitoring procedures established
+    submission_execution_success:
+      - Apps successfully submitted to iOS App Store and Google Play Store
+      - Review processes monitored and any issues addressed promptly
+      - Launch day monitoring systems operational and tracking key metrics
+      - Post-launch optimization plan ready for execution based on performance data

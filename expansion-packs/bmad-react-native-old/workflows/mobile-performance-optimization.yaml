@@ -1,0 +1,264 @@
+workflow:
+  id: mobile-performance-optimization
+  name: Mobile Performance Optimization - React Native Tuning
+  description: Specialized workflow for optimizing React Native application performance across iOS and Android platforms. Guides teams through performance analysis, bottleneck identification, optimization implementation, and performance monitoring setup.
+  type: optimization
+  project_types:
+    - performance-improvement
+    - memory-optimization
+    - startup-time-optimization
+    - battery-usage-optimization
+    - bundle-size-reduction
+    - animation-performance
+    - list-rendering-optimization
+    - network-performance
+  
+  comprehensive_optimization_sequence:
+    - agent: mobile-qa
+      creates: performance-baseline.md
+      optional_steps:
+        - device_performance_profiling
+        - user_experience_metrics_collection
+        - crash_and_error_analysis
+        - battery_usage_assessment
+      notes: 'Establish comprehensive performance baseline including startup time, memory usage, CPU utilization, and user experience metrics across target devices. SAVE OUTPUT: Copy final performance-baseline.md to your project''s docs/performance/ folder.'
+    
+    - agent: mobile-architect
+      creates: performance-analysis.md
+      requires: performance-baseline.md
+      optional_steps:
+        - code_profiling_and_analysis
+        - bundle_size_analysis
+        - native_module_performance_review
+        - third_party_library_assessment
+      notes: 'Analyze performance bottlenecks including JavaScript thread blocking, native bridge overhead, memory leaks, and inefficient rendering patterns. SAVE OUTPUT: Copy final performance-analysis.md to your project''s docs/performance/ folder.'
+    
+    - agent: mobile-architect
+      creates: optimization-strategy.md
+      requires: performance-analysis.md
+      optional_steps:
+        - optimization_priority_matrix
+        - technical_debt_assessment
+        - platform_specific_optimization_planning
+      notes: 'Design comprehensive optimization strategy prioritizing high-impact improvements including code splitting, lazy loading, and native optimizations. SAVE OUTPUT: Copy final optimization-strategy.md to your project''s docs/performance/ folder.'
+    
+    - agent: mobile-dev
+      creates: optimization-implementation-plan.md
+      requires: optimization-strategy.md
+      optional_steps:
+        - implementation_timeline_planning
+        - testing_strategy_for_optimizations
+        - rollback_procedures_planning
+      notes: 'Create detailed implementation plan for performance optimizations including code changes, configuration updates, and testing procedures. SAVE OUTPUT: Copy final optimization-implementation-plan.md to your project''s docs/performance/ folder.'
+    
+    - agent: mobile-qa
+      creates: performance-testing-strategy.md
+      requires: optimization-implementation-plan.md
+      optional_steps:
+        - automated_performance_testing_setup
+        - regression_testing_planning
+        - performance_monitoring_integration
+      notes: 'Design comprehensive performance testing strategy including automated benchmarking, regression detection, and continuous monitoring. SAVE OUTPUT: Copy final performance-testing-strategy.md to your project''s docs/performance/ folder.'
+    
+    - agent: mobile-po
+      validates: optimization_plan_feasibility
+      requires: all_optimization_documents
+      uses: performance-optimization-checklist
+      notes: Validate optimization plan for technical feasibility, risk assessment, and expected performance improvements. May require updates to any component.
+    
+    - agent: various
+      updates: flagged_optimization_components
+      condition: optimization_validation_issues
+      notes: If optimization validation finds issues, return to relevant mobile agent to refine optimization approach and re-export updated documents.
+  
+  optimization_implementation_guidance:
+    action: execute_performance_optimizations
+    notes: Implement performance optimizations incrementally with continuous testing and monitoring. Use feature flags for safe rollout of optimization changes.
+  
+  workflow_end:
+    action: performance_monitoring_and_iteration
+    notes: Performance optimizations implemented and monitoring established. Continue iterative optimization based on performance metrics and user feedback.
+  
+  targeted_optimization_sequence:
+    - step: optimization_scope_assessment
+      action: assess_performance_issue_specificity
+      notes: First, assess if this needs comprehensive optimization (use comprehensive_optimization_sequence) or targeted optimization for specific performance issues.
+    
+    - agent: mobile-architect
+      creates: targeted-optimization-plan.md
+      optional_steps:
+        - specific_issue_analysis
+        - quick_win_identification
+      notes: 'Create focused optimization plan for specific performance issues like slow startup, memory leaks, or animation jank. SAVE OUTPUT: Copy final targeted-optimization-plan.md to your project''s docs/performance/ folder.'
+    
+    - agent: mobile-dev
+      creates: implementation-and-testing.md
+      uses: create-doc optimization-implementation-template OR performance-optimization
+      requires: targeted-optimization-plan.md
+      notes: Create implementation plan with testing procedures or jump directly to optimization implementation for critical performance fixes. Choose based on urgency and risk level.
+  
+  targeted_workflow_end:
+    action: implement_targeted_optimizations
+    notes: Targeted optimization plan defined with testing procedures. Begin immediate implementation focusing on specific performance issues while monitoring impact.
+  
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: Performance Optimization] --> B{Optimization Scope?}
+        B -->|Comprehensive/App-wide| C[mobile-qa: performance-baseline.md]
+        B -->|Targeted/Specific Issues| D[mobile-architect: targeted-optimization-plan.md]
+
+        C --> E[mobile-architect: performance-analysis.md]
+        E --> F[mobile-architect: optimization-strategy.md]
+        F --> G[mobile-dev: optimization-implementation-plan.md]
+        G --> H[mobile-qa: performance-testing-strategy.md]
+        H --> I[mobile-po: validate optimization plan]
+        I --> J{Optimization validation issues?}
+        J -->|Yes| K[Return to relevant mobile agent for refinement]
+        J -->|No| L[Execute Performance Optimizations]
+        K --> I
+        L --> M[Performance Monitoring and Iteration]
+
+        D --> N[mobile-dev: implementation-and-testing.md]
+        N --> O[Implement Targeted Optimizations]
+
+        C -.-> C1[Optional: device performance profiling]
+        C -.-> C2[Optional: battery usage assessment]
+        E -.-> E1[Optional: bundle size analysis]
+        F -.-> F1[Optional: optimization priority matrix]
+        G -.-> G1[Optional: implementation timeline planning]
+        H -.-> H1[Optional: automated performance testing]
+        D -.-> D1[Optional: quick win identification]
+
+        style M fill:#90EE90
+        style O fill:#90EE90
+        style C fill:#FFE4B5
+        style E fill:#FFE4B5
+        style F fill:#FFE4B5
+        style G fill:#FFE4B5
+        style H fill:#FFE4B5
+        style L fill:#FF6B6B
+        style D fill:#FFB6C1
+        style N fill:#FFB6C1
+    ```
+  
+  performance_optimization_categories:
+    startup_performance:
+      optimizations:
+        - Bundle splitting and lazy loading
+        - Image and asset optimization
+        - Splash screen and initial render optimization
+        - Essential component prioritization
+        - Native module initialization optimization
+      measurement_criteria:
+        - Time to first render under 2 seconds
+        - Time to interactive under 3 seconds
+        - Bundle size within platform limits
+        - Memory usage during startup
+    
+    runtime_performance:
+      optimizations:
+        - List rendering optimization (VirtualizedList, FlatList)
+        - Animation performance and 60 FPS maintenance
+        - Memory leak prevention and garbage collection
+        - Unnecessary re-render elimination
+        - Native bridge communication optimization
+      measurement_criteria:
+        - Smooth 60 FPS animations
+        - List scrolling performance
+        - Memory usage stability
+        - JavaScript thread utilization
+    
+    network_performance:
+      optimizations:
+        - API request optimization and caching
+        - Image loading and caching strategies
+        - Offline data persistence
+        - Background sync optimization
+        - Request deduplication and batching
+      measurement_criteria:
+        - API response time targets
+        - Offline functionality reliability
+        - Data usage efficiency
+        - Network error handling
+  
+  decision_guidance:
+    use_comprehensive_sequence_when:
+      - App-wide performance issues affecting user experience
+      - Preparing for app store launch or major release
+      - Performance regression across multiple app areas
+      - Team needs comprehensive performance improvement strategy
+      - Performance optimization is a major project goal
+      - Multiple stakeholders involved in performance requirements
+    use_targeted_sequence_when:
+      - Specific performance issues like slow startup or memory leaks
+      - Critical performance fixes needed urgently
+      - Solo developer or small team with limited resources
+      - Performance optimization for specific features or screens
+      - A/B testing performance improvements
+      - Quick wins before comprehensive optimization
+  
+  handoff_prompts:
+    qa_to_architect_analysis: Performance baseline complete. Save it as docs/performance/performance-baseline.md in your project, then analyze performance bottlenecks.
+    analysis_to_strategy: Performance analysis ready. Save it as docs/performance/performance-analysis.md, then create optimization strategy.
+    strategy_to_dev: Optimization strategy complete. Save it as docs/performance/optimization-strategy.md, then create implementation plan.
+    dev_to_qa: Implementation plan ready. Save it as docs/performance/optimization-implementation-plan.md, then create testing strategy.
+    qa_to_po: Testing strategy complete. Save it as docs/performance/performance-testing-strategy.md. Please validate optimization plan feasibility.
+    validation_issues: Optimization validation found issues with [component]. Please return to [mobile-agent] to refine and re-export updated approach.
+    ready_to_optimize: All optimization components validated and ready. Execute performance optimizations with continuous monitoring.
+    targeted_architect_to_dev: Targeted optimization plan complete. Save it as docs/performance/targeted-optimization-plan.md, then create implementation and testing plan.
+    targeted_ready: Targeted optimization plan ready with testing procedures. Begin immediate implementation focusing on specific performance issues.
+  
+  performance_optimization_best_practices:
+    measurement_and_monitoring:
+      - Establish performance baselines before optimization
+      - Use automated performance testing in CI/CD pipeline
+      - Monitor performance metrics continuously in production
+      - Set up alerts for performance regression detection
+      - Track user experience metrics (app store ratings, crash rates)
+    implementation_safety:
+      - Implement optimizations incrementally with testing
+      - Use feature flags for safe rollout of performance changes
+      - Maintain rollback procedures for each optimization
+      - Test optimizations on various device configurations
+      - Monitor user feedback during optimization rollout
+    technical_excellence:
+      - Focus on high-impact optimizations first
+      - Consider platform-specific optimization opportunities
+      - Balance optimization effort with maintenance complexity
+      - Document optimization decisions and trade-offs
+      - Share optimization learnings with development team
+  
+  optimization_implementation_guidance:
+    code_level_optimizations:
+      - Implement React.memo and useMemo for expensive computations
+      - Optimize component re-rendering with useCallback
+      - Use lazy loading for screens and heavy components
+      - Implement proper list key props and avoid index keys
+      - Optimize image loading with appropriate formats and sizes
+    architecture_optimizations:
+      - Implement code splitting and bundle optimization
+      - Use efficient state management patterns
+      - Optimize native module bridging and calls
+      - Implement proper error boundaries and graceful degradation
+      - Consider platform-specific code paths for optimization
+    monitoring_integration:
+      - Integrate performance monitoring tools (Flipper, React DevTools)
+      - Set up crash reporting and error tracking
+      - Implement custom performance metrics collection
+      - Monitor key user experience indicators
+      - Create performance dashboards for ongoing monitoring
+  
+  success_criteria:
+    optimization_planning_complete:
+      - Comprehensive performance baseline established across target devices
+      - Performance bottlenecks identified and prioritized for optimization
+      - Optimization strategy aligns with business goals and technical constraints
+      - Implementation plan includes testing procedures and safety measures
+      - Performance monitoring and measurement framework established
+    optimization_implementation_success:
+      - Target performance improvements achieved and validated
+      - No performance regressions introduced during optimization
+      - Performance monitoring successfully tracking ongoing metrics
+      - User experience improvements measurable through app store metrics
+      - Team equipped with ongoing performance optimization processes
