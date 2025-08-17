@@ -1,0 +1,284 @@
+template:
+  id: mobile-architecture-template-v1
+  name: Mobile Architecture Document  
+  version: 1.0
+  extends: architecture-tmpl.yaml
+  output:
+    format: markdown
+    filename: docs/architecture.md
+    title: "{{project_name}} Mobile Architecture Document"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+# This template extends the core architecture template with mobile-specific sections
+# It inserts mobile-specific content while preserving all core architecture sections
+
+mobile_extensions:
+  - position: after_tech_stack
+    sections:
+      - id: mobile-platform-strategy
+        title: Mobile Platform Strategy
+        instruction: |
+          Define the cross-platform mobile development approach and platform-specific considerations:
+          
+          1. React Native vs Native development rationale
+          2. iOS and Android target versions and compatibility
+          3. Platform-specific feature implementation strategy
+          4. App store compliance and requirements
+        elicit: true
+        sections:
+          - id: platform-approach
+            title: Platform Development Approach
+            template: |
+              - **Technology Choice:** {{platform_tech}} (React Native CLI / Expo Managed / Expo Bare)
+              - **Rationale:** {{platform_rationale}}
+              - **iOS Target:** {{ios_target_version}} and above
+              - **Android Target:** {{android_target_version}} (API {{android_api_level}}) and above
+              - **Cross-Platform Code Sharing:** {{code_sharing_percentage}}%
+              
+          - id: platform-specific-implementations
+            title: Platform-Specific Implementations
+            template: |
+              **iOS-Specific Components:**
+              - {{ios_specific_features}}
+              
+              **Android-Specific Components:**
+              - {{android_specific_features}}
+              
+              **Platform Detection Strategy:**
+              - {{platform_detection_approach}}
+              
+          - id: app-store-compliance
+            title: App Store Compliance
+            template: |
+              **iOS App Store Guidelines:**
+              - {{ios_guidelines_compliance}}
+              
+              **Google Play Store Guidelines:**
+              - {{android_guidelines_compliance}}
+              
+              **Privacy and Permissions:**
+              - {{privacy_policy_requirements}}
+              - {{permission_strategy}}
+
+  - position: after_components
+    sections:
+      - id: mobile-performance-architecture
+        title: Mobile Performance Architecture
+        instruction: |
+          Define mobile-specific performance considerations and optimization strategies:
+          
+          1. Memory management and optimization
+          2. Battery usage optimization
+          3. Offline functionality and data caching
+          4. Network optimization for mobile networks
+        elicit: true
+        sections:
+          - id: performance-optimization
+            title: Performance Optimization Strategy
+            template: |
+              **Memory Management:**
+              - {{memory_optimization_strategy}}
+              - **Image Optimization:** {{image_optimization_approach}}
+              - **List Virtualization:** {{list_virtualization_strategy}}
+              
+              **Battery Optimization:**
+              - {{battery_optimization_strategy}}
+              - **Background Processing:** {{background_processing_approach}}
+              - **Location Services:** {{location_services_strategy}}
+              
+              **Network Optimization:**
+              - {{network_optimization_strategy}}
+              - **Caching Strategy:** {{caching_approach}}
+              - **Offline Support:** {{offline_functionality}}
+
+          - id: native-modules
+            title: Native Module Integration
+            condition: Project requires native modules
+            template: |
+              **Native Modules Required:**
+              - {{native_module_list}}
+              
+              **iOS Native Integration:**
+              - {{ios_native_implementation}}
+              
+              **Android Native Integration:**
+              - {{android_native_implementation}}
+              
+              **Bridging Strategy:**
+              - {{react_native_bridge_approach}}
+
+  - position: after_test_strategy
+    sections:
+      - id: mobile-testing-strategy
+        title: Mobile Testing Strategy
+        instruction: |
+          Define comprehensive mobile testing approach including device testing, platform-specific tests, and app store validation:
+          
+          1. Cross-platform testing strategy
+          2. Device farm and physical device testing
+          3. Platform-specific testing requirements
+          4. App store validation testing
+        elicit: true
+        sections:
+          - id: device-testing
+            title: Device Testing Strategy
+            template: |
+              **Test Device Matrix:**
+              - **iOS Devices:** {{ios_test_devices}}
+              - **Android Devices:** {{android_test_devices}}
+              - **Screen Sizes:** {{screen_size_testing}}
+              - **OS Versions:** {{os_version_testing}}
+              
+              **Device Farm Strategy:**
+              - {{device_farm_service}} (AWS Device Farm / Firebase Test Lab / BrowserStack)
+              - {{physical_device_testing}}
+
+          - id: platform-testing
+            title: Platform-Specific Testing
+            template: |
+              **iOS Testing:**
+              - **Simulator Testing:** {{ios_simulator_strategy}}
+              - **TestFlight Beta Testing:** {{testflight_strategy}}
+              - **App Store Review Preparation:** {{app_store_testing}}
+              
+              **Android Testing:**
+              - **Emulator Testing:** {{android_emulator_strategy}}
+              - **Internal Testing:** {{play_console_testing}}
+              - **Play Store Review Preparation:** {{play_store_testing}}
+
+          - id: performance-testing
+            title: Mobile Performance Testing
+            template: |
+              **Performance Metrics:**
+              - **App Launch Time:** {{launch_time_target}}
+              - **Memory Usage:** {{memory_usage_target}}
+              - **Battery Drain:** {{battery_drain_testing}}
+              - **Network Performance:** {{network_performance_testing}}
+              
+              **Testing Tools:**
+              - {{performance_testing_tools}}
+
+  - position: after_security
+    sections:
+      - id: mobile-deployment-architecture
+        title: Mobile Deployment Architecture
+        instruction: |
+          Define the mobile app deployment pipeline including app store submission, code signing, and release management:
+          
+          1. Code signing and certificate management
+          2. App store deployment pipeline
+          3. Over-the-air updates strategy
+          4. Release versioning and rollback procedures
+        elicit: true
+        sections:
+          - id: code-signing
+            title: Code Signing and Certificates
+            template: |
+              **iOS Code Signing:**
+              - **Apple Developer Account:** {{apple_dev_account}}
+              - **Provisioning Profiles:** {{ios_provisioning_strategy}}
+              - **Distribution Certificates:** {{ios_certificate_management}}
+              
+              **Android Code Signing:**
+              - **Google Play Console:** {{google_play_account}}
+              - **Keystore Management:** {{android_keystore_strategy}}
+              - **App Signing:** {{play_app_signing}}
+
+          - id: app-store-deployment
+            title: App Store Deployment Pipeline
+            template: |
+              **iOS App Store Deployment:**
+              - **Build Pipeline:** {{ios_build_pipeline}}
+              - **TestFlight Distribution:** {{testflight_deployment}}
+              - **App Store Submission:** {{app_store_submission_process}}
+              
+              **Google Play Store Deployment:**
+              - **Build Pipeline:** {{android_build_pipeline}}
+              - **Internal/Alpha/Beta Testing:** {{play_testing_tracks}}
+              - **Production Release:** {{play_store_release_process}}
+              
+              **Release Management:**
+              - **Version Strategy:** {{version_strategy}}
+              - **Release Notes:** {{release_notes_process}}
+              - **Rollback Strategy:** {{rollback_procedure}}
+
+          - id: ota-updates
+            title: Over-The-Air Updates
+            condition: Project uses OTA updates
+            template: |
+              **OTA Update Strategy:**
+              - **Update Service:** {{ota_service}} (CodePush / Expo Updates / Custom)
+              - **Update Frequency:** {{ota_frequency}}
+              - **Rollback Capability:** {{ota_rollback}}
+              - **Update Validation:** {{ota_validation}}
+
+  - position: after_checklist_results
+    sections:
+      - id: mobile-development-guidelines
+        title: Mobile Development Guidelines
+        instruction: |
+          Provide mobile-specific development guidelines and best practices for the development team:
+          
+          1. React Native development patterns
+          2. Platform-specific code organization
+          3. Mobile UI/UX implementation guidelines
+          4. Performance optimization guidelines
+        sections:
+          - id: react-native-patterns
+            title: React Native Development Patterns
+            template: |
+              **Component Architecture:**
+              - {{component_architecture_pattern}}
+              
+              **State Management:**
+              - {{state_management_approach}}
+              
+              **Navigation:**
+              - {{navigation_strategy}}
+              
+              **Platform-Specific Code:**
+              - {{platform_specific_code_organization}}
+
+          - id: mobile-ui-guidelines
+            title: Mobile UI/UX Implementation Guidelines
+            template: |
+              **Design System:**
+              - {{mobile_design_system}}
+              
+              **Platform Guidelines:**
+              - **iOS Human Interface Guidelines:** {{ios_hig_compliance}}
+              - **Material Design (Android):** {{material_design_compliance}}
+              
+              **Responsive Design:**
+              - {{responsive_design_strategy}}
+              
+              **Accessibility:**
+              - {{mobile_accessibility_standards}}
+
+          - id: performance-guidelines
+            title: Performance Guidelines
+            template: |
+              **Development Best Practices:**
+              - {{performance_best_practices}}
+              
+              **Code Review Checklist:**
+              - {{mobile_code_review_checklist}}
+              
+              **Monitoring and Debugging:**
+              - {{mobile_monitoring_strategy}}
+              - {{debugging_tools_and_techniques}}
+
+# Additional mobile-specific template variables that can be referenced
+mobile_variables:
+  platform_tech: "React Native technology choice"
+  platform_rationale: "Reasoning for platform technology selection"
+  ios_target_version: "Minimum iOS version support"
+  android_target_version: "Minimum Android version support"
+  android_api_level: "Minimum Android API level"
+  code_sharing_percentage: "Percentage of code shared between platforms"
+  performance_testing_tools: "Mobile performance testing tools"
+  ota_service: "Over-the-air update service selection"
+  mobile_monitoring_strategy: "Mobile app monitoring and analytics"

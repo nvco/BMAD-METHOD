@@ -1,0 +1,339 @@
+workflow:
+  id: app-store-submission
+  name: Mobile App Store Submission & Deployment
+  description: Complete workflow for deploying React Native applications to iOS App Store and Google Play Store. Covers preparation, submission process, review management, and post-launch monitoring for professional mobile app deployment.
+  type: deployment
+  project_types:
+    - production-mobile-app
+    - enterprise-mobile-app
+    - consumer-mobile-app
+    - freemium-mobile-app
+    - subscription-mobile-app
+
+  pre_submission_preparation:
+    - agent: dev
+      validates: app_readiness
+      uses: story-dod-checklist
+      requires: completed_mobile_app
+      notes: 'Validate that all development stories are complete, tested, and meet production quality standards. Ensure app performance meets targets on both platforms.'
+
+    - agent: qa
+      validates: cross_platform_quality
+      uses: mobile-qa-checklist
+      requires: app_readiness_validation
+      notes: 'Perform comprehensive testing across iOS and Android platforms. Test on multiple device types, screen sizes, and OS versions. Validate app store compliance requirements.'
+
+    - agent: architect
+      creates: deployment-architecture.md
+      uses: create-doc mobile-architecture-tmpl
+      requires: quality_validation
+      optional_steps:
+        - mobile_performance_optimization
+        - cross_platform_analysis
+      notes: 'Document final production architecture, including performance optimizations, security configurations, and platform-specific implementations. SAVE OUTPUT: Copy to docs/deployment/ folder.'
+
+    - agent: pm
+      creates: app-store-listing.md
+      uses: create-doc app-store-listing-tmpl
+      requires: deployment_architecture
+      optional_steps:
+        - mobile_competitive_analysis
+        - app_store_submission
+      notes: 'Create comprehensive app store listings for both iOS App Store and Google Play Store. Include descriptions, keywords, screenshots, and metadata. SAVE OUTPUT: Copy to docs/marketing/ folder.'
+
+  ios_app_store_sequence:
+    - agent: dev
+      action: prepare_ios_build
+      requires: app_store_listing
+      tasks:
+        - configure_ios_certificates
+        - setup_provisioning_profiles
+        - create_distribution_build
+        - validate_build_archive
+      notes: 'Prepare iOS distribution build using Xcode or CI/CD pipeline. Ensure proper code signing and provisioning profile configuration.'
+
+    - agent: pm
+      action: submit_to_app_store_connect
+      requires: ios_build_ready
+      tasks:
+        - upload_build_to_testflight
+        - configure_app_store_metadata
+        - submit_for_review
+        - monitor_review_status
+      notes: 'Submit app to App Store Connect with complete metadata, screenshots, and descriptions. Monitor review process and respond to any feedback.'
+
+    - agent: pm
+      action: manage_ios_review_process
+      condition: review_feedback_received
+      tasks:
+        - respond_to_review_feedback
+        - coordinate_required_changes
+        - resubmit_if_necessary
+      notes: 'Handle any App Store review feedback promptly. Coordinate with development team for required changes and resubmission.'
+
+  google_play_sequence:
+    - agent: dev
+      action: prepare_android_build
+      requires: app_store_listing
+      tasks:
+        - configure_android_signing
+        - create_release_aab
+        - validate_bundle_analyzer
+        - test_on_multiple_devices
+      notes: 'Prepare Android App Bundle (AAB) for Google Play Store. Ensure proper signing configuration and validate bundle contents.'
+
+    - agent: pm
+      action: submit_to_google_play_console
+      requires: android_build_ready
+      tasks:
+        - upload_bundle_to_console
+        - configure_store_listing
+        - set_pricing_and_distribution
+        - submit_for_review
+      notes: 'Submit app to Google Play Console with complete store listing, pricing configuration, and distribution settings.'
+
+    - agent: pm
+      action: manage_google_play_review
+      condition: review_feedback_received
+      tasks:
+        - respond_to_policy_feedback
+        - coordinate_compliance_changes
+        - resubmit_if_necessary
+      notes: 'Handle any Google Play policy feedback. Ensure compliance with all Google Play requirements and guidelines.'
+
+  post_submission_monitoring:
+    - agent: pm
+      action: monitor_review_progress
+      ongoing: true
+      tasks:
+        - track_review_timelines
+        - respond_to_reviewer_questions
+        - coordinate_team_responses
+        - prepare_launch_communications
+      notes: 'Actively monitor review progress on both platforms. Maintain communication with reviewers and prepare for launch.'
+
+    - agent: dev
+      action: prepare_post_launch_support
+      requires: apps_under_review
+      tasks:
+        - setup_crash_reporting
+        - configure_analytics
+        - prepare_hotfix_pipeline
+        - document_rollback_procedures
+      notes: 'Ensure post-launch monitoring and support infrastructure is ready. Configure crash reporting, analytics, and emergency response procedures.'
+
+  launch_coordination:
+    - agent: pm
+      action: coordinate_synchronized_launch
+      condition: both_platforms_approved
+      tasks:
+        - schedule_release_dates
+        - prepare_marketing_materials
+        - coordinate_team_communications
+        - monitor_initial_user_feedback
+      notes: 'Coordinate launch across both platforms. Prepare marketing materials and monitor initial user feedback and app performance.'
+
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: App Store Submission] --> B[dev: Validate app readiness]
+        B --> C[qa: Cross-platform quality validation]
+        C --> D[architect: Deployment architecture]
+        D --> E[pm: App store listing creation]
+        
+        E --> F{Platform preparation}
+        
+        F --> G[dev: Prepare iOS build]
+        F --> H[dev: Prepare Android build]
+        
+        G --> I[pm: Submit to App Store Connect]
+        H --> J[pm: Submit to Google Play Console]
+        
+        I --> K{iOS Review feedback?}
+        J --> L{Google Play feedback?}
+        
+        K -->|Yes| M[pm: Handle iOS review feedback]
+        K -->|No| N[iOS Approved]
+        L -->|Yes| O[pm: Handle Google Play feedback]
+        L -->|No| P[Google Play Approved]
+        
+        M --> I
+        O --> J
+        
+        N --> Q{Both platforms approved?}
+        P --> Q
+        
+        Q -->|No| R[dev: Prepare post-launch support]
+        Q -->|Yes| S[pm: Coordinate synchronized launch]
+        
+        R --> T[Continue monitoring pending platform]
+        S --> U[Launch complete - Begin post-launch monitoring]
+        
+        style U fill:#90EE90
+        style N fill:#90EE90
+        style P fill:#90EE90
+        style B fill:#FFE4B5
+        style C fill:#FFE4B5
+        style D fill:#FFE4B5
+        style E fill:#FFE4B5
+        style G fill:#FFB6C1
+        style H fill:#FFB6C1
+        style I fill:#FFB6C1
+        style J fill:#FFB6C1
+    ```
+
+  platform_specific_requirements:
+    ios_app_store:
+      technical_requirements:
+        - Built with latest stable Xcode version
+        - 64-bit architecture support
+        - Proper Info.plist configuration
+        - Valid provisioning profiles and certificates
+        - Privacy manifest file (if required)
+        - App Transport Security compliance
+
+      content_requirements:
+        - High-quality app screenshots (all required device sizes)
+        - App preview videos (recommended)
+        - Detailed app description with features
+        - Accurate age rating and content warnings
+        - Privacy policy (if app collects data)
+        - Support contact information
+
+      review_considerations:
+        - App Store Review Guidelines compliance
+        - Human Interface Guidelines adherence
+        - No crashes or significant bugs
+        - App functions as described
+        - Appropriate use of iOS features
+        - Proper handling of user data and permissions
+
+    google_play_store:
+      technical_requirements:
+        - Android App Bundle (AAB) format
+        - Target latest Android API level
+        - Proper app signing configuration
+        - 64-bit architecture support
+        - Play Console app content rating
+        - Privacy policy compliance
+
+      content_requirements:
+        - Feature graphic and app icon
+        - Screenshots for phone and tablet
+        - App description with key features
+        - Accurate content rating
+        - Store listing experiments consideration
+        - Localized content (if targeting multiple regions)
+
+      review_considerations:
+        - Google Play Developer Policy compliance
+        - Material Design Guidelines consideration
+        - No policy violations or harmful content
+        - App functions reliably
+        - Appropriate use of Android features
+        - Proper data handling and permissions
+
+  preparation_checklists:
+    technical_checklist:
+      - [ ] App tested on multiple devices and OS versions
+      - [ ] Performance targets met (launch time, memory usage)
+      - [ ] All critical bugs resolved
+      - [ ] Crash reporting and analytics integrated
+      - [ ] Security vulnerabilities addressed
+      - [ ] API endpoints configured for production
+      - [ ] Environment variables set for production
+      - [ ] Code obfuscation enabled (if required)
+      - [ ] Debug code and console logs removed
+      - [ ] Proper error handling implemented
+
+    content_checklist:
+      - [ ] App store descriptions written and reviewed
+      - [ ] Keywords researched and optimized
+      - [ ] Screenshots created for all required device sizes
+      - [ ] App icons created in all required sizes
+      - [ ] Preview videos created (if applicable)
+      - [ ] Privacy policy created and accessible
+      - [ ] Support contact information provided
+      - [ ] Age rating and content warnings accurate
+      - [ ] Localization completed (if applicable)
+      - [ ] Marketing materials prepared
+
+    compliance_checklist:
+      - [ ] App Store Review Guidelines reviewed
+      - [ ] Google Play Developer Policy reviewed
+      - [ ] Privacy regulations compliance (GDPR, CCPA, etc.)
+      - [ ] Accessibility guidelines considered
+      - [ ] Platform-specific design guidelines followed
+      - [ ] Third-party SDK compliance verified
+      - [ ] Content rating appropriate and accurate
+      - [ ] Intellectual property rights cleared
+      - [ ] Terms of service and privacy policy linked
+      - [ ] Data collection practices documented
+
+  common_rejection_reasons:
+    ios_app_store:
+      - Crashes or significant bugs
+      - Incomplete app information or metadata
+      - Design guidelines violations
+      - Privacy policy issues or missing privacy manifest
+      - Inappropriate content or functionality
+      - Use of private APIs or deprecated features
+      - Misleading app description or screenshots
+      - In-app purchase implementation issues
+
+    google_play_store:
+      - Policy violations (spam, harmful content)
+      - Technical issues or crashes
+      - Misleading or inappropriate metadata
+      - Privacy policy violations or missing policy
+      - Intellectual property violations
+      - Inappropriate content rating
+      - Malware or security issues
+      - Violation of developer distribution agreement
+
+  handoff_prompts:
+    dev_to_qa: App development complete. Please perform comprehensive cross-platform quality validation before proceeding to store submission.
+    qa_to_architect: Quality validation complete. Please document final deployment architecture and production configurations.
+    architect_to_pm: Deployment architecture documented. Please create comprehensive app store listings for both platforms.
+    pm_to_ios_build: App store listings ready. Please prepare iOS distribution build and begin App Store Connect submission process.
+    pm_to_android_build: App store listings ready. Please prepare Android App Bundle and begin Google Play Console submission process.
+    ios_review_feedback: iOS review feedback received. Please coordinate response and any required changes with the development team.
+    android_review_feedback: Google Play review feedback received. Please coordinate response and compliance changes with the development team.
+    both_approved: Both platforms approved. Please coordinate synchronized launch and begin post-launch monitoring.
+
+  success_criteria:
+    submission_readiness:
+      - All technical requirements met for both platforms
+      - Comprehensive testing completed across devices
+      - Store listings optimized and complete
+      - Review guidelines compliance verified
+      - Support infrastructure prepared
+
+    successful_submission:
+      - Apps successfully uploaded to both stores
+      - Review processes initiated without technical errors
+      - Team prepared to respond to review feedback
+      - Post-launch monitoring infrastructure active
+      - Launch coordination plan in place
+
+    post_launch_success:
+      - Apps approved and live on both platforms
+      - Initial user feedback monitoring active
+      - Performance metrics tracking operational
+      - Support processes functioning
+      - Update and maintenance pipeline established
+
+  emergency_procedures:
+    app_rejection_response:
+      - Immediately assess rejection reasons
+      - Prioritize response based on platform timelines
+      - Coordinate rapid development fixes if needed
+      - Communicate timeline to stakeholders
+      - Prepare comprehensive response to reviewers
+
+    post_launch_issues:
+      - Monitor crash reports and user feedback
+      - Prepare emergency hotfix if critical issues found
+      - Coordinate rapid review process for urgent updates
+      - Communicate with users about known issues
+      - Document lessons learned for future submissions

@@ -1,0 +1,413 @@
+template:
+  id: app-store-listing-template-v1
+  name: App Store Listing Document
+  version: 1.0
+  output:
+    format: markdown
+    filename: docs/app-store-listing.md
+    title: "{{app_name}} App Store Listing"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introduction
+    title: Introduction
+    content: |
+      This document contains all the metadata, descriptions, and assets required for app store submissions to both the iOS App Store and Google Play Store. It serves as the single source of truth for all app store listing information.
+
+  - id: app-metadata
+    title: App Metadata
+    instruction: |
+      Define the core app information that will be used across both app stores:
+      
+      1. Gather app identification details
+      2. Define version information and release strategy
+      3. Set pricing and availability
+      4. Configure age ratings and content guidelines
+    elicit: true
+    sections:
+      - id: basic-info
+        title: Basic App Information
+        template: |
+          - **App Name:** {{app_name}}
+          - **Bundle ID (iOS):** {{ios_bundle_id}}
+          - **Package Name (Android):** {{android_package_name}}
+          - **Primary Language:** {{primary_language}}
+          - **Supported Languages:** {{supported_languages}}
+          - **App Category:** {{app_category}}
+          - **Content Rating:** {{content_rating}}
+
+      - id: version-info
+        title: Version Information
+        template: |
+          - **Version Number:** {{version_number}}
+          - **Build Number:** {{build_number}}
+          - **Release Type:** {{release_type}} (Major / Minor / Patch)
+          - **Release Date:** {{target_release_date}}
+          - **What's New:** {{whats_new_description}}
+
+      - id: pricing-availability
+        title: Pricing and Availability
+        template: |
+          - **Price:** {{app_price}} (Free / ${{price_amount}})
+          - **In-App Purchases:** {{in_app_purchases}} (Yes / No)
+          - **Subscription Model:** {{subscription_model}}
+          - **Available Countries:** {{availability_countries}}
+          - **Launch Strategy:** {{launch_strategy}} (Global / Phased / Regional)
+
+  - id: app-descriptions
+    title: App Descriptions
+    instruction: |
+      Create compelling app descriptions optimized for discovery and conversion:
+      
+      1. Craft descriptions for both stores (they have different character limits)
+      2. Include relevant keywords for App Store Optimization (ASO)
+      3. Highlight key features and benefits
+      4. Use store-specific formatting and best practices
+    elicit: true
+    sections:
+      - id: ios-app-store
+        title: iOS App Store Description
+        template: |
+          **Short Description (30 characters):**
+          {{ios_short_description}}
+          
+          **Full Description (4000 characters max):**
+          {{ios_full_description}}
+          
+          **Keywords (100 characters, comma-separated):**
+          {{ios_keywords}}
+          
+          **What's New (4000 characters max):**
+          {{ios_whats_new}}
+
+      - id: google-play-store
+        title: Google Play Store Description
+        template: |
+          **Short Description (80 characters):**
+          {{android_short_description}}
+          
+          **Full Description (4000 characters max):**
+          {{android_full_description}}
+          
+          **What's New (500 characters max):**
+          {{android_whats_new}}
+
+      - id: aso-keywords
+        title: App Store Optimization (ASO)
+        template: |
+          **Primary Keywords:**
+          - {{primary_keyword_1}}
+          - {{primary_keyword_2}}
+          - {{primary_keyword_3}}
+          
+          **Secondary Keywords:**
+          - {{secondary_keywords}}
+          
+          **Competitor Analysis:**
+          - {{competitor_keywords}}
+          
+          **Long-tail Keywords:**
+          - {{long_tail_keywords}}
+
+  - id: visual-assets
+    title: Visual Assets
+    instruction: |
+      Define all visual assets required for app store listings:
+      
+      1. App icons for different sizes and platforms
+      2. Screenshots for various device types
+      3. Feature graphics and promotional materials
+      4. Video previews and app previews
+    elicit: true
+    sections:
+      - id: app-icons
+        title: App Icons
+        template: |
+          **iOS App Icons:**
+          - **1024x1024:** {{ios_icon_1024}} (App Store)
+          - **180x180:** {{ios_icon_180}} (iPhone)
+          - **167x167:** {{ios_icon_167}} (iPad Pro)
+          - **152x152:** {{ios_icon_152}} (iPad)
+          - **120x120:** {{ios_icon_120}} (iPhone)
+          
+          **Android App Icons:**
+          - **512x512:** {{android_icon_512}} (Play Store)
+          - **192x192:** {{android_icon_192}} (XXXHDPI)
+          - **144x144:** {{android_icon_144}} (XXHDPI)
+          - **96x96:** {{android_icon_96}} (XHDPI)
+          - **72x72:** {{android_icon_72}} (HDPI)
+          - **48x48:** {{android_icon_48}} (MDPI)
+
+      - id: screenshots
+        title: Screenshots
+        instruction: |
+          Plan screenshots that showcase the app's key features and user interface:
+          
+          1. Primary screenshots highlighting main functionality
+          2. Secondary screenshots showing additional features
+          3. Captions and annotations for clarity
+          4. Device-specific optimizations
+        template: |
+          **iOS Screenshots:**
+          - **iPhone 6.7" (Required):** {{ios_screenshots_67}}
+          - **iPhone 6.5" (Required):** {{ios_screenshots_65}}
+          - **iPhone 5.5":** {{ios_screenshots_55}}
+          - **iPad Pro 12.9" (3rd gen):** {{ipad_screenshots_129}}
+          - **iPad Pro 12.9" (2nd gen):** {{ipad_screenshots_129_2nd}}
+          
+          **Android Screenshots:**
+          - **Phone Screenshots (2-8 required):** {{android_phone_screenshots}}
+          - **7" Tablet Screenshots:** {{android_7_tablet_screenshots}}
+          - **10" Tablet Screenshots:** {{android_10_tablet_screenshots}}
+          
+          **Screenshot Descriptions:**
+          1. {{screenshot_1_description}}
+          2. {{screenshot_2_description}}
+          3. {{screenshot_3_description}}
+          4. {{screenshot_4_description}}
+          5. {{screenshot_5_description}}
+
+      - id: promotional-graphics
+        title: Promotional Graphics
+        template: |
+          **iOS App Store:**
+          - **Apple Watch Screenshots:** {{apple_watch_screenshots}}
+          - **Apple TV Screenshots:** {{apple_tv_screenshots}}
+          
+          **Google Play Store:**
+          - **Feature Graphic (1024x500):** {{android_feature_graphic}}
+          - **Promo Video:** {{android_promo_video}}
+          
+          **Marketing Materials:**
+          - **Press Kit:** {{press_kit_assets}}
+          - **Social Media Assets:** {{social_media_graphics}}
+
+      - id: app-previews
+        title: App Previews and Videos
+        template: |
+          **iOS App Previews:**
+          - **iPhone Preview (30 seconds max):** {{ios_app_preview}}
+          - **iPad Preview (30 seconds max):** {{ipad_app_preview}}
+          
+          **Android Promo Video:**
+          - **YouTube Video (30 seconds - 2 minutes):** {{android_promo_video_url}}
+          
+          **Video Content Strategy:**
+          - {{video_content_strategy}}
+
+  - id: app-store-compliance
+    title: App Store Compliance
+    instruction: |
+      Document compliance requirements and guidelines adherence:
+      
+      1. Platform-specific guidelines compliance
+      2. Privacy policy and data handling
+      3. Age ratings and content warnings
+      4. Accessibility requirements
+    elicit: true
+    sections:
+      - id: ios-guidelines
+        title: iOS App Store Guidelines
+        template: |
+          **App Store Review Guidelines Compliance:**
+          - **2.1 App Completeness:** {{ios_completeness_check}}
+          - **2.3 Accurate Metadata:** {{ios_metadata_accuracy}}
+          - **3.1 In-App Purchases:** {{ios_iap_compliance}}
+          - **4.1 Copycats:** {{ios_originality_check}}
+          - **5.1 Privacy:** {{ios_privacy_compliance}}
+          
+          **Technical Requirements:**
+          - **iOS Version Support:** {{ios_version_support}}
+          - **Device Compatibility:** {{ios_device_compatibility}}
+          - **Performance Requirements:** {{ios_performance_requirements}}
+
+      - id: google-play-policies
+        title: Google Play Store Policies
+        template: |
+          **Play Console Policy Compliance:**
+          - **Content Policy:** {{android_content_policy}}
+          - **Privacy Policy:** {{android_privacy_policy}}
+          - **Permissions:** {{android_permissions_justification}}
+          - **Target API Level:** {{android_target_api}}
+          
+          **Developer Policy Compliance:**
+          - **Spam and Placement:** {{android_spam_policy}}
+          - **User Data:** {{android_user_data_policy}}
+          - **Device and Network Abuse:** {{android_device_policy}}
+
+      - id: privacy-data-handling
+        title: Privacy and Data Handling
+        template: |
+          **Privacy Policy:**
+          - **URL:** {{privacy_policy_url}}
+          - **Data Collection:** {{data_collection_description}}
+          - **Third-party Services:** {{third_party_services}}
+          
+          **iOS Privacy Nutrition Labels:**
+          - **Data Linked to User:** {{ios_data_linked}}
+          - **Data Not Linked to User:** {{ios_data_not_linked}}
+          - **Tracking:** {{ios_tracking_usage}}
+          
+          **Android Data Safety:**
+          - **Data Shared:** {{android_data_shared}}
+          - **Data Collected:** {{android_data_collected}}
+          - **Security Practices:** {{android_security_practices}}
+
+      - id: age-ratings
+        title: Age Ratings and Content
+        template: |
+          **IARC (International Age Rating Coalition):**
+          - **Age Rating:** {{iarc_age_rating}}
+          - **Content Descriptors:** {{iarc_content_descriptors}}
+          - **Interactive Elements:** {{iarc_interactive_elements}}
+          
+          **Platform-Specific Ratings:**
+          - **iOS Age Rating:** {{ios_age_rating}}
+          - **Google Play Content Rating:** {{android_content_rating}}
+
+  - id: localization
+    title: Localization
+    condition: App supports multiple languages
+    instruction: |
+      Define localization strategy for app store listings:
+      
+      1. Target markets and languages
+      2. Localized descriptions and keywords
+      3. Localized screenshots and assets
+      4. Cultural considerations
+    elicit: true
+    sections:
+      - id: target-markets
+        title: Target Markets
+        template: |
+          **Primary Markets:**
+          - {{primary_market_1}} ({{primary_language_1}})
+          - {{primary_market_2}} ({{primary_language_2}})
+          
+          **Secondary Markets:**
+          - {{secondary_markets}}
+          
+          **Localization Priority:**
+          1. {{localization_priority_1}}
+          2. {{localization_priority_2}}
+          3. {{localization_priority_3}}
+
+      - id: localized-content
+        title: Localized Content Strategy
+        repeatable: true
+        template: |
+          **{{language_name}} ({{language_code}}):**
+          - **App Name:** {{localized_app_name}}
+          - **Description:** {{localized_description}}
+          - **Keywords:** {{localized_keywords}}
+          - **Screenshots:** {{localized_screenshots_needed}}
+          - **Cultural Considerations:** {{cultural_considerations}}
+
+  - id: launch-strategy
+    title: Launch Strategy
+    instruction: |
+      Define the app launch and marketing strategy:
+      
+      1. Pre-launch activities and beta testing
+      2. Launch timeline and coordinated marketing
+      3. Post-launch optimization and updates
+      4. Performance monitoring and ASO optimization
+    elicit: true
+    sections:
+      - id: pre-launch
+        title: Pre-Launch Activities
+        template: |
+          **Beta Testing:**
+          - **TestFlight (iOS):** {{testflight_strategy}}
+          - **Play Console Internal Testing:** {{play_internal_testing}}
+          - **External Beta Testing:** {{external_beta_testing}}
+          
+          **Marketing Preparation:**
+          - **Press Kit:** {{press_kit_preparation}}
+          - **Social Media:** {{social_media_setup}}
+          - **Website/Landing Page:** {{website_preparation}}
+
+      - id: launch-timeline
+        title: Launch Timeline
+        template: |
+          **Submission Schedule:**
+          - **iOS Submission:** {{ios_submission_date}}
+          - **Android Submission:** {{android_submission_date}}
+          - **Review Time Buffer:** {{review_time_buffer}}
+          
+          **Launch Coordination:**
+          - **Marketing Campaign:** {{marketing_campaign_launch}}
+          - **PR Outreach:** {{pr_outreach_timeline}}
+          - **Social Media:** {{social_media_launch}}
+
+      - id: post-launch
+        title: Post-Launch Optimization
+        template: |
+          **Performance Monitoring:**
+          - **Download Metrics:** {{download_tracking}}
+          - **Conversion Rates:** {{conversion_tracking}}
+          - **User Reviews:** {{review_monitoring}}
+          
+          **ASO Optimization:**
+          - **A/B Testing:** {{aso_ab_testing}}
+          - **Keyword Optimization:** {{keyword_optimization}}
+          - **Screenshot Testing:** {{screenshot_optimization}}
+          
+          **Update Strategy:**
+          - **Update Frequency:** {{update_frequency}}
+          - **Feature Releases:** {{feature_release_strategy}}
+          - **Bug Fix Priority:** {{bug_fix_strategy}}
+
+  - id: checklist
+    title: Submission Checklist
+    sections:
+      - id: ios-checklist
+        title: iOS App Store Submission Checklist
+        type: checklist
+        items:
+          - "App builds and runs without crashes"
+          - "All required app icons provided (1024x1024, 180x180, etc.)"
+          - "Screenshots for all required device sizes"
+          - "App description and keywords optimized"
+          - "Privacy policy URL provided and accessible"
+          - "Age rating completed"
+          - "App Store Guidelines compliance reviewed"
+          - "TestFlight testing completed"
+          - "App metadata finalized"
+          - "Release notes prepared"
+
+      - id: android-checklist
+        title: Google Play Store Submission Checklist
+        type: checklist
+        items:
+          - "App builds and targets latest API level"
+          - "All required graphics provided (512x512 icon, feature graphic)"
+          - "Screenshots for phones and tablets"
+          - "App description optimized with keywords"
+          - "Privacy policy URL provided"
+          - "Data safety section completed"
+          - "Content rating completed"
+          - "Play Console policies compliance reviewed"
+          - "Internal testing completed"
+          - "Release notes prepared"
+
+  - id: assets-tracking
+    title: Asset Production Tracking
+    instruction: |
+      Track the production status of all required assets:
+    sections:
+      - id: asset-status
+        title: Asset Production Status
+        type: table
+        columns: [Asset Type, iOS Status, Android Status, Designer, Due Date, Notes]
+        template: |
+          | {{asset_type}} | {{ios_status}} | {{android_status}} | {{designer}} | {{due_date}} | {{notes}} |
+
+  - id: changelog
+    title: Change Log
+    type: table
+    columns: [Date, Version, Description, Author]
+    instruction: Track document versions and changes to app store listing

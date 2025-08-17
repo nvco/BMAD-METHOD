@@ -752,7 +752,7 @@ Expansion packs extend BMad-Method beyond traditional software development into 
 
 - **Infrastructure/DevOps**: Cloud architects, SRE experts, security specialists
 - **Game Development**: Game designers, level designers, narrative writers
-- **Mobile Development**: iOS/Android specialists, mobile UX experts
+- **React Native Mobile Development**: Cross-platform mobile specialists, React Native experts, iOS/Android development
 - **Data Science**: ML engineers, data scientists, visualization experts
 
 **Non-Technical Packs**:
@@ -793,6 +793,97 @@ Use the **expansion-creator** pack to build your own:
 4. **Test & Share**: Validate with real use cases, share with community
 
 **Key Principle**: Expansion packs democratize expertise by making specialized knowledge accessible through AI agents.
+
+## React Native Mobile Development
+
+### Overview
+
+The React Native expansion pack provides specialized knowledge and workflows for cross-platform mobile development, focusing on iOS and Android applications built with React Native. This expansion enhances BMad-Method with mobile-specific expertise while leveraging the core development agents.
+
+### Key Mobile Development Concepts
+
+#### Cross-Platform Strategy
+- **React Native CLI vs Expo**: Decision framework for technology selection
+- **Platform-Specific Code**: iOS and Android implementation differences
+- **Performance Optimization**: Mobile-specific performance considerations
+- **Testing Strategy**: Cross-platform testing approaches and pitfalls
+
+#### Mobile Architecture Patterns
+- **Component Architecture**: Functional components with hooks optimization
+- **State Management**: Context API, Zustand, and Redux patterns for mobile
+- **Navigation Patterns**: Type-safe navigation with React Navigation
+- **Platform Optimization**: Device-specific performance adaptations
+
+#### Development Workflow
+- **Build Systems**: Metro bundler, Hermes engine, native compilation
+- **Development Tools**: Flipper, React DevTools, platform-specific debugging
+- **Performance Monitoring**: Firebase Performance, crash reporting, analytics
+- **Deployment**: App Store and Google Play submission processes
+
+### Mobile-Specific Knowledge Base
+
+The expansion pack includes comprehensive mobile development guides:
+
+#### Platform Guidelines
+- **iOS Human Interface Guidelines**: Apple's design principles and implementation patterns
+- **Android Material Design**: Google's design system and component usage
+- **Cross-Platform Consistency**: Maintaining brand consistency across platforms
+
+#### Technical Implementation
+- **React Native Patterns**: Component architecture, custom hooks, and optimization techniques
+- **Performance Monitoring**: Setup and configuration for production monitoring
+- **Troubleshooting Guide**: Common mobile development issues and solutions
+- **Testing Strategies**: Platform-specific testing approaches and automation
+
+#### Best Practices 2025
+- **Security Standards**: Mobile-specific security considerations and implementation
+- **Accessibility**: WCAG compliance and platform-specific accessibility features
+- **Performance Optimization**: Memory management, animation optimization, and battery usage
+- **Modern Tooling**: Latest React Native features and development environments
+
+### Using Mobile Expansion Pack
+
+#### Core Agents + Mobile Data Approach
+The React Native expansion pack follows BMad's principle of using core agents enhanced with mobile-specific knowledge rather than creating separate mobile agents:
+
+- **Dev Agent**: Enhanced with React Native patterns, mobile troubleshooting, and platform-specific implementation guides
+- **Architect Agent**: Informed by mobile architecture patterns and cross-platform considerations
+- **QA Agent**: Equipped with mobile testing strategies and cross-platform pitfalls knowledge
+
+#### Mobile Development Workflow
+1. **Planning Phase**: Use core PM/Architect agents with mobile architecture considerations
+2. **Technology Selection**: Apply React Native vs Expo decision framework
+3. **Development Execution**: Core dev agent with mobile patterns and troubleshooting guides
+4. **Testing Strategy**: QA agent with cross-platform testing approaches
+5. **Performance Optimization**: Monitoring setup and mobile-specific optimizations
+
+#### Integration with BMad Core
+- **Seamless Integration**: Mobile knowledge enhances existing workflows without disrupting core patterns
+- **Document-Driven**: Mobile guidelines and patterns available as reference during development
+- **Story Creation**: SM agent can create mobile-specific stories using React Native knowledge base
+- **Quality Assurance**: Enhanced code review with mobile performance and platform considerations
+
+### Mobile Project Types
+
+#### Greenfield Mobile Projects
+- Market analysis for mobile app viability
+- Platform selection and technology stack decisions
+- Mobile-first architecture design
+- Cross-platform development strategy
+
+#### Brownfield Mobile Enhancement
+- Existing mobile app analysis and documentation
+- React Native integration with existing native codebases
+- Migration strategies from other mobile frameworks
+- Performance optimization of existing mobile applications
+
+#### Cross-Platform Migration
+- Native iOS/Android to React Native migration planning
+- Progressive migration strategies and risk assessment
+- Platform parity analysis and feature gap identification
+- Team skill development and knowledge transfer
+
+**Key Principle**: The React Native expansion pack democratizes mobile development expertise by making cross-platform mobile knowledge accessible through BMad's proven agent-driven development workflow.
 
 ## Getting Help
 

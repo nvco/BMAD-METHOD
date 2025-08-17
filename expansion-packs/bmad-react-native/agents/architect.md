@@ -72,11 +72,14 @@ dependencies:
     - create-deep-research-prompt.md
     - document-project.md
     - execute-checklist.md
+    - cross-platform-analysis.md
+    - mobile-performance-optimization.md
   templates:
     - architecture-tmpl.yaml
     - front-end-architecture-tmpl.yaml
     - fullstack-architecture-tmpl.yaml
     - brownfield-architecture-tmpl.yaml
+    - mobile-architecture-tmpl.yaml
   checklists:
     - architect-checklist.md
   data:

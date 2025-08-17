@@ -1,0 +1,277 @@
+workflow:
+  id: mobile-greenfield-app
+  name: Mobile App Development - Greenfield Project
+  description: Comprehensive workflow for creating React Native mobile applications from concept to deployment. Guides teams through mobile app concept development, cross-platform design, technical architecture, and story-driven development for professional iOS and Android applications.
+  type: greenfield
+  project_types:
+    - consumer-mobile-app
+    - enterprise-mobile-app
+    - e-commerce-mobile-app
+    - social-mobile-app
+    - utility-mobile-app
+    - fintech-mobile-app
+    - health-fitness-app
+    - education-mobile-app
+    - mvp-mobile-app
+
+  full_production_sequence:
+    - agent: pm
+      creates: mobile-brief.md
+      uses: create-doc project-brief-tmpl
+      optional_steps:
+        - mobile_competitive_analysis
+        - mobile_user_research
+        - brainstorming_session
+      notes: 'Start with competitive analysis and user research, then create comprehensive mobile app brief. Define target platforms, user personas, and core value proposition. SAVE OUTPUT: Copy final mobile-brief.md to your project''s docs/product/ folder.'
+
+    - agent: pm
+      creates: mobile-prd.md
+      uses: create-prd
+      requires: mobile-brief.md
+      optional_steps:
+        - mobile_user_research
+        - create_deep_research_prompt
+        - advanced_elicitation
+      notes: 'Create detailed Product Requirements Document using prd-tmpl. Define all features, user flows, platform-specific requirements, and success metrics. SAVE OUTPUT: Copy final mobile-prd.md to your project''s docs/product/ folder.'
+
+    - agent: architect
+      creates: mobile-architecture.md
+      uses: create-doc mobile-architecture-tmpl
+      requires: mobile-prd.md
+      optional_steps:
+        - cross_platform_analysis
+        - mobile_performance_optimization
+        - research react-native-patterns
+      notes: 'Create comprehensive mobile architecture using mobile-architecture-tmpl. Define React Native structure, platform-specific code organization, state management, and performance optimization. SAVE OUTPUT: Copy final mobile-architecture.md to your project''s docs/architecture/ folder.'
+
+    - agent: pm
+      validates: requirements_consistency
+      requires: all_product_documents
+      uses: pm-checklist
+      notes: Validate all product documents for consistency, completeness, and mobile platform compliance. May require updates to any product document.
+
+    - agent: architect
+      validates: technical_feasibility
+      requires: mobile-architecture.md
+      uses: architect-checklist
+      notes: Validate technical architecture for cross-platform feasibility, performance targets, and scalability requirements.
+
+    - agent: various
+      updates: flagged_documents
+      condition: validation_issues
+      notes: If validation finds issues, return to relevant agent to fix and re-export updated documents to docs/ folder.
+
+  project_setup_guidance:
+    action: guide_mobile_project_setup
+    uses: mobile-project-setup-guide
+    notes: Set up React Native project structure following mobile architecture document. Choose between Expo managed, Expo bare, or React Native CLI based on requirements. Configure development environment for both iOS and Android.
+
+  workflow_end:
+    action: move_to_story_development
+    notes: All design artifacts complete. Begin story-driven development phase. Use PM to create implementation stories from product documents, focusing on cross-platform development approach.
+
+  mvp_sequence:
+    - step: mvp_scope_assessment
+      action: assess_mvp_complexity
+      notes: First, assess if this needs full production sequence or can be rapid MVP development with core features only.
+
+    - agent: pm
+      creates: mobile-brief.md
+      uses: create-doc project-brief-tmpl
+      optional_steps:
+        - mobile_competitive_analysis
+        - quick_user_validation
+      notes: 'Create focused mobile brief for MVP. Emphasize core features and immediate user value. Define minimum viable platform requirements (iOS-first, Android-first, or simultaneous). SAVE OUTPUT: Copy final mobile-brief.md to your project''s docs/ folder.'
+
+    - agent: pm
+      creates: mvp-prd.md
+      uses: create-prd
+      requires: mobile-brief.md
+      notes: Create minimal PRD focused on core user journey and essential features only. Defer advanced features to post-MVP phases.
+
+    - agent: architect
+      creates: mvp-architecture.md
+      uses: create-doc mobile-architecture-tmpl
+      requires: mvp-prd.md
+      notes: Create simplified mobile architecture optimized for rapid development and iteration. Choose technology stack for speed (likely Expo managed workflow).
+
+  mvp_workflow_end:
+    action: move_to_rapid_implementation
+    notes: MVP scope defined. Begin immediate implementation focusing on core user journey first, then iterate based on user feedback and analytics.
+
+  flow_diagram: |
+    ```mermaid
+    graph TD
+        A[Start: Mobile App Project] --> B{Project Scope?}
+        B -->|Full Production App| C[pm: mobile-brief.md]
+        B -->|MVP/Quick Validation| D[pm: focused mobile-brief.md]
+
+        C --> E[pm: mobile-prd.md]
+        E --> F[architect: mobile-architecture.md]
+        F --> G[pm: validate requirements consistency]
+        G --> H[architect: validate technical feasibility]
+        H --> I{Validation issues?}
+        I -->|Yes| J[Return to relevant agent for fixes]
+        I -->|No| K[Set up mobile project structure]
+        J --> G
+        K --> L[Move to Story Development Phase]
+
+        D --> M[pm: mvp-prd.md]
+        M --> N[architect: mvp-architecture.md]
+        N --> O[Move to Rapid Implementation]
+
+        C -.-> C1[Optional: competitive analysis]
+        C -.-> C2[Optional: user research]
+        C -.-> C3[Optional: brainstorming]
+        E -.-> E1[Optional: advanced elicitation]
+        E -.-> E2[Optional: research prompts]
+        F -.-> F1[Optional: cross-platform analysis]
+        F -.-> F2[Optional: performance optimization]
+        D -.-> D1[Optional: quick validation]
+
+        style L fill:#90EE90
+        style O fill:#90EE90
+        style C fill:#FFE4B5
+        style E fill:#FFE4B5
+        style F fill:#FFE4B5
+        style G fill:#FFE4B5
+        style H fill:#FFE4B5
+        style D fill:#FFB6C1
+        style M fill:#FFB6C1
+        style N fill:#FFB6C1
+    ```
+
+  decision_guidance:
+    use_full_production_sequence_when:
+      - Building commercial or enterprise mobile applications
+      - Multiple team members or stakeholders involved
+      - Complex feature set requiring detailed planning
+      - Long-term development timeline (3+ months)
+      - Need comprehensive documentation for team coordination
+      - Targeting both iOS and Android with platform-specific features
+      - Regulatory compliance requirements (healthcare, finance)
+      - Integration with multiple backend services or APIs
+      - Advanced mobile features (camera, GPS, payments, offline sync)
+
+    use_mvp_sequence_when:
+      - Startup or proof-of-concept applications
+      - Solo developer or very small team (1-3 people)
+      - Simple feature set focused on core user value
+      - Quick market validation needed
+      - Limited budget or timeline constraints
+      - Learning or experimental projects
+      - Single platform launch (iOS-first or Android-first)
+      - Basic CRUD functionality with simple UI
+
+  technology_decision_guidance:
+    expo_managed_when:
+      - Rapid prototyping and MVP development
+      - Standard mobile features (camera, location, push notifications)
+      - Team lacks native development experience
+      - Over-the-air updates are valuable
+      - Quick deployment to app stores needed
+
+    expo_bare_when:
+      - Started with Expo but need custom native modules
+      - Want Expo tooling with native flexibility
+      - Some custom native functionality required
+      - Gradual migration from managed workflow
+
+    react_native_cli_when:
+      - Custom native modules required
+      - Maximum performance optimization needed
+      - Deep native platform integration
+      - Enterprise security requirements
+      - White-label applications
+
+  handoff_prompts:
+    pm_to_prd: Mobile brief complete. Save it as docs/product/mobile-brief.md in your project, then create the comprehensive Product Requirements Document focusing on cross-platform considerations.
+    prd_to_architect: PRD ready. Save it as docs/product/mobile-prd.md, then create the mobile architecture considering React Native patterns, platform-specific requirements, and performance optimization.
+    architect_validation: Architecture complete. Save it as docs/architecture/mobile-architecture.md. Please validate all product documents for requirements consistency.
+    technical_validation: Requirements validated. Please validate the technical architecture for cross-platform feasibility and performance targets.
+    validation_issues: Validation found issues with [document]. Please return to [agent] to fix and re-save the updated document.
+    full_complete: All artifacts validated and saved. Set up mobile project structure following the architecture guidelines and move to story development phase.
+    mvp_to_arch: MVP PRD complete. Save it as docs/product/mvp-prd.md, then create simplified mobile architecture optimized for rapid development.
+    mvp_complete: MVP scope defined. Set up mobile development environment and begin rapid implementation focusing on core user journey.
+
+  platform_considerations:
+    ios_specific:
+      - Human Interface Guidelines compliance
+      - App Store review requirements
+      - iOS-specific permissions and capabilities
+      - Performance on older iPhone models
+      - Integration with iOS ecosystem (Siri, Shortcuts, etc.)
+
+    android_specific:
+      - Material Design principles
+      - Google Play Store requirements
+      - Android-specific permissions and intents
+      - Performance across diverse device specifications
+      - Integration with Android ecosystem (Assistant, Widgets, etc.)
+
+    cross_platform_strategy:
+      - Shared business logic and state management
+      - Platform-specific UI adaptations
+      - Navigation patterns for each platform
+      - Testing strategy across platforms
+      - Deployment and release coordination
+
+  story_development_guidance:
+    epic_breakdown:
+      - "Core App Foundation" - Project setup, navigation, basic UI framework
+      - "User Authentication & Onboarding" - Login, registration, user profiles
+      - "Core Feature Implementation" - Primary app functionality
+      - "Platform-Specific Features" - iOS/Android unique capabilities
+      - "Data Management" - API integration, offline storage, sync
+      - "User Experience Polish" - Animations, micro-interactions, accessibility
+      - "Performance Optimization" - Load times, memory usage, battery efficiency
+      - "App Store Preparation" - Store listings, screenshots, deployment
+
+    story_creation_process:
+      - Use PM to create detailed implementation stories
+      - Each story should reference specific PRD sections
+      - Include platform-specific acceptance criteria
+      - Specify React Native implementation approach
+      - Apply story-dod-checklist for quality validation
+      - Ensure stories are cross-platform by default, platform-specific when needed
+
+  mobile_development_best_practices:
+    performance_targets:
+      - App launch time under 3 seconds on target devices
+      - 60 FPS animations and smooth scrolling
+      - Memory usage under platform-specific limits
+      - Battery efficient background processing
+      - Responsive UI with immediate feedback
+
+    technical_standards:
+      - TypeScript for type safety and better development experience
+      - Component-based React Native architecture
+      - Proper state management (Context API, Redux, or Zustand)
+      - Platform-agnostic business logic with platform-specific UI
+      - Comprehensive error handling and crash reporting
+      - Automated testing for core functionality
+
+    cross_platform_testing:
+      - Test on multiple iOS devices and versions
+      - Test on various Android devices and API levels
+      - Validate UI consistency across screen sizes
+      - Test platform-specific features thoroughly
+      - Monitor performance metrics on both platforms
+
+  success_criteria:
+    design_phase_complete:
+      - All product and architecture documents created and validated
+      - Technology stack selected and justified
+      - Platform-specific requirements clearly defined
+      - Performance targets established and achievable
+      - Story breakdown ready for implementation
+      - Development environment setup documented
+
+    implementation_readiness:
+      - React Native development environment configured
+      - iOS and Android development tools installed
+      - Project structure established per architecture
+      - State management and navigation frameworks integrated
+      - Testing and debugging tools configured
+      - Team roles and cross-platform responsibilities defined
+      - First implementation stories created and prioritized

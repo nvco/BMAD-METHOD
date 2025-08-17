@@ -1,0 +1,23 @@
+name: bmad-react-native
+version: 1.0.0
+short-title: React Native Mobile Dev Pack
+description: >-
+  React Native Cross-Platform Mobile Development expansion pack for BMad Method.
+  Uses core agents + mobile-specific data files, templates, and workflows for
+  iOS & Android development. Includes app store submission guidance and mobile
+  quality gates.
+author: BMad-Method Community
+slashPrefix: ReactNative
+
+# Expansion Components Summary:
+# - Core agents (no custom mobile agents needed)
+# - 11 mobile data files (guidelines, patterns, best practices)
+# - 2 mobile templates (mobile-architecture, app-store-listing)
+# - 5 mobile tasks (app store, competitive analysis, user research, cross-platform analysis, performance optimization)  
+# - 2 mobile workflows (mobile-greenfield-app, app-store-submission)
+# - 2 mobile checklists (app-store-submission, mobile-development)
+
+# Architecture Philosophy:
+# This expansion follows the "core + data" pattern proven in bmad-2d-phaser-game-dev.
+# Rather than creating duplicate mobile agents, we provide mobile-specific knowledge
+# that core agents can access, plus targeted mobile workflows and quality gates.

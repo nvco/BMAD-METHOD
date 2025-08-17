@@ -70,9 +70,13 @@ dependencies:
     - brownfield-create-story.md
     - execute-checklist.md
     - shard-doc.md
+    - app-store-submission.md
+    - mobile-competitive-analysis.md
+    - mobile-user-research.md
   templates:
     - prd-tmpl.yaml
     - brownfield-prd-tmpl.yaml
+    - app-store-listing-tmpl.yaml
   checklists:
     - pm-checklist.md
     - change-checklist.md
